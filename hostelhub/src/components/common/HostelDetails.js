@@ -179,16 +179,16 @@ const HostelDetails = () => {
       <p><strong>Nearby Colleges:</strong> {hostel.nearbyColleges.join(', ')}</p>
       <p><strong>Availability:</strong> {hostel.isAvailable ? 'Available' : 'Not Available'}</p>
       <p><strong>Created At:</strong> {new Date(hostel.createdAt).toLocaleString()}</p>
-
-      {/* Add to Favorites Button */}
-      <button onClick={handleAddToFavorites} className="favorites-btn">
-        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-      </button>
-
-      {/* Review Form Button */}
-      <button onClick={() => setShowReviewForm(!showReviewForm)} className="add-review-btn">
-        {showReviewForm ? 'Cancel' : 'Add a Review'}
-      </button>
+      {localStorage.role === 'renter' && <div>
+        {/* Add to Favorites Button */}
+        <button style = {{marginRight: '5px',backgroundColor: 'yellow', color: 'black'}} onClick={handleAddToFavorites} className="add-review-btn">
+          {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        </button>
+        {/* Review Form Button */}
+        <button onClick={() => setShowReviewForm(!showReviewForm)} className="add-review-btn">
+          {showReviewForm ? 'Cancel' : 'Add a Review'}
+        </button>
+      </div>}
 
       {showReviewForm && (
         <form className="review-form" onSubmit={handleReviewSubmit}>
