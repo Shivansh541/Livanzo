@@ -179,7 +179,7 @@ const HostelDetails = () => {
       <p><strong>Nearby Colleges:</strong> {hostel.nearbyColleges.join(', ')}</p>
       <p><strong>Availability:</strong> {hostel.isAvailable ? 'Available' : 'Not Available'}</p>
       <p><strong>Created At:</strong> {new Date(hostel.createdAt).toLocaleString()}</p>
-      {localStorage.role === 'renter' && <div>
+      {localStorage?.role === 'renter' && <div>
         {/* Add to Favorites Button */}
         <button style = {{marginRight: '5px',backgroundColor: 'yellow', color: 'black'}} onClick={handleAddToFavorites} className="add-review-btn">
           {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
