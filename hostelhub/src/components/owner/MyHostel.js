@@ -39,7 +39,14 @@ const MyHostel = () => {
   }, []);
 
   const handleDelete = async (id) => {
-    await fetch(`/api/hostel/delete/${id}`, { method: 'DELETE' });
+    await fetch(`http://localhost:5000/api/hostel/delete/${id}`, 
+      {
+        method: 'DELETE',
+        headers:{
+          'Content-Type': 'application/json',
+          'auth-token': localStorage.getItem('token'),
+        } 
+      });
     setMyHostels((prev) => prev.filter((h) => h._id !== id));
   };
 
