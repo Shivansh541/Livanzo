@@ -124,7 +124,7 @@ const MyHostel = () => {
         <div className="hostel-grid">
           {myHostels.map((h) => (
             <div key={h._id} className="hostel-card">
-              <img onClick={() => handleClick(h._id)} src={h.images[0]} alt="No img" />
+              <img onClick={() => handleClick(h._id)} src={h.images[0].startsWith('http')?h.images[0]:`http://localhost:5000${h.images[0]}`} alt="No img" />
               <h3>{h.name}</h3>
               <p>{h.description}</p>
               <p>Rent: ₹{h.rent}</p>

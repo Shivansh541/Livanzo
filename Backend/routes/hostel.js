@@ -2,13 +2,30 @@ const express = require("express");
 const router = express.Router();
 const Hostel = require("../models/Hostel");
 const fetchuser = require("../middleware/fetchuser");
+const multer = require("multer");
+const path = require("path");
 
-// ✅ Add Hostel
-router.post("/add", fetchuser, async (req, res) => {
+// Multer storage config
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/"); // make sure this folder exists
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+const upload = multer({ storage });
+
+// ✅ Add Hostel with multiple image uploads
+router.post("/add", fetchuser, upload.array("images", 10), async (req, res) => {
   try {
+    const imagePaths = req.files.map((file) => "/" + file.path.replace(/\\/g, "/"));
+
     const hostel = new Hostel({
       ...req.body,
       owner: req.user.id,
+      images: imagePaths,
     });
 
     const savedHostel = await hostel.save();
@@ -19,16 +36,14 @@ router.post("/add", fetchuser, async (req, res) => {
   }
 });
 
-// ✏️ Edit Hostel by ID
+// ✏️ Edit Hostel by ID (no image change)
 router.put("/edit/:id", fetchuser, async (req, res) => {
   try {
     const hostel = await Hostel.findById(req.params.id);
     if (!hostel) return res.status(404).json({ error: "Hostel not found" });
 
-    // Only owner can update
-    if (hostel.owner.toString() !== req.user.id) {
+    if (hostel.owner.toString() !== req.user.id)
       return res.status(403).json({ error: "Unauthorized" });
-    }
 
     const updatedHostel = await Hostel.findByIdAndUpdate(
       req.params.id,
@@ -48,9 +63,8 @@ router.delete("/delete/:id", fetchuser, async (req, res) => {
     const hostel = await Hostel.findById(req.params.id);
     if (!hostel) return res.status(404).json({ error: "Hostel not found" });
 
-    if (hostel.owner.toString() !== req.user.id) {
+    if (hostel.owner.toString() !== req.user.id)
       return res.status(403).json({ error: "Unauthorized" });
-    }
 
     await hostel.deleteOne();
     res.json({ message: "Hostel deleted successfully" });
@@ -59,49 +73,71 @@ router.delete("/delete/:id", fetchuser, async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-router.get('/myHostels', fetchuser, async (req, res) => {
-  const hostels = await Hostel.find({ owner: req.user.id });
+
+// 👤 Get all hostels of logged-in user
+router.get("/myHostels", fetchuser, async (req, res) => {
+  try {
+    const hostels = await Hostel.find({ owner: req.user.id });
     res.json(hostels);
-  });
-router.get('/all', async (req, res) => {
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// 🌍 Get all hostels
+router.get("/all", async (req, res) => {
+  try {
     const hostels = await Hostel.find();
     res.json(hostels);
-  });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
-// GET /api/hostel/search?city=Delhi&maxRent=8000&allowedFor=Girls
-// GET /api/hostels/search?query=delhi&min=3000&max=7000
-router.get('/search', async (req, res) => {
+// 🔍 Search hostels
+// GET /api/hostel/search?query=delhi&min=3000&max=7000
+router.get("/search", async (req, res) => {
   try {
     const { query, min, max } = req.query;
 
     const filter = {
       ...(query && {
         $or: [
-          { name: { $regex: query, $options: 'i' } },
-          { city: { $regex: query, $options: 'i' } },
-          { address: { $regex: query, $options: 'i' } },
+          { name: { $regex: query, $options: "i" } },
+          { "address.city": { $regex: query, $options: "i" } },
+          { description: { $regex: query, $options: "i" } },
         ],
       }),
-      ...(min && { price: { $gte: Number(min) } }),
-      ...(max && { price: { ...((min && { $gte: Number(min) }) || {}), $lte: Number(max) } }),
+      ...(min && { rent: { $gte: Number(min) } }),
+      ...(max && {
+        rent: {
+          ...((min && { $gte: Number(min) }) || {}),
+          $lte: Number(max),
+        },
+      }),
     };
 
     const hostels = await Hostel.find(filter);
     res.json(hostels);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 });
-router.get('/:id', async (req, res) => {
+
+// 📄 Get hostel by ID
+router.get("/:id", async (req, res) => {
   try {
     const hostel = await Hostel.findById(req.params.id);
-    if (!hostel) return res.status(404).json({ error: 'Hostel not found' });
+    if (!hostel) return res.status(404).json({ error: "Hostel not found" });
+
     res.json(hostel);
-    } catch (err) {
+  } catch (err) {
     console.error(err.message);
-    res.status(500).send('Internal Server Error');
-    }
-})
-  
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 module.exports = router;

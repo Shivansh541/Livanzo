@@ -11,6 +11,7 @@ import Profile from "./components/common/Profile";
 import HostelDetails from "./components/common/HostelDetails";
 import Guest from "./components/guest/Guest";
 import Favorites from "./components/user/Favorites";
+import 'leaflet/dist/leaflet.css';
 
 function App() {
   const [token, setToken] = useState(null);
@@ -19,7 +20,10 @@ function App() {
   const [hostels, setHostels] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
-
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.body.classList.add(savedTheme);
+  }, []);
   // Load token and role from localStorage on app start
   useEffect(() => {
     const storedToken = localStorage.getItem("token");

@@ -83,6 +83,12 @@ const HostelSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  favoritedBy: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,

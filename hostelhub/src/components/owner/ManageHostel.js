@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './css/manageHostel.css';
+
 const ManageHostel = () => {
   const [form, setForm] = useState({
     name: '',
@@ -7,7 +8,7 @@ const ManageHostel = () => {
     description: '',
     roomType: 'Single',
     allowedFor: 'Both',
-    images: [],
+    images: [], // will hold FileList
     address: {
       street: '',
       city: '',
@@ -15,13 +16,16 @@ const ManageHostel = () => {
       pincode: '',
       landmark: '',
     },
-    nearbyColleges: [],
-    facilities: [],
+    nearbyColleges: '',
+    facilities: '',
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name.startsWith('address')) {
+    const { name, value, files } = e.target;
+
+    if (name === 'images') {
+      setForm({ ...form, images: files }); // store files directly
+    } else if (name.startsWith('address.')) {
       setForm({
         ...form,
         address: {
@@ -29,12 +33,6 @@ const ManageHostel = () => {
           [name.split('.')[1]]: value,
         },
       });
-    } else if (name === 'images') {
-      setForm({ ...form, images: value.split(',') }); // Convert comma-separated values into an array
-    } else if (name === 'nearbyColleges') {
-      setForm({ ...form, nearbyColleges: value.split(',') }); // Convert comma-separated values into an array
-    } else if (name === 'facilities') {
-      setForm({ ...form, facilities: value.split(',') }); // Convert comma-separated values into an array
     } else {
       setForm({ ...form, [name]: value });
     }
@@ -42,18 +40,50 @@ const ManageHostel = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+
+    // Basic fields
+    formData.append('name', form.name);
+    formData.append('rent', form.rent);
+    formData.append('description', form.description);
+    formData.append('roomType', form.roomType);
+    formData.append('allowedFor', form.allowedFor);
+
+    // Address
+    for (const key in form.address) {
+      formData.append(`address.${key}`, form.address[key]);
+    }
+
+    // Arrays (split by commas)
+    form.nearbyColleges
+      .split(',')
+      .map((college) => college.trim())
+      .forEach((college) => formData.append('nearbyColleges', college));
+
+    form.facilities
+      .split(',')
+      .map((f) => f.trim())
+      .forEach((f) => formData.append('facilities', f));
+
+    // Images
+    for (let i = 0; i < form.images.length; i++) {
+      formData.append('images', form.images[i]);
+    }
+
     try {
       const res = await fetch('http://localhost:5000/api/hostel/add', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'auth-token': localStorage.getItem('token'),
         },
-        body: JSON.stringify(form),
+        body: formData,
       });
+
       const data = await res.json();
       if (res.ok) {
         alert('Hostel added successfully!');
+        window.location.reload(); // optional: reload or redirect
       } else {
         alert(data.error || 'Failed to add hostel');
       }
@@ -64,9 +94,9 @@ const ManageHostel = () => {
   };
 
   return (
-    <div className='manage-hostel-container'>
+    <div className="manage-hostel-container">
       <h2>Add New Hostel</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input
           name="name"
           placeholder="Hostel Name"
@@ -89,12 +119,15 @@ const ManageHostel = () => {
           onChange={handleChange}
           required
         />
+
         <input
+          type="file"
           name="images"
-          placeholder="Image URLs (comma separated)"
-          value={form.images.join(', ')}
+          multiple
+          accept="image/*"
           onChange={handleChange}
         />
+
         <input
           name="address.street"
           placeholder="Street"
@@ -128,20 +161,16 @@ const ManageHostel = () => {
         <input
           name="nearbyColleges"
           placeholder="Nearby Colleges (comma separated)"
-          value={form.nearbyColleges.join(', ')}
+          value={form.nearbyColleges}
           onChange={handleChange}
         />
         <input
           name="facilities"
           placeholder="Facilities (comma separated)"
-          value={form.facilities.join(', ')}
+          value={form.facilities}
           onChange={handleChange}
         />
-        <select
-          name="roomType"
-          value={form.roomType}
-          onChange={handleChange}
-        >
+        <select name="roomType" value={form.roomType} onChange={handleChange}>
           <option>Single</option>
           <option>Double</option>
           <option>Triple</option>

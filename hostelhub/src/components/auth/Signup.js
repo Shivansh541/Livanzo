@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './css/signup.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 const Signup = () => {
+  const [showPassword,setShowPassword] = useState(false)
+
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: '',
@@ -36,14 +39,19 @@ const Signup = () => {
       alert(error);
     }
   };
-
+  const handleToggle = ()=>{
+    setShowPassword(!showPassword)
+  }
   return (
-    <div id='signup' style={{ padding: '2rem' }}>
-      <h2>Sign Up</h2>
+    <div id='signup'>
       <form className='loginForm' onSubmit={handleSubmit}>
+      <h2>Sign Up</h2>
         <input type="text" name="name" placeholder="Name" onChange={handleChange} required /><br />
         <input type="email" name="email" placeholder="Email" onChange={handleChange} required /><br />
-        <input type="password" name="password" placeholder="Password" onChange={handleChange} required /><br />
+        <div className="pass_box">
+          <input type={showPassword?'text':'password'} name="password" placeholder="Password" onChange={handleChange} required /><br />
+          <FontAwesomeIcon onClick={handleToggle} className='eye' icon = {showPassword?faEye:faEyeSlash}/>
+        </div>
         <input type="text" name="phone" placeholder="Phone (10 digits)" onChange={handleChange} required /><br />
         <select name="role" onChange={handleChange}>
           <option value="owner">Owner</option>

@@ -1,78 +1,149 @@
 /* General layout */
-.userContainer,.guestContainer,.ownerDashboard {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  /* Navbar */
-  .userNavbar {
-    background-color: #f8f9fa;
-    padding: 0.7rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    border-bottom: 1px solid #ddd;
-  }
-  .ownerNavbar .left-nav{
-    width: 50% !important;
-  }
-  /* Navbar links */
-  .userNavbar a {
-    margin-right: 2rem;
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.2s ease-in-out;
-  }
-  
-  .userNavbar a:hover {
-    color: #007bff;
-  }
+.userContainer,
+.guestContainer,
+.ownerDashboard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
 
-  
-  /* Search input */
-  .userNavbar input[type="text"] {
-    padding: 0.5rem 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    min-width: 220px;
-    margin-right: 1rem;
-    margin-bottom: 0 !important;
-    transition: border-color 0.3s ease;
-  }
-  
-  .userNavbar input[type="text"]:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
-  /* Logout button */
-  .userNavbar button {
-    padding: 0.5rem 0.75rem;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .userNavbar button:hover {
-    background-color: #c82333;
-  }
-  
-  /* Main content */
- .userNavbar .right-nav{
-    display: flex;
-    justify-content: center;
-    align-items: center;
- }
-.userNavbar .left-nav{
-    width: 27%;
-    display: flex
-;
-    justify-content: space-evenly;
-    align-items: center;
+/* Navbar */
+.userNavbar {
+  background-color: var(--navbar-bg);
+  padding: 0.7rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--navbar-border);
+}
+
+.ownerNavbar .left-nav {
+  width: 50% !important;
+}
+
+/* Navbar links */
+.userNavbar a {
+  margin-right: 2rem;
+  text-decoration: none;
+  color: var(--nav-link-color);
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.userNavbar a:hover {
+  color: var(--nav-link-hover);
+}
+
+/* Search input */
+.userNavbar input[type="text"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  min-width: 220px;
+  margin: 0 1rem;
+  margin-bottom: 0 !important;
+  background-color: var(--form-bg);
+  color: var(--text-color);
+  transition: border-color 0.3s ease;
+}
+
+.userNavbar input[type="text"]::placeholder {
+  color: var(--placeholder-color);
+}
+
+.userNavbar input[type="text"]:focus {
+  outline: none;
+  border-color: var(--input-focus);
+}
+
+/* Logout button */
+.userNavbar button {
+  padding: 0.5rem 0.75rem;
+  background-color: var(--btn-danger);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.userNavbar button:hover {
+  background-color: var(--btn-danger-hover);
+}
+
+/* Navbar inner flex containers */
+.userNavbar .right-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userNavbar .left-nav {
+  width: 27%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content */
+.modal-content {
+  background: var(--modal-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 10px var(--shadow-color);
+  color: var(--text-color);
+}
+
+/* Modal buttons container */
+.modal-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Confirm button */
+.confirm-btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--btn-danger);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.confirm-btn:hover {
+  background-color: var(--btn-danger-hover);
+}
+
+/* Cancel button */
+.cancel-btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--btn-cancel);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background-color: var(--btn-cancel-hover);
 }

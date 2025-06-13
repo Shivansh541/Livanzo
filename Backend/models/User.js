@@ -34,7 +34,13 @@ const UserSchema = new Schema({
         type: String,
         enum: ["owner", "renter"],
         required: true,
-    },    
+    },   
+    otp:{
+        type:String
+    },
+    otpExpires:{
+        type: Date
+    },
     date:{
         type: Date,
         default: Date.now

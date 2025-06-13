@@ -7,7 +7,7 @@ const Guest = ({ searchTerm, setSearchTerm }) => {
   return (
     <div className='guestContainer'>
       <GuestNavbar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-      <div style={{ padding: '1rem' }}>
+      <div>
         <Outlet />
       </div>
     </div>

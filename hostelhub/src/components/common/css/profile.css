@@ -1,86 +1,97 @@
 .profile-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    background-color: #f7f7f7;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .profile-container h2 {
-    text-align: center;
-    color: #1d3557;
-    margin-bottom: 1.5rem;
-  }
-  
-  .profile-field {
-    margin-bottom: 1rem;
-  }
-  
-  .profile-field strong {
-    display: inline-block;
-    width: 100px;
-    color: #333;
-  }
-  
-  .profile-field span,
-  .profile-field input {
-    font-size: 1rem;
-    color: #444;
-  }
-  
-  .profile-field input {
-    padding: 0.4rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    width: calc(100% - 110px);
-    margin-left: 0.5rem;
-  }
-  
-  .profile-buttons {
-    display: flex;
-    width: 100%;
-    gap: 10px;
-    margin-top: 1rem;
-  }
-  
-  
-  .profile-buttons button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .profile-buttons button:first-child {
-    background-color: #1d3557;
-    color: #fff;
-  }
-  
-  .profile-buttons button:nth-child(2) {
-    background-color: #999;
-    color: #fff;
-  }
-  
-  .profile-delete {
-    margin-top: 1.5rem;
-    text-align: center;
-  }
-  
-  .profile-delete button {
-    background-color: transparent;
-    color: red;
-    border: 1px solid red;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .profile-delete button:hover {
-    background-color: rgba(255, 0, 0, 0.1);
-  }
-  
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: var(--form-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+}
+
+.profile-container h2 {
+  text-align: center;
+  color: var(--link-color);
+  margin-bottom: 1.5rem;
+}
+
+.profile-field {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.profile-field strong {
+  display: inline-block;
+  width: 100px;
+  color: var(--span-color);
+}
+
+.profile-field span,
+.profile-field input {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.profile-field input {
+  padding: 0.4rem;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  width: 100%;
+  margin-left: 0.5rem;
+  background-color: var(--form-bg);
+}
+
+.profile-field input:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
+
+.profile-buttons {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.profile-buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.profile-buttons button:first-child {
+  background-color: var(--btn-bg);
+  color: #fff;
+}
+
+.profile-buttons button:first-child:hover {
+  background-color: var(--btn-hover);
+}
+
+.profile-buttons button:nth-child(2) {
+  background-color: #999;
+  color: #fff;
+}
+
+.profile-delete {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.profile-delete button {
+  background-color: transparent;
+  color: red;
+  border: 1px solid red;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.profile-delete button:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+}

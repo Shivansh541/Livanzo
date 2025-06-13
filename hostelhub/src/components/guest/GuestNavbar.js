@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import ToggleButton from '../common/ToggleButton';
 
 const GuestNavbar = ({ searchTerm, setSearchTerm }) => {
     const navigate = useNavigate();
@@ -15,12 +16,12 @@ const GuestNavbar = ({ searchTerm, setSearchTerm }) => {
       }
     }
   return (
-    <nav className='userNavbar' style={{ padding: '1rem', backgroundColor: '#f0f0f0' }}>
+    <nav className='userNavbar' style={{ padding: '1rem'}}>
     <div className="left-nav">
-      <Link to="/" style={{ marginRight: '1rem',color: 'blue' }}>Home</Link>
+      <Link to="/" style={{ marginRight: '1rem',color: 'var(--link-active)' }}>Home</Link>
     </div>
     <div className="right-nav">
-
+      <ToggleButton/>
     <input
       type="text"
       placeholder="Search"

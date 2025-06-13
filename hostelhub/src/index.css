@@ -1,3 +1,90 @@
+/* VARIABLES */
+:root {
+  --bg-color: #f8f9fa;
+  --bg-gradient-start: #f8f9fa;
+  --bg-gradient-end: #e9ecef;
+  --form-bg: #fff;
+  --text-color: #343a40;
+  --input-border: #979fa7;
+  --input-focus: #007bff;
+  --btn-bg: #007bff;
+  --btn-hover: #0056b3;
+  --link-color: #007bff;
+  --span-color: #495057;
+  --modal-bg: #fff;
+  --close-btn-bg: #ccc;
+  --placeholder-color: #475059;
+  --navbar-bg: #f8f9fa;
+  --navbar-border: #ddd;
+  --nav-link-color: #333;
+  --nav-link-hover: #007bff;
+  --link-active: #0056b3;
+  --btn-danger: #dc3545;
+  --btn-danger-hover: #c82333;
+  --btn-cancel: #5bc0de;
+  --btn-cancel-hover: #31b0d5;
+  --card-hover-shadow: rgba(0, 0, 0, 0.15);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --primary: #1d3557;
+  --secondary: #457b9d;
+  --review-card-bg: #fff;
+  --favorite-btn: #ffcc00;
+  --favorite-hover: #ff9900;
+  --label-color: #2c3e50;
+  --text-muted: #555;
+  --light-border: #d1d1d1;
+  --highlight-bg: #fdfdfd;
+  --review-btn: green;
+  --review-btn-hover: darkgreen;
+}
+
+.dark {
+  --bg-color: #1e1e1e;
+  --bg-gradient-start: #1a1a1a;
+  --bg-gradient-end: #2a2a2a;
+  --form-bg: #2c2c2c;
+  --text-color: #f1f1f1;
+  --input-border: #555;
+  --input-focus: #66b2ff;
+  --btn-bg: #0d6efd;
+  --btn-hover: #0a58ca;
+  --link-color: #66b2ff;
+  --span-color: #ccc;
+  --modal-bg: #2c2c2c;
+  --close-btn-bg: #444;
+  --placeholder-color: #aaa;
+  --navbar-bg: #2c2c2c;
+  --navbar-border: #444;
+  --nav-link-color: #f1f1f1;
+  --nav-link-hover: #66b2ff;
+  --link-active: #66b2ff;
+  --btn-danger: #bb2d3b;
+  --btn-danger-hover: #a71d2a;
+  --btn-cancel: #3498db;
+  --btn-cancel-hover: #2980b9;
+  --card-hover-shadow: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(255, 255, 255, 0.1);
+  --primary: #aad6ff;
+  --secondary: #66b2ff;
+  --review-card-bg: #2a2a2a;
+  --favorite-btn: #e0b800;
+  --favorite-hover: #d4a700;
+  --label-color: #d2e9ff;
+  --text-muted: #aaa;
+  --light-border: #555;
+  --highlight-bg: #1e1e1e;
+  --review-btn: #2ecc71;
+  --review-btn-hover: #27ae60;
+}
+
+/* Use CSS variables in the rest of the stylesheet to support dark mode and customization */
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

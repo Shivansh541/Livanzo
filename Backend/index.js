@@ -16,6 +16,8 @@ app.get('/', (req, res) => {
 })
 app.use('/api/auth',require('./routes/auth'))
 app.use('/api/hostel', require('./routes/hostel'))
+app.use('/uploads', express.static('uploads'));
+
 app.listen(port, () => {
   console.log(`HostelHub app listening on http://localhost:${port}/`)
 })
