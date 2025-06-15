@@ -21,7 +21,7 @@ const ToggleButton = () => {
 
   return (
     <label className="theme-switch">
-        <input onClick={toggleTheme} type="checkbox" className="theme-switch__checkbox"/>
+        <input onClick={toggleTheme} type="checkbox" checked = {theme === 'dark'} onChange={()=>{}} className="theme-switch__checkbox"/>
         <div className="theme-switch__container">
             <div className="theme-switch__clouds"></div>
             <div className="theme-switch__stars-container">

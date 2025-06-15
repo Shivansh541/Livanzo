@@ -3,6 +3,7 @@
 /* === Root Variables for Light & Dark Mode === */
 
 /* === Main Containers === */
+
 #login,
 #signup {
   display: flex;
@@ -34,7 +35,7 @@
 }
 
 .loginForm input {
-  width: 91%;
+  width: 100%;
   padding: 0.8rem;
   margin-bottom: 1rem;
   border: 1px solid var(--input-border);
@@ -43,6 +44,7 @@
   transition: border-color 0.3s ease;
   background-color: transparent;
   color: var(--text-color);
+  box-sizing: border-box;
 }
 
 .loginForm input:focus {

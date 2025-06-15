@@ -158,32 +158,23 @@
 
 /* Filter Section */
 .filter-section {
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(110px,1fr)); /* default: 1 column */
+  gap: 1rem;
   margin-bottom: 1rem;
-  flex-wrap: wrap;
+  width: 100%;
 }
+
 
 .filter-section input,
 .filter-section select {
-  width: 130px;
-  padding: 6px;
-  margin: 5px;
+  width: 100%;
+  padding:  6px 12px;
+  border-radius: 25px;
+  margin: 0;
   box-sizing: border-box;
   background-color: var(--form-bg);
   color: var(--text-color);
   border: 1px solid var(--input-border);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .edit-hostel-form-container {
-    padding: 1rem;
-  }
-
-  .edit-hostel-form-container input,
-  .edit-hostel-form-container select,
-  .edit-hostel-form-container textarea {
-    font-size: 0.9rem;
-  }
-}

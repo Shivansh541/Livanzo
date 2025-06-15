@@ -18,12 +18,14 @@ const AllHostels = ({ hostels }) => {
     minRating: '',
   });
 
+  const [sortOption, setSortOption] = useState('');
+
   useEffect(() => {
     setFilteredHostels(hostels);
   }, [hostels]);
 
   useEffect(() => {
-    const result = hostels?.filter((h) => {
+    let result = hostels?.filter((h) => {
       const facilitiesArray = filters.facilities
         ? filters.facilities.toLowerCase().split(',').map(f => f.trim())
         : [];
@@ -52,8 +54,38 @@ const AllHostels = ({ hostels }) => {
       );
     });
 
+    // Apply Sorting
+ switch (sortOption) {
+      case 'rentLowHigh':
+        result.sort((a, b) => a.rent - b.rent);
+        break;
+      case 'rentHighLow':
+        result.sort((a, b) => b.rent - a.rent);
+        break;
+      case 'ratingHighLow':
+        result.sort((a, b) => b.rating - a.rating);
+        break;
+      case 'ratingLowHigh':
+        result.sort((a, b) => a.rating - b.rating);
+        break;
+      case 'nameAZ':
+        result.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'nameZA':
+        result.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case 'newest':
+        result.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        break;
+      case 'oldest':
+        result.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+        break;
+      default:
+        break;
+    }
+
     setFilteredHostels(result);
-  }, [filters, hostels]);
+  }, [filters, hostels, sortOption]);
 
   const handleClick = (id) => {
     const role = localStorage.getItem("role");
@@ -98,6 +130,19 @@ const AllHostels = ({ hostels }) => {
         <input type="text" name="facilities" placeholder="Facilities (e.g., wifi, food)" onChange={handleFilterChange} />
         <input type="text" name="nearbyColleges" placeholder="Nearby Colleges (e.g., IIT, NIT)" onChange={handleFilterChange} />
         <input type="number" name="minRating" placeholder="Min Rating" min="1" max="5" onChange={handleFilterChange} />
+
+        {/* Sorting Dropdown */}
+        <select onChange={(e) => setSortOption(e.target.value)}>
+          <option value="">Sort By</option>
+          <option value="rentLowHigh">Rent: Low to High</option>
+          <option value="rentHighLow">Rent: High to Low</option>
+          <option value="ratingHighLow">Rating: High to Low</option>
+          <option value="ratingLowHigh">Rating: Low to High</option>
+                    <option value="nameAZ">Name: A-Z</option>
+          <option value="nameZA">Name: Z-A</option>
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
       </div>
 
       {filteredHostels?.length > 0 ? (
@@ -105,16 +150,16 @@ const AllHostels = ({ hostels }) => {
           {filteredHostels.map(h => (
             <div key={h._id} className="hostel-card" onClick={() => handleClick(h._id)}>
               <img
-  src={
-    h.images.length > 0
-      ? h.images[0].startsWith('http')
-        ? h.images[0]
-        : `${BACKEND_URL}${h.images[0]}`
-      : 'https://via.placeholder.com/200x150?text=No+Image'
-  }
-  alt="hostel"
-  className="hostel-image"
-/>
+                src={
+                  h.images.length > 0
+                    ? h.images[0].startsWith('http')
+                      ? h.images[0]
+                      : `${BACKEND_URL}${h.images[0]}`
+                    : 'https://via.placeholder.com/200x150?text=No+Image'
+                }
+                alt="hostel"
+                className="hostel-image"
+              />
               <h3>{h.name}</h3>
               <p>{h.description}</p>
               <p>Rent: ₹{h.rent}</p>

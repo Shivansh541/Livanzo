@@ -11,6 +11,8 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
+const EMAIL_USER = process.env.EMAIL_USER;
+const EMAIL_PASS = process.env.EMAIL_PASS;
 router.post(
   "/signup",
   [
@@ -114,13 +116,13 @@ router.post("/forgot-password", async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-      user: "rathoreshivansh54@gmail.com",
-      pass: "olwe xcrk rbgr khik",
+      user: EMAIL_USER,
+      pass: EMAIL_PASS,
     },
   });
 
   const mailOptions = {
-    from: "rathoreshivansh54@gmail.com",
+    from: EMAIL_USER,
     to: user.email,
     subject: "Your OTP for Password Reset",
     text: `Your OTP is ${otp}. It is valid for 10 minutes.`,

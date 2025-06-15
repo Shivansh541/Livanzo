@@ -1,0 +1,65 @@
+.hamburger-menu{
+    display: none;
+}
+.right-nav .close-menu{
+    display: none;
+}
+.right-nav .menu-button{
+    display: none;
+}
+@media screen and (max-width:768px) {
+.userNavbar .navlinks{
+    display: none;
+}
+.navbtn{
+    display: none;
+}
+.right-nav{
+    position: relative;
+}
+.right-nav .menu-button{
+    display: block;
+    margin: 0;
+    font-size: 25px;
+}
+.right-nav .close-menu{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    display: block;
+    margin: 0;
+    font-size: 25px;
+    z-index: 4;
+}
+.hamburger-menu{
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 225px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 3;
+
+}
+.hamburger-menu a{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 12px;
+}
+.hamburger-menu a svg{
+    margin: 0px;
+    width: 23px;
+    height: 23px;
+}
+.hamburger-menu a .linkName{
+    font-size: 14px;
+}
+
+.hamburger-menu .hambtn{
+    margin: 10px;
+}
+}
