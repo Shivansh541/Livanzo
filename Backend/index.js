@@ -4,6 +4,12 @@ const cors = require('cors');
 const express = require('express')
 const app = express()
 const port = process.env.PORT
+
+const path = require('path')
+app.use(express.static(path.join(__dirname, '../hostelhub/build')))
+app.get('*',(req,res)=>{
+  res.sendFile(path.join(__dirname,'../hostelhub/build','index.html'));
+})
 app.use(cors());
 require("dotenv").config()
 app.use(cors({

@@ -78,7 +78,7 @@ function App() {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
