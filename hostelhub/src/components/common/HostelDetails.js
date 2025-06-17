@@ -26,7 +26,7 @@ const HostelDetails = () => {
   const [user, setUser] = useState(null);
   const [newImages, setNewImages] = useState([]); // 🆕
 
-  const BACKEND_URL = 'https://livanzo.onrender.com';
+  const BACKEND_URL = 'http://localhost:5000';
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -38,7 +38,7 @@ function App() {
   useEffect(() => {
     const fetchHostels = async () => {
       try {
-        const res = await fetch('https://livanzo.onrender.com/api/hostel/all');
+        const res = await fetch('http://localhost:5000/api/hostel/all');
         if (!res.ok) throw new Error('Failed to fetch hostels');
         const data = await res.json();
         setHostels(data);
@@ -54,7 +54,7 @@ function App() {
     const getUser = async () => {
       if (!token) return;
       try {
-        const res = await fetch('https://livanzo.onrender.com/api/auth/getUser', {
+        const res = await fetch('http://localhost:5000/api/auth/getUser', {
           headers: {
             'auth-token': token,
           },

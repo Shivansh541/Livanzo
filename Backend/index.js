@@ -5,15 +5,10 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT
 
-// const path = require('path')
-// // app.use(express.static(path.join(__dirname, '../hostelhub/build')))
-// // app.get('*',(req,res)=>{
-// //   res.sendFile(path.join(__dirname,'../hostelhub/build','index.html'));
-// // })
 app.use(cors());
 require("dotenv").config()
 app.use(cors({
-  origin: 'https://livanzo-dvj7.onrender.com',
+  origin: 'http://localhost:3000',
   credentials: true,
 }));
 app.use(express.json())
