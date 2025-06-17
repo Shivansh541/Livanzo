@@ -3,9 +3,9 @@ connectToMongo()
 const cors = require('cors');
 const express = require('express')
 const app = express()
-const port = 5000
+const port = process.env.PORT
 app.use(cors());
-
+require("dotenv").config()
 app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true,

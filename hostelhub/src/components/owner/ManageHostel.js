@@ -135,6 +135,12 @@ const ManageHostel = () => {
           onChange={handleChange}
         />
         <input
+          name="address.landmark"
+          placeholder="Landmark"
+          value={form.address.landmark}
+          onChange={handleChange}
+        />
+        <input
           name="address.city"
           placeholder="City"
           value={form.address.city}
@@ -150,12 +156,6 @@ const ManageHostel = () => {
           name="address.pincode"
           placeholder="Pincode"
           value={form.address.pincode}
-          onChange={handleChange}
-        />
-        <input
-          name="address.landmark"
-          placeholder="Landmark"
-          value={form.address.landmark}
           onChange={handleChange}
         />
         <input

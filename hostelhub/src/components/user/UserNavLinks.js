@@ -7,13 +7,13 @@ const UserNavLinks = ({setShowMenu}) => {
 
   return (
         <>
-              <Link onClick={()=>setShowMenu(false)} style = {{color: location.pathname==='/user'?'var(--link-active)':'var(--nav-link-color)'}} to="/user">
+              <Link onClick={()=>setShowMenu?.(false)} style = {{color: location.pathname==='/user'?'var(--link-active)':'var(--nav-link-color)'}} to="/user">
                 <FontAwesomeIcon icon={faHouse} /><p className='linkName'>Home</p>
               </Link>
-              <Link  onClick={()=>setShowMenu(false)} style = {{color: location.pathname==='/user/favorites'?'var(--link-active)':'var(--nav-link-color)'}} to="/user/favorites">
+              <Link  onClick={()=>setShowMenu?.(false)} style = {{color: location.pathname==='/user/favorites'?'var(--link-active)':'var(--nav-link-color)'}} to="/user/favorites">
               <FontAwesomeIcon icon={faHeart}/><p className='linkName'>Favorites</p>
               </Link>
-              <Link onClick={()=>setShowMenu(false)} style = {{color: location.pathname==='/user/profile'?'var(--link-active)':'var(--nav-link-color)'}} to="/user/profile">
+              <Link onClick={()=>setShowMenu?.(false)} style = {{color: location.pathname==='/user/profile'?'var(--link-active)':'var(--nav-link-color)'}} to="/user/profile">
               <FontAwesomeIcon icon={faUser}/><p className='linkName'>Profile</p>
               </Link>
         </>
