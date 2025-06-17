@@ -7,12 +7,12 @@ import {
   faPlusCircle,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-const OwnerNavLinks = () => {
+const OwnerNavLinks = ({setShowMenu}) => {
   const location = useLocation();
 
   return (
         <>
-          <Link
+          <Link onClick = {()=>setShowMenu(false)}
             to="/owner"
             style={{
               color:
@@ -24,7 +24,7 @@ const OwnerNavLinks = () => {
             <FontAwesomeIcon icon={faHouse} />
             <p className="linkName">Home</p>
           </Link>
-          <Link
+          <Link onClick = {()=>setShowMenu(false)}
             to="/owner/myHostels"
             style={{
               color:
@@ -36,7 +36,7 @@ const OwnerNavLinks = () => {
             <FontAwesomeIcon icon={faBuilding} />
             <p className="linkName">My Hostels</p>
           </Link>
-          <Link
+          <Link onClick = {()=>setShowMenu(false)}
             to="/owner/manageHostels"
             style={{
               color:
@@ -48,7 +48,7 @@ const OwnerNavLinks = () => {
             <FontAwesomeIcon icon={faPlusCircle} />
             <p className="linkName">Add Hostel</p>
           </Link>
-          <Link
+          <Link onClick = {()=>setShowMenu(false)}
             style={{
               color:
                 location.pathname === "/owner/profile"

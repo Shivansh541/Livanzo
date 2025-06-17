@@ -139,5 +139,55 @@ router.get("/:id", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+// ✅ Add more images to existing hostel
+router.put("/addImages/:id", fetchuser, upload.array("images", 10), async (req, res) => {
+  try {
+    const hostel = await Hostel.findById(req.params.id);
+    if (!hostel) return res.status(404).json({ error: "Hostel not found" });
+
+    if (hostel.owner.toString() !== req.user.id)
+      return res.status(403).json({ error: "Unauthorized" });
+
+    const imagePaths = req.files.map((file) => "/" + file.path.replace(/\\/g, "/"));
+    hostel.images = [...hostel.images, ...imagePaths];
+
+    const updatedHostel = await hostel.save();
+    res.json(updatedHostel);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+// PUT /api/hostel/deleteImage/:id
+router.put('/deleteImage/:id', fetchuser, async (req, res) => {
+  const { id } = req.params;
+  const { image } = req.body;
+  try {
+    const hostel = await Hostel.findById(id);
+    if (!hostel) return res.status(404).json({ message: 'Hostel not found' });
+
+    // Check if current user is the owner
+    if (hostel.owner.toString() !== req.user.id) {
+      return res.status(403).json({ message: 'Not authorized to delete images from this hostel' });
+    }
+
+    // Remove the image from the array
+    hostel.images = hostel.images.filter(img => img !== image);
+
+    // OPTIONAL: delete local file if hosted locally
+    if (!image.startsWith('http')) {
+      const fs = require('fs');
+      const path = require('path');
+      const filePath = path.join(__dirname, '..', image); // adjust path if needed
+      if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+    }
+
+    await hostel.save();
+    res.json(hostel);
+  } catch (err) {
+    console.error('Error deleting image', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 module.exports = router;

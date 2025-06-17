@@ -66,6 +66,8 @@ const Profile = ({ user }) => {
   };
 
   const handleDelete = async () => {
+    const confirmed = window.confirm('Are you sure you want to delete this account');
+    if (!confirmed) return;
     const token = localStorage.getItem('token');
 
     const response = await fetch('/api/auth/delete', {

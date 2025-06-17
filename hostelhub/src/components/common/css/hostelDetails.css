@@ -17,7 +17,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 1rem;
 }
 
 .hostel-images img {
@@ -39,9 +38,9 @@
 
 .owner-info,
 .reviews {
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 2px solid var(--light-border);
+  border-top: 1px solid var(--light-border);
 }
 
 .reviews h3,
@@ -69,6 +68,7 @@
 
 .slideshow-wrapper {
   position: relative;
+  display: inline-block;
   width: 100%;
   max-width: 300px;
   overflow: hidden;
@@ -100,6 +100,7 @@
 
 .slideshow-slider,
 .slideshow-fullslider {
+  position: relative;
   display: flex;
   transition: transform 0.5s ease-in-out;
   width: 100%;
@@ -160,7 +161,8 @@
 }
 
 .add-review-btn {
-  margin-top: 1rem;
+  margin: 1rem 0;
+  margin-right: 1rem;
   padding: 0.5rem 1rem;
   background-color: var(--btn-bg);
   color: white;
@@ -232,21 +234,19 @@
 .owner-info p {
   margin: 8px 0;
   font-size: 16px;
-  line-height: 1.6;
+
   color: var(--text-color);
 }
 
 .hostelinfo p strong,
 .owner-info p strong {
   display: inline-block;
-  width: 160px;
   font-weight: 600;
   color: var(--label-color);
 }
 
 .favorited-users p strong {
   display: inline-block;
-  width: 90px;
   font-weight: 600;
   color: var(--label-color);
 }
@@ -255,44 +255,143 @@
 .owner-info p span {
   color: var(--text-muted);
 }
+.hostelinfo {
+  display: grid;
+  grid-template-columns: 120px 1fr; /* label | content */
+  gap: 8px 16px;
+  font-size: 14px;
+  padding: 16px;
+}
+
+.hostelinfo p {
+  margin: 4px 0;
+  display: contents; /* so <strong> and text align properly in grid */
+}
+
+.hostelinfo strong {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.owner-info {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 8px 16px;
+  font-size: 14px;
+  padding: 16px;
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.owner-info h3 {
+  grid-column: 1 / -1; /* Make heading span full width */
+  margin-bottom: 8px;
+}
+
+.owner-info p {
+  margin: 4px 0;
+  display: contents;
+}
+
+.owner-info strong {
+  font-weight: 600;
+  white-space: nowrap;
+}
 
 .favorited-users {
-  margin-top: 30px;
-  padding: 15px;
-  border: 1px solid var(--light-border);
-  background-color: var(--highlight-bg);
-  border-radius: 8px;
+  margin-top: 24px;
+  padding: 16px;
+  border-top: 1px solid #ccc;
 }
 
 .favorited-users h3 {
-  margin: 0;
-  font-size: 17px;
-  color: var(--text-muted);
+  margin-bottom: 12px;
 }
 
 .favorited-users ul {
   list-style: none;
-  margin: 10px 0;
-  padding-left: 0;
+  padding: 0;
+  margin: 0;
 }
 
-.favorited-users li {
-  padding: 5px;
-  border-bottom: 1px solid #ececec;
+.favorite-user-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 6px 12px;
+  font-size: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #c0c0c0;
 }
 
-.favorited-users li:last-child {
+.favorite-user-item:last-child {
   border-bottom: none;
 }
 
-.favorited-users p {
-  margin: 0;
+.favorite-user-item p {
   font-size: 12px;
-  color: var(--text-color);
+  margin: 0;
+  display: contents;
 }
 
-@media screen and (max-width: 600px) {
-  .hostel-details-container p strong {
-    width: 120px;
-  }
+.favorite-user-item strong {
+  font-weight: 600;
+  white-space: nowrap;
 }
+
+.hostel-details-container .modal-content{
+  width: 70%;
+  height: 70vh;
+  overflow-y: scroll;
+}
+.hostel-details-container .modal-content form{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+}
+.hostel-details-container .modal-content input,
+.hostel-details-container .modal-content select,
+.hostel-details-container .modal-content textarea{
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    background-color: var(--highlight-bg);
+    color: var(--text-color);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.hostel-details-container .modal-buttons{
+    display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+.hostel-details-container .modal-buttons button{
+  background-color: var(--btn-bg);
+  color: white;
+    padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+.hostel-details-container .image-modal{
+  height: auto;
+  overflow-y: hidden;
+}
+.delete-img-btn{
+    position: absolute;
+  top: 4px;
+  right: 6px;
+  background: rgba(255, 0, 0, 0.7);
+  border: none;
+  color: white;
+  font-size: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+

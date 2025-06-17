@@ -29,14 +29,22 @@ const UserRightNav = ({searchTerm,setSearchTerm}) => {
         />
         <ToggleButton />
         <FontAwesomeIcon onClick={()=>{setShowMenu(!showMenu)}} className='menu-button' icon={faBars} />
-        {showMenu && <div className="hamburger-menu">
+        {showMenu && (
+          <div onClick={(e) => {
+      // If the click target is the overlay itself (not the modal content), close it
+      if (e.target.classList.contains('hamMenu')) {
+        setShowMenu(false);
+      }
+    }} className="hamMenu">
+
+          <div onClick={(e)=>e.stopPropagation()} className="hamburger-menu">
             <FontAwesomeIcon onClick={()=>{setShowMenu(!showMenu)}} className='close-menu' icon={faXmark}/>
-            <UserNavLinks/>
+            <UserNavLinks setShowMenu = {setShowMenu}/>
           <button className='hambtn'
           onClick={() => {
-              setShowLogoutModal(true);
-            }}
-        >
+            setShowLogoutModal(true);
+          }}
+          >
           Logout
         </button>
         {showLogoutModal && (
@@ -51,7 +59,7 @@ const UserRightNav = ({searchTerm,setSearchTerm}) => {
                 <button
                   onClick={() => setShowLogoutModal(false)}
                   className="cancel-btn"
-                >
+                  >
                   Cancel
                 </button>
               </div>
@@ -59,7 +67,8 @@ const UserRightNav = ({searchTerm,setSearchTerm}) => {
           </div>
         )}
         </div>
-}
+        </div>
+)}
         <button className='navbtn'
           onClick={() => {
             setShowLogoutModal(true);

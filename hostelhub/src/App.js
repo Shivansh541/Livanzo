@@ -12,6 +12,7 @@ import HostelDetails from "./components/common/HostelDetails";
 import Guest from "./components/guest/Guest";
 import Favorites from "./components/user/Favorites";
 import 'leaflet/dist/leaflet.css';
+import './/components/common/css/phone.css'
 
 function App() {
   const [token, setToken] = useState(null);

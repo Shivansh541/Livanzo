@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './css/allHostel.css';
 
 const AllHostels = ({ hostels }) => {
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const BACKEND_URL = 'http://localhost:5000';
 
@@ -54,8 +55,7 @@ const AllHostels = ({ hostels }) => {
       );
     });
 
-    // Apply Sorting
- switch (sortOption) {
+    switch (sortOption) {
       case 'rentLowHigh':
         result.sort((a, b) => a.rent - b.rent);
         break;
@@ -103,48 +103,95 @@ const AllHostels = ({ hostels }) => {
     setFilters(prev => ({ ...prev, [name]: value }));
   };
 
-  return (
-    <div className="all-hostels-container">
-      <div className="filter-section">
-        <input type="number" name="rentMin" placeholder="Min Rent" onChange={handleFilterChange} />
-        <input type="number" name="rentMax" placeholder="Max Rent" onChange={handleFilterChange} />
-        <select name="roomType" onChange={handleFilterChange}>
-          <option value="">Room Type</option>
-          <option value="Single">Single</option>
-          <option value="Double">Double</option>
-          <option value="Triple">Triple</option>
-          <option value="Dormitory">Dormitory</option>
-        </select>
-        <select name="allowedFor" onChange={handleFilterChange}>
-          <option value="">Allowed For</option>
-          <option value="Boys">Boys</option>
-          <option value="Girls">Girls</option>
-          <option value="Both">Both</option>
-          <option value="Family">Family</option>
-        </select>
-        <select name="availability" onChange={handleFilterChange}>
-          <option value="">Availability</option>
-          <option value="Available">Available</option>
-          <option value="Not Available">Not Available</option>
-        </select>
-        <input type="text" name="facilities" placeholder="Facilities (e.g., wifi, food)" onChange={handleFilterChange} />
-        <input type="text" name="nearbyColleges" placeholder="Nearby Colleges (e.g., IIT, NIT)" onChange={handleFilterChange} />
-        <input type="number" name="minRating" placeholder="Min Rating" min="1" max="5" onChange={handleFilterChange} />
+  const handleClearFilters = () => {
+    setFilters({
+      rentMin: '',
+      rentMax: '',
+      roomType: '',
+      allowedFor: '',
+      availability: '',
+      facilities: '',
+      nearbyColleges: '',
+      minRating: '',
+    });
+  };
 
-        {/* Sorting Dropdown */}
+  return (<>
+          <div className="header-section">
+      <h1>Find Your Perfect Stay</h1>
+      <p>
+        Explore hostels, rooms, and flats tailored for students & professionals — only on <strong style={{ textDecoration: 'underline' }}>Livanzo</strong>.
+      </p>
+    </div>
+    <div className="all-hostels-container">
+      {/* FILTER + SORT SECTION */}
+      <div className="filter-section">
+        <button className="filter-button" onClick={() => setShowModal(true)}>Filters</button>
+
         <select onChange={(e) => setSortOption(e.target.value)}>
           <option value="">Sort By</option>
           <option value="rentLowHigh">Rent: Low to High</option>
           <option value="rentHighLow">Rent: High to Low</option>
           <option value="ratingHighLow">Rating: High to Low</option>
           <option value="ratingLowHigh">Rating: Low to High</option>
-                    <option value="nameAZ">Name: A-Z</option>
+          <option value="nameAZ">Name: A-Z</option>
           <option value="nameZA">Name: Z-A</option>
           <option value="newest">Newest First</option>
           <option value="oldest">Oldest First</option>
         </select>
-      </div>
 
+      {/* FILTER MODAL */}
+      {showModal && (
+        <div className="modal-overlay"
+            onClick={(e) => {
+      // If the click target is the overlay itself (not the modal content), close it
+      if (e.target.classList.contains('modal-overlay')) {
+        setShowModal(false);
+      }
+    }}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>Filter Options</h2>
+
+            <input type="number" name="rentMin" placeholder="Min Rent" value={filters.rentMin} onChange={handleFilterChange} />
+            <input type="number" name="rentMax" placeholder="Max Rent" value={filters.rentMax} onChange={handleFilterChange} />
+
+            <select name="roomType" value={filters.roomType} onChange={handleFilterChange}>
+              <option value="">Room Type</option>
+              <option value="Single">Single</option>
+              <option value="Double">Double</option>
+              <option value="Triple">Triple</option>
+              <option value="Dormitory">Dormitory</option>
+            </select>
+
+            <select name="allowedFor" value={filters.allowedFor} onChange={handleFilterChange}>
+              <option value="">Allowed For</option>
+              <option value="Boys">Boys</option>
+              <option value="Girls">Girls</option>
+              <option value="Both">Both</option>
+              <option value="Family">Family</option>
+            </select>
+
+            <select name="availability" value={filters.availability} onChange={handleFilterChange}>
+              <option value="">Availability</option>
+              <option value="Available">Available</option>
+              <option value="Not Available">Not Available</option>
+            </select>
+
+            <input type="text" name="facilities" placeholder="Facilities (e.g., wifi, food)" value={filters.facilities} onChange={handleFilterChange} />
+            <input type="text" name="nearbyColleges" placeholder="Nearby Colleges (e.g., IIT, NIT)" value={filters.nearbyColleges} onChange={handleFilterChange} />
+            <input type="number" name="minRating" placeholder="Min Rating" min="1" max="5" value={filters.minRating} onChange={handleFilterChange} />
+
+            <div className="modal-buttons">
+              <button onClick={() => setShowModal(false)}>Close</button>
+              <button onClick={() => setShowModal(false)}>Apply Filters</button>
+              <button className="clear-btn" onClick={handleClearFilters}>Clear Filters</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      </div>
+      {/* HOSTEL LIST */}
       {filteredHostels?.length > 0 ? (
         <div className="hostel-grid">
           {filteredHostels.map(h => (
@@ -173,7 +220,7 @@ const AllHostels = ({ hostels }) => {
       ) : (
         <p>No hostels found</p>
       )}
-    </div>
+    </div></>
   );
 };
 

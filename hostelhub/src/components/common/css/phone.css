@@ -1,0 +1,333 @@
+.header-section {
+    position: relative;
+  color: black;
+  padding: 4rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.header-section::before{
+    content: "";
+    background: url('https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg') no-repeat center center/cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+}
+.header-section::after{
+  content: "";
+  background: rgb(0, 0, 0, 0.7);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.header-section h1 {
+    position: relative;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 1px 2px 8px rgba(0,0,0,0.3);
+  z-index: 4;
+  color: white;
+}
+
+.header-section p {
+  position: relative;
+  font-size: 1.25rem;
+  z-index: 4;
+  color: white;
+}
+@media screen and (max-width:768px){
+  .header-section h1{
+    font-size: 2rem;
+
+  }
+  .header-section p{
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width:450px) {
+  .theme-switch{
+    --toggle-size:9px;
+  }
+    .profile-container{
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+    .profile-container h2{
+      margin: 0;
+      margin-bottom: 1rem;
+      font-size: 22px;
+    }
+    .profile-field strong{
+      font-size: 14px;
+      width: 80px;
+    }
+    .profile-field span{
+      font-size: 14px;
+    }
+    .profile-buttons button{
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+    .header-section h1{
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .header-section p{
+      font-size: 0.75rem;
+    }
+        .hostel-grid{
+        grid-template-columns: repeat(2,1fr);
+        gap: 0.5rem;
+    }
+    .hostel-card{
+        padding: 0.4rem;
+    }
+    .hostel-card h3{
+      margin: 0;
+        font-size: 10px;
+    }
+    .hostel-card p{
+        font-size: 8px;
+        margin: 0.1rem 0;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1; /* Change to 2, 3, etc. for more lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+    .hostel-card .hostel-image{
+      height: 90px;
+    }
+    .hostel-card p:nth-of-type(5),
+    .hostel-card p:nth-of-type(6){
+      display: none;
+    }
+    .filter-section .filter-button,.filter-section select{
+      padding: 6px 12px;
+      width: 20%;
+      font-size: 11px;
+    }
+    .theme-switch{
+      font-size: 9px;
+
+    }
+    .userNavbar input[type = 'text']{
+      width: 15vw;
+      padding: 5px 12px;
+      font-size: 10px;
+    }
+    .userNavbar button{
+      padding: 6px 12px;
+      font-size: 11px;
+    }
+    .all-hostels-container{
+      padding: 0.5rem 1rem;
+    }
+    .filter-section{
+      margin-bottom: 0.5rem;
+    }
+    .filter-section .modal-content{
+      padding: 15px;
+      gap: 6px;
+    }
+    .filter-section .modal-content h2{
+      margin: 0;
+      margin-bottom: 0.5rem;
+      font-size: 16px;
+    }
+    .filter-section .modal-content input,
+    .filter-section .modal-content select{
+padding: 8px 12px;
+    font-size: 10px;
+    }
+    .filter-section .modal-buttons{
+      margin-top: 5px;
+      gap: 5px;
+    }
+    .filter-section .modal-buttons button{
+      font-size: 10px;
+    }
+    .hostel-details-container{
+      padding: 0.7rem;
+    }
+    .hostel-details-container h2{
+      margin: 0;
+      margin-bottom: 1rem;
+      font-size: 25px;
+    }
+    .hostel-details-container h2{
+      margin-bottom: 0.5rem;
+      font-size: 20px;
+    }
+    .add-review-btn{
+      margin: 0;
+      margin-right: 5px;
+      padding: 6px 12px;
+      font-size: 10px;
+    }
+    .hostelinfo{
+      gap: 5px;
+    padding: 8px;
+    grid-template-columns: 85px 1fr;
+    align-items: center;
+    }
+    .hostelinfo p{
+      font-size: 10px;
+    }
+    .hostelinfo strong{
+      height: 10px;
+    }
+    .owner-info{
+      grid-template-columns: 85px 1fr;
+    gap: 5px;
+    font-size: 14px;
+    padding: 8px;
+    margin-top: 10px;
+    align-items: center;
+    }
+    .owner-info h3{
+      margin: 0;
+      font-size: 12px;
+    }
+    .owner-info p{
+      font-size: 10px;
+    }
+    .reviews{
+      margin: 0;
+      padding: 0;
+    }
+    .reviews h3{
+      margin: 8px;
+      font-size: 12px;
+    }
+    .reviews .review-card{
+      margin-bottom: 8px;
+      padding: 8px;
+    }
+    .reviews .review-card p:nth-of-type(1){
+      font-size: 11px;
+    }
+    .reviews .review-card p:nth-of-type(2){
+      font-size: 9px;
+    }
+    .reviews .review-card small{
+      font-size: 7px;
+    }
+    .favorited-users{
+      margin-top: 8px;
+    padding: 8px;
+    }
+    .favorited-users h3{
+      margin: 0;
+      font-size: 12px;
+    }
+    .favorite-user-item{
+      grid-template-columns: 50px 1fr;
+    gap: 2px;
+    font-size: 12px;
+    padding: 5px 0;
+    align-items: center;
+    }
+    .favorite-user-item p{
+      font-size: 9px;
+    }
+    .hostel-images{
+      width: 60%;
+    }
+    .delete-img-btn{
+      font-size: 14px;
+    }
+    .slide-button{
+      padding: 8px;
+      font-size: 15px;
+    }
+    .closePreview{
+      padding: 8px;
+      font-size: 15px;
+    }
+    .image-modal .modal-content{
+      padding: 12px;
+    }
+    .image-modal .modal-content input{
+      padding: 8px;
+      font-size: 10px;
+    }
+    .hostel-details-container .modal-buttons button{
+      font-size: 10px;
+    }
+    .hostel-details-container .modal-content{
+      padding: 12px;
+    }
+    .hostel-details-container .modal-content h3{
+      margin: 8px 0;
+      font-size: 16px;
+    }
+    .hostel-details-container .modal-buttons{
+      margin: 0;
+      gap: 5px;
+      padding: 5px 0;
+    }
+    .hostel-details-container .modal-content input, .hostel-details-container .modal-content select, .hostel-details-container .modal-content textarea{
+      padding: 6px 12px;
+      font-size: 10px;
+    }
+    .hostel-card img{
+      height: 90px;
+    }
+    .all-hostels-container h2{
+          margin: 0;
+          margin-bottom: 1rem;
+    font-size: 20px;
+    }
+    .manage-hostel-container{
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .manage-hostel-container h2{
+      padding: 10px;
+      font-size: 20px;
+    }
+    .manage-hostel-container input, .manage-hostel-container textarea, .manage-hostel-container select{
+      padding: 8px 12px;
+      font-size: 10px;
+    }
+    .manage-hostel-container button{
+      padding: 6px 12px;
+      font-size: 10px;
+    }
+    .loginForm{
+      padding: 1rem 1.5rem;
+    }
+    .loginForm input, .loginForm select{
+      padding: 8px 12px;
+    margin-bottom: 8px;
+    font-size: 10px;
+    }
+    .loginForm button{
+      padding: 6px 12px;
+    }
+    #login h2, #signup h2{
+      font-size: 20px;
+      margin: 0.5rem 0;
+    }
+    .loginForm span{
+      margin-top: 0.5rem;
+    font-size: 10px;
+    }
+    .pass_box .eye{
+          font-size: 12px;
+    padding: 8px;
+
+    }
+    .loginForm a{
+      font-size: 12px;
+      height: 20px;
+    }
+}

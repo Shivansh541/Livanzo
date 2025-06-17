@@ -8,15 +8,18 @@
     display: none;
 }
 @media screen and (max-width:768px) {
+    #root .userNavbar{
+        padding: 0.5rem 1.5rem;
+    }
 .userNavbar .navlinks{
     display: none;
 }
 .navbtn{
     display: none;
 }
-.right-nav{
+/* .right-nav{
     position: relative;
-}
+} */
 .right-nav .menu-button{
     display: block;
     margin: 0;
@@ -32,16 +35,25 @@
     font-size: 25px;
     z-index: 4;
 }
+.hamMenu{
+    background: rgb(0,0,0,0.7);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
+}
 .hamburger-menu{
     display: block;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 5px;
+    top: 5px;
     width: 225px;
-    background-color: white;
+    background-color: var(--bg-color);
     border: 1px solid black;
     border-radius: 10px;
-    z-index: 3;
+    z-index: 100;
 
 }
 .hamburger-menu a{
@@ -62,4 +74,13 @@
 .hamburger-menu .hambtn{
     margin: 10px;
 }
+}
+@media screen and (max-width:400px){
+    #root .userNavbar{
+        padding: 0.5rem 1rem;
+    }
+    #root .userNavbar .right-nav{
+        gap: 5px;
+    }
+
 }
