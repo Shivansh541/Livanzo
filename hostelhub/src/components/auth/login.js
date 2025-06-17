@@ -22,7 +22,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const loginRes = await fetch('http://localhost:5000/api/auth/login', {
+      const loginRes = await fetch('https://livanzo.onrender.com/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -32,7 +32,7 @@ const Login = () => {
       if (loginData.success) {
         localStorage.setItem('token', loginData.authtoken);
 
-        const userRes = await fetch('http://localhost:5000/api/auth/getUser', {
+        const userRes = await fetch('https://livanzo.onrender.com/api/auth/getUser', {
           headers: {
             'Content-Type': 'application/json',
             'auth-token': loginData.authtoken,
@@ -62,7 +62,7 @@ const Login = () => {
 
   const sendOtp = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/auth/forgot-password', {
+      const res = await fetch('https://livanzo.onrender.com/api/auth/forgot-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
@@ -81,7 +81,7 @@ const Login = () => {
 
   const verifyOtp = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/auth/verify-otp', {
+      const res = await fetch('https://livanzo.onrender.com/api/auth/verify-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp })
@@ -96,7 +96,7 @@ const Login = () => {
 
   const resetPassword = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/auth/reset-password', {
+      const res = await fetch('https://livanzo.onrender.com/api/auth/reset-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({email, newPassword })

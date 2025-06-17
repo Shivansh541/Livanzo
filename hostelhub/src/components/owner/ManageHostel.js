@@ -72,7 +72,7 @@ const ManageHostel = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/hostel/add', {
+      const res = await fetch('https://livanzo.onrender.com/api/hostel/add', {
         method: 'POST',
         headers: {
           'auth-token': localStorage.getItem('token'),

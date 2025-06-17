@@ -34,7 +34,7 @@ const Favorites = ({ user, allhostels }) => {
               className="hostel-card"
               onClick={() => handleClick(h._id)}
             >
-              <img src={h.images[0].startsWith('http')?h.images[0]:`http://localhost:5000${h.images[0]}`} alt="No img"/>
+              <img src={h.images[0].startsWith('http')?h.images[0]:`https://livanzo.onrender.com${h.images[0]}`} alt="No img"/>
               <h3>{h.name}</h3>
               <p>{h.description}</p>
               <p>Rent: ₹{h.rent}</p>
