@@ -7,7 +7,7 @@ const port = process.env.PORT
 app.use(cors());
 require("dotenv").config()
 app.use(cors({
-  origin: '*',
+  origin: 'https://livanzo-dvj7.onrender.com',
   credentials: true,
 }));
 app.use(express.json())
