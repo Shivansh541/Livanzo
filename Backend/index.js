@@ -8,7 +8,7 @@ const port = process.env.PORT
 app.use(cors());
 require("dotenv").config()
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://livanzo.vercel.app',
   credentials: true,
 }));
 app.use(express.json())
