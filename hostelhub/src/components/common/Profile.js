@@ -47,7 +47,7 @@ const Profile = ({ user }) => {
   const handleUpdate = async () => {
     const token = localStorage.getItem('token');
 
-    const response = await fetch('process.env.REACT_APP_BACKEND_URL/api/auth/update', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/update`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const Profile = ({ user }) => {
     if (!confirmed) return;
     const token = localStorage.getItem('token');
 
-    const response = await fetch('/api/auth/delete', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/delete`, {
       method: 'DELETE',
       headers: {
         'auth-token': token,

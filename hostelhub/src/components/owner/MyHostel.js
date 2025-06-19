@@ -6,7 +6,7 @@ const MyHostel = () => {
   const [myHostels, setMyHostels] = useState([]);
   useEffect(() => {
     const fetchMyHostels = async () => {
-      const res = await fetch('process.env.REACT_APP_BACKEND_URL/api/hostel/myHostels', {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/hostel/myHostels`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

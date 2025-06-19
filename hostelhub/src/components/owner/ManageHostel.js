@@ -73,7 +73,7 @@ const ManageHostel = () => {
     }
 
     try {
-      const res = await fetch('process.env.REACT_APP_BACKEND_URL/api/hostel/add', {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/hostel/add`, {
         method: 'POST',
         headers: {
           'auth-token': localStorage.getItem('token'),

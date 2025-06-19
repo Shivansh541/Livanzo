@@ -22,7 +22,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const loginRes = await fetch('process.env.REACT_APP_BACKEND_URL/api/auth/login', {
+      const loginRes = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -32,7 +32,7 @@ const Login = () => {
       if (loginData.success) {
         localStorage.setItem('token', loginData.authtoken);
 
-        const userRes = await fetch('process.env.REACT_APP_BACKEND_URL/api/auth/getUser', {
+        const userRes = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/getUser`, {
           headers: {
             'Content-Type': 'application/json',
             'auth-token': loginData.authtoken,
@@ -62,7 +62,7 @@ const Login = () => {
 
   const sendOtp = async () => {
     try {
-      const res = await fetch('process.env.REACT_APP_BACKEND_URL/api/auth/forgot-password', {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/forgot-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
@@ -81,7 +81,7 @@ const Login = () => {
 
   const verifyOtp = async () => {
     try {
-      const res = await fetch('process.env.REACT_APP_BACKEND_URL/api/auth/verify-otp', {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/verify-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp })
@@ -96,7 +96,7 @@ const Login = () => {
 
   const resetPassword = async () => {
     try {
-      const res = await fetch('process.env.REACT_APP_BACKEND_URL/api/auth/reset-password', {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/auth/reset-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({email, newPassword })
