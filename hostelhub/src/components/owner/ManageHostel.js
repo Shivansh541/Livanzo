@@ -49,6 +49,7 @@ const ManageHostel = () => {
     formData.append('description', form.description);
     formData.append('roomType', form.roomType);
     formData.append('allowedFor', form.allowedFor);
+    formData.append('locationLink', form.locationLink)
 
     // Address
     for (const key in form.address) {
@@ -102,7 +103,6 @@ const ManageHostel = () => {
           placeholder="Hostel Name"
           value={form.name}
           onChange={handleChange}
-          required
         />
         <input
           type="number"
@@ -117,7 +117,6 @@ const ManageHostel = () => {
           placeholder="Description"
           value={form.description}
           onChange={handleChange}
-          required
         />
 
         <input
@@ -126,6 +125,7 @@ const ManageHostel = () => {
           multiple
           accept="image/*"
           onChange={handleChange}
+          required
         />
 
         <input
@@ -145,19 +145,30 @@ const ManageHostel = () => {
           placeholder="City"
           value={form.address.city}
           onChange={handleChange}
+          required
         />
         <input
           name="address.state"
           placeholder="State"
           value={form.address.state}
           onChange={handleChange}
+          required
         />
         <input
           name="address.pincode"
           placeholder="Pincode"
           value={form.address.pincode}
           onChange={handleChange}
+          required
         />
+<input
+  type="text"
+  name="locationLink"
+  placeholder="Paste Google Maps Location Link"
+  value={form.locationLink}
+  onChange={handleChange}
+/>
+
         <input
           name="nearbyColleges"
           placeholder="Nearby Colleges (comma separated)"
@@ -170,7 +181,7 @@ const ManageHostel = () => {
           value={form.facilities}
           onChange={handleChange}
         />
-        <select name="roomType" value={form.roomType} onChange={handleChange}>
+        <select name="roomType" value={form.roomType} onChange={handleChange} required>
           <option>Single</option>
           <option>Double</option>
           <option>Triple</option>
@@ -180,6 +191,7 @@ const ManageHostel = () => {
           name="allowedFor"
           value={form.allowedFor}
           onChange={handleChange}
+          required
         >
           <option>Boys</option>
           <option>Girls</option>

@@ -14,18 +14,24 @@ const RightNav = ({searchTerm,setSearchTerm}) => {
     localStorage.removeItem("role");
     window.location.href = "/";
   };
+      const handleClick = ()=>{
+      if(localStorage.getItem('role') === 'renter'){
+        navigate('/user/allhostels')
+      }
+      else if(localStorage.getItem('role') === 'owner'){
+        navigate('/owner/allhostels')
+      }
+      else{
+        navigate('/allhostels') // fallback or guest
+      }
+    }
   return (
       <div className="right-nav">
         <input
           type="text"
           placeholder="Search"
-          onClick={() =>
-            navigate(
-              `/${localStorage.getItem("role") === "owner" ? "owner" : "user"}`
-            )
-          }
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)} // Update searchTerm in App.js
+          onChange={(e) => {setSearchTerm(e.target.value);handleClick()}} // Update searchTerm in App.js
         />
         <ToggleButton />
         <FontAwesomeIcon onClick={()=>{setShowMenu(!showMenu)}} className='menu-button' icon={faBars} />

@@ -9,6 +9,7 @@ const HostelSchema = new Schema({
   images: {
     type: [String], // store image URLs
     default: [],
+    required: true
   },
   name: {
     type: String,
@@ -52,11 +53,28 @@ const HostelSchema = new Schema({
     },
   ],
   address: {
-    street: String,
-    city: String,
-    state: String,
-    pincode: String,
-    landmark: String,
+    landmark: {
+      type: String,
+    },
+    street: {
+      type: String,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    state:{
+      type: String,
+      required: true,
+    },
+    pincode:{
+      type: String,
+      required: true,
+    }
+  },
+  locationLink:{
+    type: String,
+
   },
   roomType: {
     type: String,

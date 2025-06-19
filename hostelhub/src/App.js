@@ -13,6 +13,7 @@ import Guest from "./components/guest/Guest";
 import Favorites from "./components/user/Favorites";
 import 'leaflet/dist/leaflet.css';
 import './/components/common/css/phone.css'
+import Home from "./components/common/Home";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -82,7 +83,6 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-
         {/* Owner Routes */}
         <Route
           path="/owner"
@@ -96,7 +96,8 @@ function App() {
             )
           }
         >
-          <Route index element={<AllHostel hostels={filteredHostels} user={user} />} />
+          <Route index element = {<Home hostels = {hostels}/>}/>
+          <Route path="allhostels" element={<AllHostel hostels={filteredHostels} user={user} />} />
           <Route path="hostel/:id" element={<HostelDetails user={user} />} />
           <Route path="myHostels" element={<MyHostel />} />
           <Route path="manageHostels" element={<ManageHostel />} />
@@ -116,7 +117,9 @@ function App() {
             )
           }
         >
-          <Route index element={<AllHostel hostels={filteredHostels} user={user} />} />
+          <Route index element = {<Home hostels={hostels}/>}/>
+
+          <Route path = "allhostels" element={<AllHostel hostels={filteredHostels} user={user} />} />
           <Route path="hostel/:id" element={<HostelDetails user={user} />} />
           <Route path = "favorites" element={<Favorites user={user} allhostels = {filteredHostels} />} />
           <Route path="profile" element={<Profile user={user} isOwner={false} />} />
@@ -137,7 +140,9 @@ function App() {
             )
           }
         >
-          <Route index element={<AllHostel hostels={filteredHostels} />} />
+          <Route index element = {<Home hostels={hostels}/>}/>
+
+          <Route path = "allhostels" element={<AllHostel hostels={filteredHostels} />} />
         </Route>
 
         {/* Catch all fallback */}

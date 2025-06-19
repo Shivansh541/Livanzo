@@ -6,13 +6,13 @@ const GuestNavbar = ({ searchTerm, setSearchTerm }) => {
     const navigate = useNavigate();
     const handleClick = ()=>{
       if(localStorage.getItem('role') === 'renter'){
-        navigate('/user')
+        navigate('/user/allhostels')
       }
       else if(localStorage.getItem('role') === 'owner'){
-        navigate('/owner')
+        navigate('/owner/allhostels')
       }
       else{
-        navigate('/') // fallback or guest
+        navigate('/allhostels') // fallback or guest
       }
     }
   return (

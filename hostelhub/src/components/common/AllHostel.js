@@ -117,12 +117,6 @@ const AllHostels = ({ hostels }) => {
   };
 
   return (<>
-          <div className="header-section">
-      <h1>Find Your Perfect Stay</h1>
-      <p>
-        Explore hostels, rooms, and flats tailored for students & professionals — only on <strong style={{ textDecoration: 'underline' }}>Livanzo</strong>.
-      </p>
-    </div>
     <div className="all-hostels-container">
       {/* FILTER + SORT SECTION */}
       <div className="filter-section">
@@ -208,12 +202,12 @@ const AllHostels = ({ hostels }) => {
                 className="hostel-image"
               />
               <h3>{h.name}</h3>
-              <p>{h.description}</p>
+              {h.description && <p>{h.description}</p>}
               <p>Rent: ₹{h.rent}</p>
               <p>City: {h.address?.city}</p>
-              <p>Nearby Colleges: {h.nearbyColleges?.join(', ')}</p>
-              <p>Facilities: {h.facilities?.join(', ')}</p>
-              <p>Rating: {h.rating?.toFixed(1)} ⭐</p>
+              {h.nearbyColleges[0]!=="" && <p>Nearby Colleges: {h.nearbyColleges?.join(', ')}</p>}
+              {h.facilities[0]!=="" && <p>Facilities: {h.facilities?.join(', ')}</p>}
+              {h.reviews.length>0 && <p>Rating: {h.rating?.toFixed(1)} ⭐</p>}
             </div>
           ))}
         </div>

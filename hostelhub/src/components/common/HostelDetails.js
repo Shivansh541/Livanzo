@@ -201,7 +201,7 @@ const handleDeleteImage = async (imgPath) => {
       </div>
 
       {/* Show delete button over current image only */}
-      {localStorage?.role === 'owner' && (
+      {localStorage?.role === 'owner' && user && user._id === hostel.owner && (
         <FontAwesomeIcon
           className="delete-img-btn"
           onClick={() => handleDeleteImage(hostel.images[currentImgIndex])}
@@ -233,7 +233,7 @@ const handleDeleteImage = async (imgPath) => {
         </div>
       )}
           {/* 🆕 Add Images */}
-          {localStorage?.role === 'owner' && (
+          {localStorage?.role === 'owner' && user && user._id === hostel.owner && (
             <button className='add-review-btn' onClick={()=>setShowAddModal(!showAddModal)}>Add More Images</button>
           )}
           {showAddModal && (
@@ -252,16 +252,25 @@ const handleDeleteImage = async (imgPath) => {
             </div>
           </div>
           )}
+{hostel.locationLink && (
+  <button
+    className='add-review-btn'
+    onClick={() => window.open(hostel.locationLink, "_blank")}
+  >
+    Open in maps
+  </button>
+)}
 
       <div className="hostelinfo">
         <p><strong>Rent:</strong> ₹{hostel.rent}</p>
         <p><strong>Room Type:</strong> {hostel.roomType}</p>
         <p><strong>Allowed For:</strong> {hostel.allowedFor}</p>
-        <p><strong>Facilities:</strong> {hostel.facilities.join(', ')}</p>
-        <p><strong>Description:</strong> {hostel.description}</p>
+        {(hostel.facilities[0]!=="") && <p><strong>Facilities:</strong> {hostel.facilities.join(', ')}</p>}
+        {hostel.description &&<p><strong>Description:</strong> {hostel.description}</p>}
         <p><strong>Rating:</strong> {hostel.rating} ({hostel.numReviews} reviews)</p>
-        <p><strong>Address:</strong> {hostel.address.street}, {hostel.address.city}, {hostel.address.state} - {hostel.address.pincode} <br /><strong>Landmark:</strong> {hostel.address.landmark}</p>
-        <p><strong>Nearby Colleges:</strong> {hostel.nearbyColleges.join(', ')}</p>
+        <p><strong>Address:</strong> {hostel.address.street}, {hostel.address.city}, {hostel.address.state} - {hostel.address.pincode} <br />
+        {hostel.address.landmark && <strong>Landmark:</strong>} {hostel.address.landmark}</p>
+        {hostel.nearbyColleges[0]!=="" && <p><strong>Nearby Colleges:</strong> {hostel.nearbyColleges.join(', ')}</p>}
         <p><strong>Availability:</strong> {hostel.isAvailable ? 'Available' : 'Not Available'}</p>
         <p><strong>Created At:</strong> {new Date(hostel.createdAt).toLocaleString()}</p>
       </div>
@@ -277,7 +286,7 @@ const handleDeleteImage = async (imgPath) => {
         </div>
       )}
 
-      {localStorage?.role === 'owner' && (
+      {localStorage?.role === 'owner' && user && user._id === hostel.owner && (
         <div>
           <button className='add-review-btn' style={{ backgroundColor: 'red' }} onClick={() => handleDelete(hostel._id)}>Delete</button>
           <button className='add-review-btn' onClick={() => handleEditClick(hostel)}>Edit</button>
