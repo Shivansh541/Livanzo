@@ -4,7 +4,7 @@ import './css/home.css';
 
 const Home = ({ hostels }) => {
   const navigate = useNavigate();
-  const BACKEND_URL = 'http://localhost:5000';
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const [sliderHostels, setSliderHostels] = useState([]);
    useEffect(() => {
     // Show only top 6-8 hostels (latest or highest rated)

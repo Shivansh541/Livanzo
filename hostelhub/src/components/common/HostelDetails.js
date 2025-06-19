@@ -26,7 +26,7 @@ const HostelDetails = () => {
   const [user, setUser] = useState(null);
   const [newImages, setNewImages] = useState([]); // 🆕
 
-  const BACKEND_URL = 'http://localhost:5000';
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const HostelDetails = () => {
     };
 
     fetchHostel();
-  }, [id]);
+  }, [id,BACKEND_URL]);
 
   const handleAddToFavorites = async () => {
     try {
