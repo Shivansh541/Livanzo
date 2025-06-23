@@ -148,6 +148,7 @@
   background-color: var(--btn-cancel-hover);
 }
 .logo{
+  font-family: 'calendine';
     font-size: 25px;
     margin: 0;
     margin-right: 3vw;
