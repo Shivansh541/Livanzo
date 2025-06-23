@@ -36,6 +36,7 @@
   --highlight-bg: #fdfdfd;
   --review-btn: green;
   --review-btn-hover: darkgreen;
+  --nav-logo: '/logo light.png'
 }
 
 .dark {
@@ -75,6 +76,7 @@
   --highlight-bg: #1e1e1e;
   --review-btn: #2ecc71;
   --review-btn-hover: #27ae60;
+  --nav-logo: "/logo dark.png"
 }
 
 /* Use CSS variables in the rest of the stylesheet to support dark mode and customization */

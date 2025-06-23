@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import UserRightNav from './UserRightNav';
 import UserNavLinks from './UserNavLinks';
+import Logo from '../common/Logo';
 
 const UserNavbar = ({ searchTerm, setSearchTerm }) => {
-    const [theme, setTheme] = useState('light');
 
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(storedTheme);
-  }, []);
   return (
     <nav className='userNavbar'>
     <div className="left-nav">
-      <img src={theme === "light"?"/logo light.png":"/logo dark.png"} alt=""/>
+      <Logo/>
       <div className="navlinks">
         <UserNavLinks/>
       </div>

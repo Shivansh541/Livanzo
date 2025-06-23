@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import ToggleButton from '../common/ToggleButton';
+import Logo from '../common/Logo';
 
 const GuestNavbar = ({ searchTerm, setSearchTerm }) => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const GuestNavbar = ({ searchTerm, setSearchTerm }) => {
     <nav className='userNavbar guestNavbar'>
 
     <div className="left-nav">
-      <p className='logo'>Livanzo</p>
+      <Logo/>
     </div>
     <div className="right-nav">
     <input

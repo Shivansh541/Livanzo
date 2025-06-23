@@ -17,6 +17,8 @@ const ToggleButton = () => {
     document.body.classList.add(newTheme);
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
+
+    window.dispatchEvent(new Event('theme-changed'));
   };
 
   return (
