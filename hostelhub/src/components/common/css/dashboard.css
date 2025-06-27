@@ -12,6 +12,10 @@
 /* Navbar */
 .userNavbar {
   background-color: var(--navbar-bg);
+  position: fixed;
+    z-index: 5;
+    width: 100%;
+    box-sizing: border-box;
   padding: 0.7rem 2rem;
   display: flex;
   align-items: center;
@@ -158,7 +162,7 @@
 }
 .userNavbar .linkName{
   margin:0;
-  font-size:10px;
+  font-size:9px;
 }
 .navlinks{
     display: flex;
@@ -166,4 +170,3 @@
     align-items: center;
     width: 100%;
 }
-

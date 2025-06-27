@@ -1,19 +1,16 @@
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/login";
-import OwnerDashboard from './components/owner/OwnerDashboard';
-import UserDashboard from './components/user/UserDashboard';
 import ManageHostel from "./components/owner/ManageHostel";
 import MyHostel from "./components/owner/MyHostel";
 import AllHostel from "./components/common/AllHostel";
 import { useEffect, useState } from "react";
 import Profile from "./components/common/Profile";
 import HostelDetails from "./components/common/HostelDetails";
-import Guest from "./components/guest/Guest";
 import Favorites from "./components/user/Favorites";
-import 'leaflet/dist/leaflet.css';
-import './/components/common/css/phone.css'
 import Home from "./components/common/Home";
+import Dashboard from "./components/common/Dashboard";
+import './components/common/css/phone.css'
 
 function App() {
   const [token, setToken] = useState(null);
@@ -82,14 +79,13 @@ function App() {
   return (
     <BrowserRouter basename="/">
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+
         {/* Owner Routes */}
         <Route
           path="/owner"
           element={
             token && role === "owner" ? (
-              <OwnerDashboard searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+              <Dashboard searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             ) : loading ? (
               <div>Loading...</div>
             ) : (
@@ -110,7 +106,7 @@ function App() {
           path="/user"
           element={
             token && role === "renter" ? (
-              <UserDashboard searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+              <Dashboard searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             ) : loading ? (
               <div>Loading...</div>
             ) : (
@@ -137,13 +133,15 @@ function App() {
                 <Navigate to="/user" />
               )
             ) : (
-              <Guest searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+              <Dashboard searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             )
           }
         >
           <Route index element = {<Home hostels={hostels}/>}/>
 
           <Route path = "allhostels" element={<AllHostel hostels={filteredHostels} />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
         </Route>
 
         {/* Catch all fallback */}
