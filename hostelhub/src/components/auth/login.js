@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import './css/login.css';
 
@@ -120,6 +120,7 @@ const Login = () => {
     <div id='login'>
       <form className='loginForm' onSubmit={handleSubmit}>
       <h2>Login</h2>
+      <FontAwesomeIcon className='avatar' icon = {faUserCircle}/>
         <input type="email" name="email" placeholder="Email" onChange={handleChange} required /><br />
         <div className="pass_box">
           <input
@@ -128,7 +129,7 @@ const Login = () => {
             placeholder="Password"
             onChange={handleChange}
             required
-          />
+            />
           <FontAwesomeIcon onClick={handleToggle} className='eye' icon={showPassword ? faEye : faEyeSlash} />
         </div>
         <Link to='/login' onClick={() => setShowForgotModal(true)} style={{ cursor: 'pointer' }}>Forgot Password?</Link>
@@ -147,7 +148,7 @@ const Login = () => {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                />
+                  />
                 <button onClick={sendOtp}>Send OTP</button>
               </>
             )}
@@ -158,7 +159,7 @@ const Login = () => {
                   placeholder="Enter OTP"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
-                />
+                  />
                 <button onClick={verifyOtp}>Verify OTP</button>
               </>
             )}
@@ -180,7 +181,7 @@ const Login = () => {
           </div>
         </div>
       )}
-    </div>
+      </div>
   );
 };
 

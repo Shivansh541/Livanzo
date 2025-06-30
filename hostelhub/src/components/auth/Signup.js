@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 const Signup = () => {
   const [showPassword,setShowPassword] = useState(false)
 
@@ -46,6 +46,7 @@ const Signup = () => {
     <div id='signup'>
       <form className='loginForm' onSubmit={handleSubmit}>
       <h2>Sign Up</h2>
+      <FontAwesomeIcon className='avatar' icon = {faUserCircle}/>
         <input type="text" name="name" placeholder="Name" onChange={handleChange} required /><br />
         <input type="email" name="email" placeholder="Email" onChange={handleChange} required /><br />
         <div className="pass_box">

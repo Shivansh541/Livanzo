@@ -19,7 +19,7 @@ const Logo = () => {
     return () => window.removeEventListener('theme-changed', updateTheme);
   }, []);
   return (
-    <img style={{width: '115px'}} src={`/logo ${theme}.png`} alt="logo"/>
+    <img src={`/logo ${theme}.png`} alt="logo"/>
   )
 }
 

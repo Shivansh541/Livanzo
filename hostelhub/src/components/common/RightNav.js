@@ -4,7 +4,7 @@ import ToggleButton from "./ToggleButton";
 import NavLinks from './NavLinks';
 import '../common/css/rightnav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const RightNav = ({ searchTerm, setSearchTerm }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -41,12 +41,15 @@ const RightNav = ({ searchTerm, setSearchTerm }) => {
   if (role === "guest") {
     return (
       <div className="right-nav">
+      <div class="search-bar">
+        <FontAwesomeIcon className='search-button' icon = {faMagnifyingGlass}/>
         <input
           type="text"
           placeholder="Search"
           value={searchTerm}
           onChange={handleSearchChange}
         />
+      </div>
         <ToggleButton />
         <button onClick={() => navigate("/login")}>Login</button>
       </div>
@@ -55,21 +58,21 @@ const RightNav = ({ searchTerm, setSearchTerm }) => {
 
   return (
     <div className="right-nav">
-      <input
-        type="text"
-        placeholder="Search"
-        value={searchTerm}
-        onChange={handleSearchChange}
-      />
-
+      <div class="search-bar">
+        <FontAwesomeIcon className='search-button' icon = {faMagnifyingGlass}/>
+        <input
+          type="text"
+          placeholder="Search"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </div>
       <ToggleButton />
-
       <FontAwesomeIcon
         icon={faBars}
         className='menu-button'
         onClick={() => setShowMenu(true)}
       />
-
       {showMenu && (
         <div className="hamMenu" onClick={(e) => {
           if (e.target.classList.contains('hamMenu')) setShowMenu(false);

@@ -4,6 +4,7 @@
   padding: 0 2rem;
   background-color: var(--form-bg);
   border-radius: 12px;
+  border: 1px solid var(--light-border);
 
 }
 

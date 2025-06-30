@@ -13,6 +13,7 @@ const Dashboard = ({ searchTerm, setSearchTerm }) => {
       <div className="userContent">
         <Outlet />
       </div>
+      
     </div>
   );
 };

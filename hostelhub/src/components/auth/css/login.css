@@ -9,30 +9,52 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  overflow-y: scroll;
+  min-height: calc(100vh - 56px);
   background: linear-gradient(to right, var(--bg-gradient-start), var(--bg-gradient-end));
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
 #login h2,#signup h2 {
+  font-size: 1.75rem;
   margin: 1rem 0;
   text-align: center;
   color: var(--text-color);
 }
-
+.avatar{
+  font-size: 100px;
+  margin: 15px auto;
+  display: block;
+  color: var(--primary);
+}
 .loginForm {
+  position: relative;
   margin: 30px 0;
   background-color: var(--form-bg);
+  border: 1px solid var(--link-active);
   padding: 2rem 2.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 70%;
   max-width: 400px;
   box-sizing: border-box;
-}
 
+}
+.loginForm *{
+  position: relative;
+  z-index: 4;
+}
+.loginForm::before{
+  content: "";
+  height: calc(100% - 40px);
+  width: calc(100% - 40px);
+  background-color: var(--form-bg);
+  display: block;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+      box-shadow: inset 4px 4px 8px #0e0e0e;
+    border-radius: 8px;
+}
 .loginForm input {
   width: 100%;
   padding: 0.8rem;

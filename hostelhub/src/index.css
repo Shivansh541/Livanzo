@@ -3,84 +3,114 @@
   --bg-color: #f8f9fa;
   --bg-gradient-start: #f8f9fa;
   --bg-gradient-end: #e9ecef;
-  --form-bg: #fff;
+
+  --form-bg: #ededed;
   --text-color: #343a40;
-  --input-border: #979fa7;
-  --input-focus: #007bff;
-  --btn-bg: #007bff;
-  --btn-hover: #0056b3;
+  --text-muted: #555;
   --link-color: #007bff;
-  --span-color: #495057;
-  --modal-bg: #fff;
-  --close-btn-bg: #ccc;
-  --placeholder-color: #475059;
+  --link-active: #0056b3;
+
   --navbar-bg: #f8f9fa;
   --navbar-border: #ddd;
   --nav-link-color: #333;
   --nav-link-hover: #007bff;
-  --link-active: #0056b3;
+
+  --primary: #1d3557;
+  --secondary: #00bfff;
+
+  --btn-bg: #00bfff;
+  --btn-hover: #0056b3;
   --btn-danger: #dc3545;
   --btn-danger-hover: #c82333;
   --btn-cancel: #5bc0de;
   --btn-cancel-hover: #31b0d5;
-  --card-hover-shadow: rgba(0, 0, 0, 0.15);
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --primary: #1d3557;
-  --secondary: #457b9d;
-  --review-card-bg: #fff;
-  --favorite-btn: #ffcc00;
-  --favorite-hover: #ff9900;
+
+  --input-border: #979fa7;
+  --input-focus: #007bff;
+
+  --placeholder-color: #475059;
+  --span-color: #495057;
   --label-color: #2c3e50;
-  --text-muted: #555;
-  --light-border: #d1d1d1;
-  --highlight-bg: #fdfdfd;
+
+  --modal-bg: #ffffff;
+  --close-btn-bg: #ccc;
+
   --review-btn: green;
   --review-btn-hover: darkgreen;
-  --nav-logo: '/logo light.png'
+  --favorite-btn: #ffcc00;
+  --favorite-hover: #ff9900;
+
+  --highlight-bg: #fdfdfd;
+  --review-card-bg: #ffffff;
+
+  --light-border: #d1d1d1;
+  --card-hover-shadow: rgba(0, 0, 0, 0.15);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+
+  --hero-shadow: rgba(0, 0, 0, 0.6);
+  --overlay-dark: rgba(0, 0, 0, 0.7);
+  --quote-color: #666;
+  --quote-cite-color: #888;
 }
 
 .dark {
   --bg-color: #1e1e1e;
   --bg-gradient-start: #1a1a1a;
   --bg-gradient-end: #2a2a2a;
+
   --form-bg: #2c2c2c;
   --text-color: #f1f1f1;
-  --input-border: #555;
-  --input-focus: #66b2ff;
-  --btn-bg: #0d6efd;
-  --btn-hover: #0a58ca;
+  --text-muted: #aaa;
   --link-color: #66b2ff;
-  --span-color: #ccc;
-  --modal-bg: #2c2c2c;
-  --close-btn-bg: #444;
-  --placeholder-color: #aaa;
+  --link-active: #66b2ff;
+
   --navbar-bg: #2c2c2c;
   --navbar-border: #444;
   --nav-link-color: #f1f1f1;
   --nav-link-hover: #66b2ff;
-  --link-active: #66b2ff;
+
+  --primary: #aad6ff;
+  --secondary: #66b2ff;
+
+  --btn-bg: #00bfff;
+  --btn-hover: #0a58ca;
   --btn-danger: #bb2d3b;
   --btn-danger-hover: #a71d2a;
   --btn-cancel: #3498db;
   --btn-cancel-hover: #2980b9;
-  --card-hover-shadow: rgba(255, 255, 255, 0.1);
-  --shadow-color: rgba(255, 255, 255, 0.1);
-  --primary: #aad6ff;
-  --secondary: #66b2ff;
-  --review-card-bg: #2a2a2a;
-  --favorite-btn: #e0b800;
-  --favorite-hover: #d4a700;
+
+  --input-border: #555;
+  --input-focus: #66b2ff;
+
+  --placeholder-color: #aaa;
+  --span-color: #ccc;
   --label-color: #d2e9ff;
-  --text-muted: #aaa;
-  --light-border: #555;
-  --highlight-bg: #1e1e1e;
+
+  --modal-bg: #2c2c2c;
+  --close-btn-bg: #444;
+
   --review-btn: #2ecc71;
   --review-btn-hover: #27ae60;
-  --nav-logo: "/logo dark.png"
+  --favorite-btn: #e0b800;
+  --favorite-hover: #d4a700;
+
+  --highlight-bg: #1e1e1e;
+  --review-card-bg: #2a2a2a;
+
+  --light-border: #555;
+  --card-hover-shadow: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(255, 255, 255, 0.1);
+
+  --hero-shadow: rgba(255, 255, 255, 0.6);
+  --overlay-dark: rgba(0, 0, 0, 0.6);
+  --quote-color: #bbb;
+  --quote-cite-color: #999;
 }
-
 /* Use CSS variables in the rest of the stylesheet to support dark mode and customization */
-
+*{
+  margin: 0;
+  padding: 0;
+}
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -89,9 +119,8 @@ input[type=number]::-webkit-inner-spin-button {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Poppins', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
