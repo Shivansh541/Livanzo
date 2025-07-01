@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './css/hostelDetails.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-
+import { Tooltip } from 'react-tooltip';
 const HostelDetails = () => {
   const [editHostel, setEditHostel] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false)
@@ -13,42 +13,41 @@ const HostelDetails = () => {
     address: { street: '', city: '', state: '', pincode: '', landmark: '' },
     nearbyColleges: [], facilities: [], images: [],
   });
-
+  
   const { id } = useParams();
   const [hostel, setHostel] = useState(null);
   const [owner, setOwner] = useState(null);
   const [favoritedUsers, setFavoritedUsers] = useState([]);
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const [fullImagePreview, setFullImagePreview] = useState(false);
-  const [showReviewForm, setShowReviewForm] = useState(false);
   const [newReview, setNewReview] = useState({ rating: '', comment: '' });
   const [isFavorite, setIsFavorite] = useState(false);
   const [user, setUser] = useState(null);
   const [newImages, setNewImages] = useState([]); // 🆕
-
+  
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     const fetchHostel = async () => {
       try {
         const res = await fetch(`${BACKEND_URL}/api/hostel/${id}`);
         const data = await res.json();
         setHostel(data);
-
+        
         const ownerRes = await fetch(`${BACKEND_URL}/api/auth/${data.owner}`, {
           headers: { 'Content-Type': 'application/json', 'auth-token': localStorage.getItem('token') },
         });
         const ownerData = await ownerRes.json();
         setOwner(ownerData);
-
+        
         const userRes = await fetch(`${BACKEND_URL}/api/auth/getUser`, {
           headers: { 'auth-token': localStorage.getItem('token') },
         });
         const userData = await userRes.json();
         setUser(userData);
         setIsFavorite(userData.favorites.includes(id));
-
+        
         if (data.favoritedBy?.length > 0) {
           const userDetails = await Promise.all(
             data.favoritedBy.map((userId) =>
@@ -63,10 +62,10 @@ const HostelDetails = () => {
         console.error('Failed to fetch hostel details', err);
       }
     };
-
+    
     fetchHostel();
   }, [id,BACKEND_URL]);
-
+  
   const handleAddToFavorites = async () => {
     try {
       const res = await fetch(`${BACKEND_URL}/api/auth/favorites/${id}`, {
@@ -78,10 +77,10 @@ const HostelDetails = () => {
       console.error('Error adding/removing from favorites', err);
     }
   };
-
+  
   const handlePrev = () => setCurrentImgIndex(prev => prev === 0 ? hostel.images.length - 1 : prev - 1);
   const handleNext = () => setCurrentImgIndex(prev => prev === hostel.images.length - 1 ? 0 : prev + 1);
-
+  
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -94,21 +93,22 @@ const HostelDetails = () => {
         const updated = await res.json();
         setHostel(updated);
         setNewReview({ rating: '', comment: '' });
-        setShowReviewForm(false);
       }
     } catch (err) {
       console.error('Error submitting review', err);
     }
   };
-
+  
   const handleDelete = async (id) => {
+    const confirmed = window.confirm('Are you sure you want to delete this hostel?');
+    if (!confirmed) return;
     const res = await fetch(`${BACKEND_URL}/api/hostel/delete/${id}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json', 'auth-token': localStorage.getItem('token') },
     });
     if (res.ok) navigate('/owner/myHostels');
   };
-
+  
   const handleEditClick = (hostel) => {
     setForm({
       name: hostel.name, rent: hostel.rent, description: hostel.description,
@@ -118,7 +118,7 @@ const HostelDetails = () => {
     });
     setEditHostel(hostel);
   };
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name.startsWith('address')) {
@@ -129,7 +129,7 @@ const HostelDetails = () => {
       setForm({ ...form, [name]: value });
     }
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await fetch(`${BACKEND_URL}/api/hostel/edit/${editHostel._id}`, {
@@ -141,7 +141,7 @@ const HostelDetails = () => {
     setHostel(updated);
     setEditHostel(null);
   };
-
+  
   const handleImageUpload = async () => {
     if (newImages.length === 0) return;
     const formData = new FormData();
@@ -157,11 +157,11 @@ const HostelDetails = () => {
       setNewImages([]);
     }
   };
-const handleDeleteImage = async (imgPath) => {
-  const confirmed = window.confirm('Are you sure you want to delete this image?');
-  if (!confirmed) return;
-  try {
-    const res = await fetch(`${BACKEND_URL}/api/hostel/deleteImage/${hostel._id}`, {
+  const handleDeleteImage = async (imgPath) => {
+    const confirmed = window.confirm('Are you sure you want to delete this image?');
+    if (!confirmed) return;
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/hostel/deleteImage/${hostel._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -182,20 +182,22 @@ const handleDeleteImage = async (imgPath) => {
 
   return (
     <div className="hostel-details-container">
-      <h2>{hostel.name}</h2>
 
+
+<div className="hostel-info">
+  <h2>{hostel.name}</h2>
 <div className="hostel-images">
   {hostel.images?.length > 0 ? (
     <div className="slideshow-wrapper">
       <div className="slideshow-slider" style={{ transform: `translateX(-${currentImgIndex * 100}%)` }}>
         {hostel.images.map((img, idx) => (
           <img
-            key={idx}
-            src={img.startsWith('http') ? img : `${BACKEND_URL}${img}`}
-            alt={`Slide ${idx}`}
-            className="slide-image"
-            onClick={() => setFullImagePreview(true)}
-            style={{ cursor: 'pointer' }}
+          key={idx}
+          src={img.startsWith('http') ? img : `${BACKEND_URL}${img}`}
+          alt={`Slide ${idx}`}
+          className="slide-image"
+          onClick={() => setFullImagePreview(true)}
+          style={{ cursor: 'pointer' }}
           />
         ))}
       </div>
@@ -203,14 +205,18 @@ const handleDeleteImage = async (imgPath) => {
       {/* Show delete button over current image only */}
       {localStorage?.role === 'owner' && user && user._id === hostel.owner && (
         <FontAwesomeIcon
-          className="delete-img-btn"
-          onClick={() => handleDeleteImage(hostel.images[currentImgIndex])}
-          icon={faXmark}
+        data-tooltip-id = "delete-img-tip" data-tooltip-content = "Delete Image"
+        className="delete-img-btn"
+        onClick={() => handleDeleteImage(hostel.images[currentImgIndex])}
+        icon={faXmark}
         />
       )}
-
+      <Tooltip id= "delete-img-tip"/>
       <button onClick={handlePrev} className="slide-button prev">&#10094;</button>
       <button onClick={handleNext} className="slide-button next">&#10095;</button>
+      {localStorage?.role === 'owner' && user && user._id === hostel.owner && (
+        <button className='img-btn' onClick={()=>setShowAddModal(!showAddModal)}>Add More Images</button>
+      )}
     </div>
   ) : (
     <p>No images available</p>
@@ -229,20 +235,17 @@ const handleDeleteImage = async (imgPath) => {
             <button onClick={handlePrev} className="slide-button prev">&#10094;</button>
             <button onClick={handleNext} className="slide-button next">&#10095;</button>
             <button className="closePreview" onClick={() => setFullImagePreview(false)}>X</button>
+
           </div>
         </div>
       )}
-          {/* 🆕 Add Images */}
-          {localStorage?.role === 'owner' && user && user._id === hostel.owner && (
-            <button className='add-review-btn' onClick={()=>setShowAddModal(!showAddModal)}>Add More Images</button>
-          )}
           {showAddModal && (
             <div onClick={(e) => {
-      // If the click target is the overlay itself (not the modal content), close it
-      if (e.target.classList.contains('modal-overlay')) {
-        setShowAddModal(false);
-      }
-    }} class="modal-overlay">
+              // If the click target is the overlay itself (not the modal content), close it
+              if (e.target.classList.contains('modal-overlay')) {
+                setShowAddModal(false);
+              }
+            }} class="modal-overlay">
             <div onClick={(e)=>e.stopPropagation()} className='image-modal modal-content' style={{ marginTop: '10px' }}>
               <input type="file" multiple onChange={(e) => setNewImages(Array.from(e.target.files))} />
               <div class="modal-buttons">
@@ -252,47 +255,93 @@ const handleDeleteImage = async (imgPath) => {
             </div>
           </div>
           )}
-{hostel.locationLink && (
-  <button
-    className='add-review-btn'
+  <div className="hostel-header">
+    <div className="left-block">
+      <h2 className="rent">₹{hostel.rent}<span>/month</span></h2>
+      <p className={`availability ${hostel.isAvailable ? 'available' : 'unavailable'}`}>
+        {hostel.isAvailable ? 'Available' : 'Not Available'}
+      </p>
+    </div>
+    <div className="right-block">
+      <div className="rating">⭐ {hostel.rating} <span>({hostel.numReviews} reviews)</span></div>
+      <div className="date-posted">Posted on {new Date(hostel.createdAt).toLocaleDateString()}</div>
+    </div>
+  </div>
+
+  {hostel.description && (
+    <p className="description">“{hostel.description}”</p>
+  )}
+
+  <div className="location-line">
+    📍 {hostel.address?.landmark && `Near ${hostel.address.landmark}, `}
+    {hostel.address.street}, {hostel.address.city}, {hostel.address.state} - {hostel.address.pincode}
+  {hostel.locationLink && (
+    <button
+    className='maps-button'
     onClick={() => window.open(hostel.locationLink, "_blank")}
-  >
-    Open in maps
-  </button>
-)}
+    >
+      Open in maps
+    </button>
+  )}
+  </div>
 
-      <div className="hostelinfo">
-        <p><strong>Rent:</strong> ₹{hostel.rent}</p>
-        <p><strong>Room Type:</strong> {hostel.roomType}</p>
-        <p><strong>Allowed For:</strong> {hostel.allowedFor}</p>
-        {(hostel.facilities[0]!=="") && <p><strong>Facilities:</strong> {hostel.facilities.join(', ')}</p>}
-        {hostel.description &&<p><strong>Description:</strong> {hostel.description}</p>}
-        <p><strong>Rating:</strong> {hostel.rating} ({hostel.numReviews} reviews)</p>
-        <p><strong>Address:</strong> {hostel.address.street}, {hostel.address.city}, {hostel.address.state} - {hostel.address.pincode} <br />
-        {hostel.address.landmark && <strong>Landmark:</strong>} {hostel.address.landmark}</p>
-        {hostel.nearbyColleges[0]!=="" && <p><strong>Nearby Colleges:</strong> {hostel.nearbyColleges.join(', ')}</p>}
-        <p><strong>Availability:</strong> {hostel.isAvailable ? 'Available' : 'Not Available'}</p>
-        <p><strong>Created At:</strong> {new Date(hostel.createdAt).toLocaleString()}</p>
-      </div>
+  {hostel.facilities[0] !== "" && (
+    <>
+    <span className="label">Facilities: </span>
+    <div className="chips-section">
+      {hostel.facilities.map((item, i) => (
+        <span key={i} className="chip">{item}</span>
+      ))}
+    </div>
+    </>
+  )}
+<div className="room-allowed-card">
+  <div className="info-block">
+    <span className="label">Room Type</span>
+    <span className="value">{hostel.roomType} Sharing</span>
+  </div>
 
+  <div className="info-block">
+    <span className="label">Allowed For</span>
+    <div className="allowed-options">
+      <span className={`option ${hostel.allowedFor.includes("Boys") ? "allowed" : "not-allowed"}`}>👨 Boys</span>
+      <span className={`option ${hostel.allowedFor.includes("Girls") ? "allowed" : "not-allowed"}`}>👩 Girls</span>
+      <span className={`option ${hostel.allowedFor.includes("Family") ? "allowed" : "not-allowed"}`}>👪 Family</span>
+    </div>
+  </div>
+</div>
+
+
+{hostel.nearbyColleges[0]!=="" &&
+<div className="nearby-college-section">
+  <span className="label">Nearby Colleges:</span>
+  <div className="college-tags">
+    {hostel.nearbyColleges.map((college, i) => (
+      <>
+      <span key={i} className="college-tag">{college}</span>
+      </>
+    ))}
+  </div>
+</div>
+}
       {localStorage?.role === 'renter' && (
         <div>
-          <button className='add-review-btn' style={{ backgroundColor: 'yellow',color:'black' }} onClick={handleAddToFavorites}>
+          <button className='btn add-review-btn' onClick={handleAddToFavorites}>
             {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-          </button>
-          <button className='add-review-btn' onClick={() => setShowReviewForm(!showReviewForm)}>
-            {showReviewForm ? 'Cancel' : 'Add a Review'}
           </button>
         </div>
       )}
 
       {localStorage?.role === 'owner' && user && user._id === hostel.owner && (
         <div>
-          <button className='add-review-btn' style={{ backgroundColor: 'red' }} onClick={() => handleDelete(hostel._id)}>Delete</button>
-          <button className='add-review-btn' onClick={() => handleEditClick(hostel)}>Edit</button>
+          <button className='btn edit-btn' onClick={() => handleEditClick(hostel)}>Edit</button>
+          <button className='btn delete-btn' onClick={() => handleDelete(hostel._id)}>Delete</button>
 
         </div>
       )}
+</div>
+
+
 
       {editHostel && (
         <div onClick={(e) => {
@@ -329,54 +378,67 @@ const handleDeleteImage = async (imgPath) => {
         </div>
       )}
 
-      {showReviewForm && (
-        <form className="review-form" onSubmit={handleReviewSubmit}>
-          <label>Rating (1-5):
-            <input type="number" min="1" max="5" value={newReview.rating} onChange={(e) => setNewReview({ ...newReview, rating: e.target.value })} required/>
-          </label>
-          <label>Comment:
-            <textarea value={newReview.comment} onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })} required/>
-          </label>
-          <button type="submit">Submit Review</button>
-        </form>
-      )}
-
+  <div className="review-owner-wrapper">
       {owner && (
-        <div className="owner-info">
-          <h3>Owner Info</h3>
-          <p><strong>Name:</strong> {owner.name}</p>
-          <p><strong>Email:</strong> {owner.email}</p>
-          <p><strong>Phone:</strong> {owner.phone || 'Not provided'}</p>
+        <div className="owner-card">
+          <h3>Owner Information</h3>
+          <div className="info-row"><span>👤 Name:</span> {owner.name}</div>
+          <div className="info-row"><span>📧 Email:</span> <a href={`mailto:${owner.email}`}>{owner.email}</a></div>
+          <div className="info-row"><span>📞 Phone:</span> {owner.phone ? <a href={`tel:${owner.phone}`}>{owner.phone}</a> : 'Not Provided'}</div>
         </div>
       )}
+      {(user && user.role === 'renter' && hostel && !hostel.reviews?.some(r => r.user === user._id)) && (
+    <div className="review-box">
+      <h3>Leave a Review</h3>
+      <form className="review-form" onSubmit={handleReviewSubmit}>
+        <label>
+          Rating (1-5):
+          <input type="number" min="1" max="5" value={newReview.rating} onChange={(e) => setNewReview({ ...newReview, rating: e.target.value })} required />
+        </label>
+        <label>
+          Comment:
+          <textarea value={newReview.comment} onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })} required />
+        </label>
+        <button type="submit">Submit Review</button>
+      </form>
+    </div>
+  )}
 
-      {hostel.reviews?.length > 0 && (
-        <div className="reviews">
-          <h3>Reviews</h3>
-          {hostel.reviews.map((review, idx) => (
-            <div key={idx} className="review-card">
-              <p><strong>{review.name}</strong> rated {review.rating}/5</p>
-              <p>{review.comment}</p>
-              <small>{new Date(review.createdAt).toLocaleString()}</small>
-            </div>
-          ))}
+  </div>
+{hostel.reviews.length>0 &&
+<div className="reviews-section">
+  <h3>Reviews</h3>
+  <div className="reviews-grid">
+    {hostel.reviews.map((review, idx) => (
+      <div key={idx} className="review-card">
+        <div className="review-header">
+          <strong>{review.name}</strong>
+          <span className="review-rating">⭐ {review.rating}/5</span>
         </div>
-      )}
-
-      {user && user._id === hostel.owner && favoritedUsers.length > 0 && (
-<div className="favorited-users">
-  <h3>Favorited By</h3>
-  <ul>
-    {favoritedUsers.map((u, i) => (
-      <li key={i} className="favorite-user-item">
-        <p><strong>Name:</strong> {u.name}</p>
-        <p><strong>Email:</strong> {u.email}</p>
-      </li>
+        <p className="review-comment">“{review.comment}”</p>
+        <div className="review-date">
+          {new Date(review.createdAt).toLocaleString()}
+        </div>
+      </div>
     ))}
-  </ul>
+  </div>
 </div>
+}
+{favoritedUsers.length>0 && localStorage?.role === 'owner' && user && user._id === hostel.owner &&
+<div className="favorited-users-section">
+  <h3>Favorited By</h3>
+  <div className="favorited-grid">
+    {favoritedUsers.map((u, i) => (
+      <div key={i} className="favorited-card">
+        <p><strong>{u.name}</strong></p>
+        <a href={`mailto:${u.email}`} className="favorite-email">{u.email}</a>
+      </div>
+    ))}
+  </div>
+</div>
+}
 
-      )}
+
     </div>
   );
 };

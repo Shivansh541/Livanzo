@@ -11,6 +11,9 @@ import Favorites from "./components/user/Favorites";
 import Home from "./components/common/Home";
 import Dashboard from "./components/common/Dashboard";
 import './components/common/css/phone.css'
+import 'react-tooltip/dist/react-tooltip.css'
+
+
 function App() {
   const [token, setToken] = useState(null);
   const [role, setRole] = useState(null);

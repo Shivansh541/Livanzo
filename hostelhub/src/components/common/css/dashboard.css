@@ -13,7 +13,7 @@
 .userNavbar {
   background-color: var(--navbar-bg);
   position: fixed;
-    z-index: 5;
+    z-index: 99;
     width: 100%;
     box-sizing: border-box;
   padding: 0.7rem 2rem;
@@ -49,7 +49,7 @@
   width: 100%;
   border: none;
   margin-bottom: 0 !important;
-  background-color: var(--form-bg);
+  background-color: transparent;
   color: var(--text-color);
   transition: border-color 0.3s ease;
 }

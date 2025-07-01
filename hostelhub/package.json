@@ -23,6 +23,7 @@
     "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.5.0",
     "react-scripts": "5.0.1",
+    "react-tooltip": "^5.29.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -48,10 +49,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },"browser": {
-  "crypto": false,
-  "fs": false,
-  "path": false
-}
-
+  },
+  "browser": {
+    "crypto": false,
+    "fs": false,
+    "path": false
+  }
 }
