@@ -449,6 +449,7 @@
   width: 100%;
   padding: 0.3rem 0.5rem;
   font-size: 0.8rem;
+  color: var(--text-color);
   border: 1px solid var(--input-border);
   border-radius: 4px;
   background-color: var(--bg-color);
