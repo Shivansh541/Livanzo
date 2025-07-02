@@ -16,7 +16,7 @@
   font-weight: 600;
 }
 
-form {
+.manage-hostel-container form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
@@ -105,7 +105,7 @@ form {
 }
 
 /* Submit Button */
-button[type="submit"] {
+ .manage-hostel-container button[type="submit"] {
   grid-column: 1 / -1;
   background-color: var(--btn-bg);
   color: white;
@@ -118,7 +118,7 @@ button[type="submit"] {
   font-weight: bold;
 }
 
-button[type="submit"]:hover {
+.manage-hostel-container button[type="submit"]:hover {
   background-color: var(--btn-hover);
 }
 

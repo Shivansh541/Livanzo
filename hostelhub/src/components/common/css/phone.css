@@ -383,6 +383,9 @@
     padding: 6px 12px;
     font-size: 10px;
   }
+  .manage-hostel-container form{
+    grid-template-columns: none;
+  }
   .form-group label {
     top: 6px;
     left: 12px;
