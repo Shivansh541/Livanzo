@@ -225,8 +225,13 @@ const HostelDetails = () => {
 
 
       {fullImagePreview && (
-        <div className="fullPreview">
-          <div className="slideshow-fullwrapper">
+        <div onClick={(e) => {
+      // If the click target is the overlay itself (not the modal content), close it
+      if (e.target.classList.contains('fullPreview')) {
+        setFullImagePreview(false);
+      }
+    }} className="fullPreview">
+          <div onClick={(e)=>e.stopPropagation()} className="slideshow-fullwrapper">
             <div className="slideshow-fullslider" style={{ transform: `translateX(-${currentImgIndex * 100}%)` }}>
               {hostel.images.map((img, idx) => (
                 <img key={idx} src={img.startsWith('http') ? img : `${BACKEND_URL}${img}`} alt={`Slide ${idx}`} className="slide-fullimage"/>
