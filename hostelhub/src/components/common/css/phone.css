@@ -1,420 +1,450 @@
-
-@media screen and (max-width:768px){
-  .hero-section h1{
+@media screen and (max-width: 768px) {
+  .hero-section h1 {
     font-size: 2rem;
-
   }
-  .hero-section p{
+  .hero-section p {
     font-size: 1rem;
   }
 }
-@media screen and (max-width:450px) {
-  .theme-switch{
-    --toggle-size:9px;
+@media screen and (max-width: 450px) {
+  .theme-switch {
+    --toggle-size: 9px;
   }
-    .profile-container{
-        margin: 1rem auto;
-        padding: 1rem;
-    }
-    .profile-container h2{
-      margin: 0;
-      margin-bottom: 1rem;
-      font-size: 22px;
-    }
-    .profile-field strong{
-      font-size: 14px;
-      width: 80px;
-    }
-    .profile-field span{
-      font-size: 14px;
-    }
-    .profile-buttons button{
-      font-size: 12px;
-      padding: 6px 12px;
-    }
-    .hero-section{
-      padding: 3rem 1.5rem;
-      clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
-    }
-    .hero-section h1{
-      font-size: 24px;
-      font-weight: 600;
-    }
-    .hero-section p{
-      font-size: 12px;
-    }
-    .hero-buttons button{
-      padding: 6px 12px;
-      font-size: 10px;
-    }
-        .hostel-grid{
-        grid-template-columns: repeat(2,1fr);
-        gap: 0.5rem;
-    }
-    .hostel-card{
-        padding: 0.4rem;
-    }
-    .hostel-card h3{
-      margin: 0;
-        font-size: 10px;
-    }
-    .hostel-card p{
-        font-size: 8px;
-        margin: 0.1rem 0;
-
-}
-    .hostel-card .hostel-image{
-      height: 90px;
-    }
-    .hostel-card p:nth-of-type(5),
-    .hostel-card p:nth-of-type(6){
-      display: none;
-    }
-    .filter-section .filter-button,.filter-section select{
-      padding: 6px 12px;
-      width: 20%;
-      font-size: 11px;
-    }
-    .theme-switch{
-      font-size: 9px;
-
-    }
-    .userNavbar input[type = 'text']{
-      width: 100%;
-      font-size: 10px;
-    }
-    .search-bar{
-      width: 24vw;
-      padding: 5px;
-      gap: 2px;
-      font-size: 10px;
-      
-    }
-    .userNavbar button{
-      padding: 6px 12px;
-      font-size: 11px;
-    }
-    .all-hostels-container{
-      padding: 0.5rem 1rem;
-    }
-    .filter-section{
-      margin-bottom: 0.5rem;
-    }
-    .filter-section .modal-content{
-      padding: 15px;
-      gap: 6px;
-    }
-    .filter-section .modal-content h2{
-      margin: 0;
-      margin-bottom: 0.5rem;
-      font-size: 16px;
-    }
-    .filter-section .modal-content input,
-    .filter-section .modal-content select{
-padding: 8px 12px;
+  .profile-container {
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+  .profile-container h2 {
+    margin: 0;
+    margin-bottom: 1rem;
+    font-size: 22px;
+  }
+  .profile-field strong {
+    font-size: 14px;
+    width: 80px;
+  }
+  .profile-field span {
+    font-size: 14px;
+  }
+  .profile-buttons button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  .hero-section {
+    padding: 3rem 1.5rem;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+  }
+  .hero-section h1 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .hero-section p {
+    font-size: 12px;
+  }
+  .hero-buttons button {
+    padding: 6px 12px;
     font-size: 10px;
-    }
-    .filter-section .modal-buttons{
-      margin-top: 5px;
-      gap: 5px;
-    }
-    .filter-section .modal-buttons button{
-      font-size: 10px;
-    }
-    .hostel-details-container{
-      padding: 0.7rem;
-    }
-    .hostel-info{
-      padding: 0.5rem 0.8rem;
-    }
-    .hostel-info>h2{
-      margin-bottom: 0.5rem;
-      font-size: 20px;
-    }
-    .rent{
-      font-size: 15px;
-    }
-    .rent span{
-      font-size: 10px;
-    }
-    .availability{
-      font-size: 9px;
-      margin-top: 3px;
-    }
-    .rating{
-      font-size: 10px;
-    }
-    .date-posted{
-      font-size: 8px;
-      margin-top: 2px;
-    }
-    .description{
-      padding: 9px 0;
+  }
+  .hostel-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  .hostel-card {
+    padding: 0.4rem;
+  }
+  .hostel-card h3 {
+    margin: 0;
     font-size: 10px;
-    }
-    .location-line{
-      margin-bottom: 10px;
-      font-size: 9px;
-    }
-    .maps-button{
-      padding: 4px;
-      width: 70px;
-      font-size: 8px;
-      border-radius: 5px;
-    }
-    .label{
-      font-size: 10px;
-      margin-bottom: 3px;
-    }
-    .chips-section{
-      gap: 4px;
-      margin-bottom: 12px;
-    }
-    .chip{
-      font-size: 8px;
-      padding: 3px 6px;
-    }
-    .info-block{
-      display: flex;
-      flex-direction: column;
-      min-width: auto;
-    }
-    .info-block .value{
-      font-size: 10px;
-    }
-    .option{
-      font-size: 8px;
+  }
+  .hostel-card p {
+    font-size: 8px;
+    margin: 0.1rem 0;
+  }
+  .hostel-card .hostel-image {
+    height: 90px;
+  }
+  .hostel-card p:nth-of-type(5),
+  .hostel-card p:nth-of-type(6) {
+    display: none;
+  }
+  .filter-section .filter-button,
+  .filter-section select {
+    padding: 6px 12px;
+    width: 20%;
+    font-size: 11px;
+  }
+  .theme-switch {
+    font-size: 9px;
+  }
+  .userNavbar input[type="text"] {
+    width: 100%;
+    font-size: 10px;
+  }
+  .search-bar {
+    width: 24vw;
+    padding: 5px;
+    gap: 2px;
+    font-size: 10px;
+  }
+  .userNavbar button {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  .all-hostels-container {
+    padding: 0.5rem 1rem;
+  }
+  .filter-section {
+    margin-bottom: 0.5rem;
+  }
+  .filter-section .modal-content {
+    padding: 15px;
+    gap: 6px;
+  }
+  .filter-section .modal-content h2 {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    font-size: 16px;
+  }
+  .filter-section .modal-content input,
+  .filter-section .modal-content select {
+    padding: 8px 12px;
+    font-size: 10px;
+  }
+  .filter-section .modal-buttons {
+    margin-top: 5px;
+    gap: 5px;
+  }
+  .filter-section .modal-buttons button {
+    font-size: 10px;
+  }
+  .hostel-details-container {
+    padding: 0.7rem;
+  }
+  .hostel-info {
+    padding: 0.5rem 0.8rem;
+  }
+  .hostel-info > h2 {
+    margin-bottom: 0.5rem;
+    font-size: 20px;
+  }
+  .rent {
+    font-size: 15px;
+  }
+  .rent span {
+    font-size: 10px;
+  }
+  .availability {
+    font-size: 9px;
+    margin-top: 3px;
+  }
+  .rating {
+    font-size: 10px;
+  }
+  .date-posted {
+    font-size: 8px;
+    margin-top: 2px;
+  }
+  .description {
+    padding: 9px 0;
+    font-size: 10px;
+  }
+  .location-line {
+    margin-bottom: 10px;
+    font-size: 9px;
+  }
+  .maps-button {
+    padding: 4px;
+    width: 70px;
+    font-size: 8px;
+    border-radius: 5px;
+  }
+  .label {
+    font-size: 10px;
+    margin-bottom: 3px;
+  }
+  .chips-section {
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+  .chip {
+    font-size: 8px;
     padding: 3px 6px;
-    }
-    .allowed-options{
-      gap: 4px;
-    }
-    .room-allowed-card{
-      margin-bottom: 10px;
-      gap: 12px;
-    }
-    .nearby-college-section{
-      margin-bottom: 12px;
-    }
-    .nearby-college-section .label{
-      margin-bottom: 4px;
-      font-size: 10px;
-    }
-    .college-tag{
-      font-size: 8px;
-      padding: 3px 6px;
-    }
-    .hostel-info .btn{
-      margin-right: 10px;
+  }
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    min-width: auto;
+  }
+  .info-block .value {
+    font-size: 10px;
+  }
+  .option {
+    font-size: 8px;
+    padding: 3px 6px;
+  }
+  .allowed-options {
+    gap: 4px;
+  }
+  .room-allowed-card {
+    margin-bottom: 10px;
+    gap: 12px;
+  }
+  .nearby-college-section {
+    margin-bottom: 12px;
+  }
+  .nearby-college-section .label {
+    margin-bottom: 4px;
+    font-size: 10px;
+  }
+  .college-tag {
+    font-size: 8px;
+    padding: 3px 6px;
+  }
+  .hostel-info .btn {
+    margin-right: 10px;
     padding: 4px 8px;
     font-size: 9px;
-    }
-    .review-owner-wrapper{
-      margin-top: 20px;
-      gap: 8px;
-    }
-    .owner-card{
+  }
+  .review-owner-wrapper {
+    margin-top: 20px;
+    gap: 8px;
+  }
+  .owner-card {
     min-width: auto;
     padding: 0.4rem;
     border-radius: 9px;
-    }
-    .owner-card h3{
-      font-size: 11px;
-      margin-bottom: 8px;
-    }
-    .owner-card .info-row{
-      margin-bottom: 6px;
-      font-size: 9px;
-    }
-    .owner-card .info-row span{
-      width: 45px;
-    }
-    .review-box{
-      min-width: auto;
-      max-width: 120px;
-      padding: 0.4rem;
-    }
-    .review-box h3{
-      font-size: 11px;
-      margin-bottom: 5px;
-    }
-    .review-form{
-      gap: 5px;
-    }
-    .review-form label{
-      font-size: 6px;
-    }
-    .review-form input{
-      padding: 3px 5px;
+  }
+  .owner-card h3 {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+  .owner-card .info-row {
+    margin-bottom: 6px;
+    font-size: 9px;
+  }
+  .owner-card .info-row span {
+    width: 45px;
+  }
+  .review-box {
+    min-width: auto;
+    max-width: 120px;
+    padding: 0.4rem;
+  }
+  .review-box h3 {
+    font-size: 11px;
+    margin-bottom: 5px;
+  }
+  .review-form {
+    gap: 5px;
+  }
+  .review-form label {
+    font-size: 6px;
+  }
+  .review-form input {
+    padding: 3px 5px;
     font-size: 10px;
     height: 12px;
-    } 
-    .review-form textarea{
-      padding: 3px 5px;
+  }
+  .review-form textarea {
+    padding: 3px 5px;
     font-size: 8px;
     height: 17px;
-    }
-    .review-form button{
-          padding: 3px 6px;
+  }
+  .review-form button {
+    padding: 3px 6px;
     font-size: 6px;
-    }
-    .reviews-section, .favorited-users-section{
-      margin-top: 5px;
-    }
-    .reviews-section h3, .favorited-users-section h3{
-      font-size: 12px;
-      margin-bottom: 5px;
-    }
-    .review-card, .favorited-card{
-          padding: 3px 5px;
+  }
+  .reviews-section,
+  .favorited-users-section {
+    margin-top: 5px;
+  }
+  .reviews-section h3,
+  .favorited-users-section h3 {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  .review-card,
+  .favorited-card {
+    padding: 3px 5px;
     max-width: 120px;
     border-radius: 5px;
-    }
-    .reviews-grid,
-.favorited-grid{
-  gap: 5px;
-}
-.review-header{
-  font-size: 9px;
+  }
+  .reviews-grid,
+  .favorited-grid {
+    gap: 5px;
+  }
+  .review-header {
+    font-size: 9px;
     margin-bottom: 4px;
-}
-.review-rating{
-  font-size: 8px;
+  }
+  .review-rating {
+    font-size: 8px;
     margin-left: 5px;
-}
-.review-comment{
-  font-size: 8px;
-  margin-bottom: 4px;
-}
-.review-date{
-  font-size: 6px;
-}
-.favorited-card p{
-  font-size: 8px;
-}
-.favorited-card{
-  display: flex;
-  flex-direction: column;
-}
-.favorite-email{
-  font-size: 8px;
-}
-    .hostel-images{
-      width: 60%;
-    }
-    .delete-img-btn{
-      font-size: 9px;
-      padding: 2px 4px;
-      top: 2px;
-      right: 3px;
-
-    }
-    #delete-img-tip{
-      font-size: 5px;
-      padding: 3px 5px;
-    }
-    .img-btn{
-      padding: 3px 6px;
-      left: 3px;
-      bottom: 3px;
-      font-size: 5px;
-    }
-    .slide-button{
-      padding: 5px;
-      font-size: 10px;
-    }
-    .closePreview{
-      padding: 8px;
-      font-size: 15px;
-    }
-    .image-modal .modal-content{
-      padding: 12px;
-    }
-    .image-modal .modal-content input{
-      padding: 8px;
-      font-size: 10px;
-    }
-    .hostel-details-container .modal-buttons button{
-      font-size: 10px;
-    }
-    .hostel-details-container .modal-content{
-      padding: 12px;
-    }
-    .hostel-details-container .modal-content h3{
-      margin: 8px 0;
-      font-size: 16px;
-    }
-    .hostel-details-container .modal-buttons{
-      margin: 0;
-      gap: 5px;
-      padding: 5px 0;
-    }
-    .hostel-details-container .modal-content input, .hostel-details-container .modal-content select, .hostel-details-container .modal-content textarea{
-      padding: 6px 12px;
-      font-size: 10px;
-    }
-    .hostel-card img{
-      height: 90px;
-    }
-    .all-hostels-container h2{
-          margin: 0;
-          margin-bottom: 1rem;
+  }
+  .review-comment {
+    font-size: 8px;
+    margin-bottom: 4px;
+  }
+  .review-date {
+    font-size: 6px;
+  }
+  .favorited-card p {
+    font-size: 8px;
+  }
+  .favorited-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .favorite-email {
+    font-size: 8px;
+  }
+  .hostel-images {
+    width: 60%;
+  }
+  .delete-img-btn {
+    font-size: 9px;
+    padding: 2px 4px;
+    top: 2px;
+    right: 3px;
+  }
+  #delete-img-tip {
+    font-size: 5px;
+    padding: 3px 5px;
+  }
+  .img-btn {
+    padding: 3px 6px;
+    left: 3px;
+    bottom: 3px;
+    font-size: 5px;
+  }
+  .slide-button {
+    padding: 5px;
+    font-size: 10px;
+  }
+  .closePreview {
+    padding: 8px;
+    font-size: 15px;
+  }
+  .image-modal .modal-content {
+    padding: 12px;
+  }
+  .image-modal .modal-content input {
+    padding: 8px;
+    font-size: 10px;
+  }
+  .hostel-details-container .modal-buttons button {
+    font-size: 10px;
+  }
+  .hostel-details-container .modal-content {
+    padding: 12px;
+  }
+  .hostel-details-container .modal-content h3 {
+    margin: 8px 0;
+    font-size: 16px;
+  }
+  .hostel-details-container .modal-buttons {
+    margin: 0;
+    gap: 5px;
+    padding: 5px 0;
+  }
+  .hostel-details-container .modal-content input,
+  .hostel-details-container .modal-content select,
+  .hostel-details-container .modal-content textarea {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+  .hostel-card img {
+    height: 90px;
+  }
+  .all-hostels-container h2 {
+    margin: 0;
+    margin-bottom: 1rem;
     font-size: 20px;
-    }
-    .manage-hostel-container{
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    .manage-hostel-container h2{
-      padding: 10px;
-      font-size: 20px;
-    }
-    .manage-hostel-container input, .manage-hostel-container textarea, .manage-hostel-container select{
-      padding: 8px 12px;
-      font-size: 10px;
-    }
-    .manage-hostel-container button{
-      padding: 6px 12px;
-      font-size: 10px;
-    }
-    .loginForm{
-      padding: 1rem 1.5rem;
-    }
-    .loginForm input, .loginForm select{
-      padding: 8px 12px;
+  }
+  .manage-hostel-container {
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .manage-hostel-container h2 {
+    padding: 10px;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .manage-hostel-container form {
+    gap: 8px;
+  }
+  .manage-hostel-container input,
+  .manage-hostel-container textarea,
+  .manage-hostel-container select {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+  .manage-hostel-container button {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+  .form-group label {
+    top: 6px;
+    left: 12px;
+    font-size: 10px;
+  }
+  .form-group input:focus + label,
+  .form-group input:not(:placeholder-shown) + label,
+  .form-group textarea:focus + label,
+  .form-group textarea:not(:placeholder-shown) + label {
+    font-size: 8px;
+    top: -6px;
+    left: 8px;
+  }
+  .form-group input[type="file"] {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+  .form-group label[for] {
+    font-size: 8px;
+  }
+  .form-group textarea {
+    min-height: 25px;
+  }
+  .loginForm {
+    padding: 1rem 1.5rem;
+  }
+  .loginForm input,
+  .loginForm select {
+    padding: 8px 12px;
     margin-bottom: 8px;
     font-size: 10px;
-    }
-    .loginForm button{
-      padding: 6px 12px;
-    }
-    #login h2, #signup h2{
-      font-size: 20px;
-      margin: 0.5rem 0;
-    }
-    .loginForm span{
-      margin-top: 0.5rem;
+  }
+  .loginForm button {
+    padding: 6px 12px;
+  }
+  #login h2,
+  #signup h2 {
+    font-size: 20px;
+    margin: 0.5rem 0;
+  }
+  .loginForm span {
+    margin-top: 0.5rem;
     font-size: 10px;
-    }
-    .pass_box .eye{
-          font-size: 12px;
+  }
+  .pass_box .eye {
+    font-size: 12px;
     padding: 8px;
-
-    }
-    .loginForm a{
-      font-size: 12px;
-      height: 20px;
-    }
-    .userContent{
-      margin-top: 42px;
-    }
-    .left-nav img{
-      width: 87px;
-    }
-    .fullPreview{
-      display: none;
-    }
-    .hostel-images img{
-      cursor: default;
-    }
+  }
+  .loginForm a {
+    font-size: 12px;
+    height: 20px;
+  }
+  .userContent {
+    margin-top: 42px;
+  }
+  .left-nav img {
+    width: 87px;
+  }
+  .fullPreview {
+    display: none;
+  }
+  .hostel-images img {
+    cursor: default;
+  }
 }

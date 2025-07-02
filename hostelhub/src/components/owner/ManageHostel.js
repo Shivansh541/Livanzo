@@ -98,109 +98,91 @@ const ManageHostel = () => {
     <div className="manage-hostel-container">
       <h2>Add New Hostel</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input
-          name="name"
-          placeholder="Hostel Name"
-          value={form.name}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="rent"
-          placeholder="Rent"
-          value={form.rent}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          name="description"
-          placeholder="Description"
-          value={form.description}
-          onChange={handleChange}
-        />
+        <div className="form-group">
+          <input name="name" placeholder=" " value={form.name} onChange={handleChange} required />
+          <label>Hostel Name <span className="required">*</span></label>
+        </div>
 
-        <input
-          type="file"
-          name="images"
-          multiple
-          accept="image/*"
-          onChange={handleChange}
-          required
-        />
+        <div className="form-group">
+          <input type="number" name="rent" placeholder=" " value={form.rent} onChange={handleChange} required />
+          <label>Rent <span className="required">*</span></label>
+        </div>
 
-        <input
-          name="address.street"
-          placeholder="Street"
-          value={form.address.street}
-          onChange={handleChange}
-        />
-        <input
-          name="address.landmark"
-          placeholder="Landmark"
-          value={form.address.landmark}
-          onChange={handleChange}
-        />
-        <input
-          name="address.city"
-          placeholder="City"
-          value={form.address.city}
-          onChange={handleChange}
-          required
-        />
-        <input
-          name="address.state"
-          placeholder="State"
-          value={form.address.state}
-          onChange={handleChange}
-          required
-        />
-        <input
-          name="address.pincode"
-          placeholder="Pincode"
-          value={form.address.pincode}
-          onChange={handleChange}
-          required
-        />
-<input
-  type="text"
-  name="locationLink"
-  placeholder="Paste Google Maps Location Link"
-  value={form.locationLink}
-  onChange={handleChange}
-/>
+        <div className="form-group full-width">
+          <textarea name="description" placeholder=" " value={form.description} onChange={handleChange}></textarea>
+          <label>Description</label>
+        </div>
 
-        <input
-          name="nearbyColleges"
-          placeholder="Nearby Colleges (comma separated)"
-          value={form.nearbyColleges}
-          onChange={handleChange}
-        />
-        <input
-          name="facilities"
-          placeholder="Facilities (comma separated)"
-          value={form.facilities}
-          onChange={handleChange}
-        />
-        <select name="roomType" value={form.roomType} onChange={handleChange} required>
-          <option>Single</option>
-          <option>Double</option>
-          <option>Triple</option>
-          <option>Dormitory</option>
-        </select>
-        <select
-          name="allowedFor"
-          value={form.allowedFor}
-          onChange={handleChange}
-          required
-        >
-          <option>Boys</option>
-          <option>Girls</option>
-          <option>Both</option>
-          <option>Family</option>
-        </select>
+        <div className="form-group full-width">
+          <label htmlFor="images">Upload Images <span className="required">*</span></label>
+          <input type="file" name="images" id="images" multiple accept="image/*" onChange={handleChange} required />
+        </div>
+
+        <div className="form-group">
+          <input name="address.landmark" placeholder=" " value={form.address.landmark} onChange={handleChange} />
+          <label>Landmark</label>
+        </div>
+
+        <div className="form-group">
+          <input name="address.street" placeholder=" " value={form.address.street} onChange={handleChange} />
+          <label>Street</label>
+        </div>
+
+        <div className="form-group">
+          <input name="address.city" placeholder=" " value={form.address.city} onChange={handleChange} required />
+          <label>City <span className="required">*</span></label>
+        </div>
+
+        <div className="form-group">
+          <input name="address.state" placeholder=" " value={form.address.state} onChange={handleChange} required />
+          <label>State <span className="required">*</span></label>
+        </div>
+
+        <div className="form-group">
+          <input name="address.pincode" placeholder=" " value={form.address.pincode} onChange={handleChange} required />
+          <label>Pincode <span className="required">*</span></label>
+        </div>
+
+        <div className="form-group">
+          <input type="text" name="locationLink" placeholder=" " value={form.locationLink} onChange={handleChange} />
+          <label>Google Maps Location Link</label>
+        </div>
+
+        <div className="form-group">
+          <input name="nearbyColleges" placeholder=" " value={form.nearbyColleges} onChange={handleChange} />
+          <label>Nearby Colleges (comma separated)</label>
+        </div>
+
+        <div className="form-group">
+          <input name="facilities" placeholder=" " value={form.facilities} onChange={handleChange} />
+          <label>Facilities (comma separated)</label>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="roomType">Room Type</label>
+          <select name="roomType" id="roomType" value={form.roomType} onChange={handleChange} required>
+            <option>Single</option>
+            <option>Double</option>
+            <option>Triple</option>
+            <option>Dormitory</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="allowedFor">Allowed For</label>
+          <select name="allowedFor" id="allowedFor" value={form.allowedFor} onChange={handleChange} required>
+            <option>Boys</option>
+            <option>Girls</option>
+            <option>Both</option>
+            <option>Family</option>
+          </select>
+        </div>
+
         <button type="submit">Add Hostel</button>
       </form>
+
     </div>
+
   );
 };
 

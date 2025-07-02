@@ -1,58 +1,129 @@
 .manage-hostel-container {
-  max-width: 700px;
+  max-width: 600px;
   margin: 2rem auto;
-  padding: 0 2rem;
-  background-color: var(--form-bg);
-  border-radius: 12px;
+  background: var(--form-bg);
+  padding: 2rem;
+  border-radius: 1rem;
   border: 1px solid var(--light-border);
-
+  transition: background 0.3s;
 }
 
 .manage-hostel-container h2 {
+  font-size: 1.5rem;
+  color: var(--primary);
   text-align: center;
-  color: var(--label-color);
-  margin: 0;
-  padding: 20px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
 }
 
-.manage-hostel-container form {
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+/* Full-width rows for description and file input */
+.full-width {
+  grid-column: 1 / -1;
+}
+
+/* === Floating Label Field === */
+.form-group {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
-.manage-hostel-container input,
-.manage-hostel-container textarea,
-.manage-hostel-container select {
-  padding: 0.8rem;
-  font-size: 1rem;
+.form-group input,
+.form-group textarea,
+.form-group input[type="file"],
+.form-group select {
+  padding: 8px 16px;
+  font-size: 14px;
   border: 1px solid var(--input-border);
-  border-radius: 8px;
-  background-color: var(--highlight-bg);
+  border-radius: 0.7rem;
+  background-color: var(--modal-bg);
   color: var(--text-color);
-  width: auto;
+  transition: border 0.3s ease;
 }
 
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 
-.manage-hostel-container textarea {
-  min-height: 100px;
+/* Label floating animation */
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:focus + label,
+.form-group textarea:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 10px;
+  font-size: 0.75rem;
+  color: var(--input-focus);
+  background: var(--form-bg);
+  padding: 0 0.3rem;
+}
+
+/* Floating Labels */
+.form-group label {
+  position: absolute;
+  top: 6px;
+  left: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 90%;
+  background: transparent;
+  color: var(--placeholder-color);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+/* Static Labels for select and file */
+.form-group label[for] {
+  position: static;
+  transform: none;
+  margin-bottom: 0.1rem;
+  margin-left: 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--label-color);
+}
+
+.form-group input[type="file"]:focus,
+.form-group select:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
+
+/* Textarea */
+.form-group textarea {
   resize: vertical;
+  min-height: 40px;
 }
 
-.manage-hostel-container button {
-  width: fit-content;
-  align-self: flex-end;
-  padding: 0.7rem 1.4rem;
-  font-size: 1rem;
+/* Submit Button */
+button[type="submit"] {
+  grid-column: 1 / -1;
   background-color: var(--btn-bg);
   color: white;
+  padding: 0.5rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 0.7rem;
+  font-size: 1.1rem;
   cursor: pointer;
-  margin-bottom: 15px;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s;
+  font-weight: bold;
 }
 
-.manage-hostel-container button:hover {
+button[type="submit"]:hover {
   background-color: var(--btn-hover);
+}
+
+/* Required Field Star */
+.required {
+  color: red;
+  margin-left: 2px;
 }
