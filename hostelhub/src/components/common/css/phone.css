@@ -411,4 +411,10 @@ padding: 8px 12px;
     .left-nav img{
       width: 87px;
     }
+    .fullPreview{
+      display: none;
+    }
+    .hostel-images img{
+      cursor: default;
+    }
 }

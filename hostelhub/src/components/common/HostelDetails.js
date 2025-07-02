@@ -197,7 +197,6 @@ const HostelDetails = () => {
           alt={`Slide ${idx}`}
           className="slide-image"
           onClick={() => setFullImagePreview(true)}
-          style={{ cursor: 'pointer' }}
           />
         ))}
       </div>
