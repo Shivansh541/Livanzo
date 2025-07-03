@@ -38,15 +38,20 @@
 .form-group textarea,
 .form-group input[type="file"],
 .form-group select {
-  padding: 8px 16px;
-  font-size: 14px;
+  padding: 10px 16px;
+  font-size: 16px;
   border: 1px solid var(--input-border);
   border-radius: 0.7rem;
   background-color: var(--modal-bg);
   color: var(--text-color);
   transition: border 0.3s ease;
 }
-
+.form-group input[type = "file"]{
+  font-size: 11px;
+}
+.form-group select{
+  font-size: 15px;
+}
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--input-focus);
@@ -69,22 +74,23 @@
 /* Floating Labels */
 .form-group label {
   position: absolute;
-  top: 6px;
-  left: 1rem;
+  top: 0;
+  left: 0;
   white-space: nowrap;
   overflow: hidden;
-  width: 90%;
+  padding: 10px 16px;
   background: transparent;
   color: var(--placeholder-color);
   pointer-events: none;
   transition: all 0.2s ease;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 /* Static Labels for select and file */
 .form-group label[for] {
   position: static;
   transform: none;
+  padding: 0;
   margin-bottom: 0.1rem;
   margin-left: 0.6rem;
   font-size: 0.75rem;
