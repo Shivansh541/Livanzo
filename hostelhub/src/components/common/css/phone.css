@@ -124,69 +124,75 @@
     padding: 0.5rem 0.8rem;
   }
   .hostel-info > h2 {
-    margin-bottom: 0.5rem;
-    font-size: 20px;
+    margin-bottom: 1rem;
+    font-size: 24px;
   }
   .rent {
-    font-size: 15px;
+    font-size: 20px;
   }
   .rent span {
-    font-size: 10px;
+    font-size: 15px;
   }
   .availability {
-    font-size: 9px;
+    font-size: 11px;
     margin-top: 3px;
   }
   .rating {
-    font-size: 10px;
+    font-size: 12px;
   }
   .date-posted {
-    font-size: 8px;
+    font-size: 10px;
     margin-top: 2px;
   }
   .description {
-    padding: 9px 0;
-    font-size: 10px;
+    padding: 11px 0;
+    font-size: 12px;
   }
   .location-line {
-    margin-bottom: 10px;
-    font-size: 9px;
+    margin-bottom: 12px;
+    font-size:11px;
   }
   .maps-button {
     padding: 4px;
-    width: 70px;
+    width: 90px;
     font-size: 8px;
     border-radius: 5px;
   }
   .label {
-    font-size: 10px;
-    margin-bottom: 3px;
+    font-size: 14px;
+    margin-bottom: 5px;
   }
   .chips-section {
-    gap: 4px;
+    gap: 6px;
     margin-bottom: 12px;
   }
   .chip {
-    font-size: 8px;
-    padding: 3px 6px;
+    font-size: 12px;
+    padding: 6px 10px;
   }
   .info-block {
     display: flex;
     flex-direction: column;
-    min-width: auto;
+  }
+  .roomtype{
+    flex-direction: row;
+    gap: 10px;
+  }
+  .roomtype .label{
+    margin:0;
   }
   .info-block .value {
-    font-size: 10px;
+    font-size: 14px;
   }
   .option {
-    font-size: 8px;
-    padding: 3px 6px;
+    font-size: 12px;
+    padding: 6px 12px;
   }
   .allowed-options {
-    gap: 4px;
+    gap: 6px;
   }
   .room-allowed-card {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     gap: 12px;
   }
   .nearby-college-section {
@@ -194,16 +200,16 @@
   }
   .nearby-college-section .label {
     margin-bottom: 4px;
-    font-size: 10px;
+    font-size: 14px;
   }
   .college-tag {
-    font-size: 8px;
-    padding: 3px 6px;
+    font-size: 12px;
+    padding: 6px 10px;
   }
   .hostel-info .btn {
     margin-right: 10px;
-    padding: 4px 8px;
-    font-size: 9px;
+ padding: 8px 16px;
+        font-size: 14px;
   }
   .review-owner-wrapper {
     margin-top: 20px;
@@ -211,99 +217,101 @@
   }
   .owner-card {
     min-width: auto;
-    padding: 0.4rem;
+    padding: 4px 6px;
     border-radius: 9px;
   }
   .owner-card h3 {
-    font-size: 11px;
-    margin-bottom: 8px;
+font-size: 12px;
+        margin-bottom: 6px;
   }
   .owner-card .info-row {
     margin-bottom: 6px;
-    font-size: 9px;
+    font-size: 10px;
   }
   .owner-card .info-row span {
-    width: 45px;
+    width: auto;
   }
   .review-box {
     min-width: auto;
     max-width: 120px;
-    padding: 0.4rem;
+    padding: 4px 6px;
   }
   .review-box h3 {
-    font-size: 11px;
+    font-size: 12px;
     margin-bottom: 5px;
   }
   .review-form {
     gap: 5px;
   }
   .review-form label {
-    font-size: 6px;
+    font-size: 8px;
   }
   .review-form input {
-    padding: 3px 5px;
-    font-size: 10px;
+    padding: 4px 6px;
+    font-size: 11px;
     height: 12px;
   }
   .review-form textarea {
-    padding: 3px 5px;
-    font-size: 8px;
+    padding: 4px 6px;
+    font-size: 11px;
     height: 17px;
   }
   .review-form button {
-    padding: 3px 6px;
-    font-size: 6px;
+    padding: 5px 10px;
+    font-size: 10px;
   }
   .reviews-section,
   .favorited-users-section {
-    margin-top: 5px;
+    margin-top: 6px;
   }
   .reviews-section h3,
   .favorited-users-section h3 {
-    font-size: 12px;
-    margin-bottom: 5px;
+    font-size: 13px;
+    margin-bottom: 6px;
   }
-  .review-card,
-  .favorited-card {
-    padding: 3px 5px;
-    max-width: 120px;
-    border-radius: 5px;
+  .review-card{
+    padding: 4px 6px;
+    border-radius: 6px;
+    max-width: 150px;
   }
   .reviews-grid,
   .favorited-grid {
-    gap: 5px;
+    gap: 6px;
   }
   .review-header {
-    font-size: 9px;
+    font-size: 12px;
     margin-bottom: 4px;
   }
   .review-rating {
-    font-size: 8px;
+    font-size: 11px;
     margin-left: 5px;
   }
   .review-comment {
-    font-size: 8px;
+    font-size: 11px;
     margin-bottom: 4px;
   }
   .review-date {
-    font-size: 6px;
+    font-size: 8px;
   }
   .favorited-card p {
-    font-size: 8px;
+    font-size: 11px;
   }
   .favorited-card {
     display: flex;
     flex-direction: column;
+    max-width: 200px;
+        padding: 4px 6px;
+    border-radius: 6px;
   }
   .favorite-email {
-    font-size: 8px;
+    font-size: 11px;
   }
   .hostel-images {
-    width: 60%;
+    width: 80%;
   }
   .delete-img-btn {
-    font-size: 9px;
-    padding: 2px 4px;
+font-size: 12px;
+        padding: 5px 8px;
     top: 2px;
     right: 3px;
   }
@@ -312,14 +320,14 @@
     padding: 3px 5px;
   }
   .img-btn {
-    padding: 3px 6px;
+    padding: 6px 12px;
     left: 3px;
     bottom: 3px;
-    font-size: 5px;
+    font-size: 12px;
   }
   .slide-button {
-    padding: 5px;
-    font-size: 10px;
+ padding: 8px;
+        font-size: 12px;
   }
   .closePreview {
     padding: 8px;

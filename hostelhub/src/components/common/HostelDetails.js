@@ -300,13 +300,13 @@ const HostelDetails = () => {
     </>
   )}
 <div className="room-allowed-card">
-  <div className="info-block">
-    <span className="label">Room Type</span>
+  <div className="info-block roomtype">
+    <span className="label">Room Type:</span>
     <span className="value">{hostel.roomType} Sharing</span>
   </div>
 
   <div className="info-block">
-    <span className="label">Allowed For</span>
+    <span className="label">Allowed For:</span>
     <div className="allowed-options">
       <span className={`option ${hostel.allowedFor.includes("Boys") ? "allowed" : "not-allowed"}`}>👨 Boys</span>
       <span className={`option ${hostel.allowedFor.includes("Girls") ? "allowed" : "not-allowed"}`}>👩 Girls</span>
@@ -385,7 +385,7 @@ const HostelDetails = () => {
   <div className="review-owner-wrapper">
       {owner && (
         <div className="owner-card">
-          <h3>Owner Information</h3>
+          <h3>Owner Info</h3>
           <div className="info-row"><span>👤 Name:</span> {owner.name}</div>
           <div className="info-row"><span>📧 Email:</span> <a href={`mailto:${owner.email}`}>{owner.email}</a></div>
           <div className="info-row"><span>📞 Phone:</span> {owner.phone ? <a href={`tel:${owner.phone}`}>{owner.phone}</a> : 'Not Provided'}</div>
