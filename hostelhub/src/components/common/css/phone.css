@@ -349,18 +349,15 @@ font-size: 12px;
   .hostel-details-container .modal-content h3 {
     margin: 8px 0;
     font-size: 16px;
+  
   }
   .hostel-details-container .modal-buttons {
     margin: 0;
     gap: 5px;
     padding: 5px 0;
+    grid-column: 1;
   }
-  .hostel-details-container .modal-content input,
-  .hostel-details-container .modal-content select,
-  .hostel-details-container .modal-content textarea {
-    padding: 6px 12px;
-    font-size: 10px;
-  }
+
   .hostel-card img {
     height: 90px;
   }
@@ -380,20 +377,20 @@ font-size: 12px;
     margin-bottom: 4px;
   }
 
-  .manage-hostel-container input,
-  .manage-hostel-container textarea,
-  .manage-hostel-container select {
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
         padding: 8px 16px;
         font-size: 12px;
   }
-    .manage-hostel-container select {
+    .form-group select {
       font-size: 11px;
     }
-  .manage-hostel-container button[type= "submit"] {
+  .manage-hostel-container button[type= "submit"],.hostel-details-container .modal-content button {
     padding: 6px 12px;
-    font-size: 14px;
+    font-size: 12px;
   }
-  .manage-hostel-container form{
+  .manage-hostel-container form,.hostel-details-container .modal-content form{
     grid-template-columns: none;
     gap: 8px;
   }

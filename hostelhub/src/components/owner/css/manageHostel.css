@@ -111,7 +111,7 @@
 }
 
 /* Submit Button */
- .manage-hostel-container button[type="submit"] {
+ .manage-hostel-container button {
   grid-column: 1 / -1;
   background-color: var(--btn-bg);
   color: white;

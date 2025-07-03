@@ -556,42 +556,43 @@
   width: 70%;
   height: 70vh;
   overflow-y: scroll;
+  text-align: start;
+}
+.hostel-details-container .modal-content h3{
+  font-size: 24px;
+    padding: 1rem 0;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 0.5rem;
 }
 .hostel-details-container .modal-content form{
-  display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 7px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
-.hostel-details-container .modal-content input,
-.hostel-details-container .modal-content select,
 .hostel-details-container .modal-content textarea{
-    padding: 0.8rem;
-    font-size: 1rem;
-    border: 1px solid var(--input-border);
-    border-radius: 8px;
-    background-color: var(--highlight-bg);
-    color: var(--text-color);
-    width: 100%;
-    box-sizing: border-box;
+  grid-column: span 2;
 }
 
+
 .hostel-details-container .modal-buttons{
-    display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+display: grid
+;
+    grid-column: span 2;
+    grid-template-columns: 1fr 1fr;
+  gap: 15px;
   margin-top: 20px;
 }
-.hostel-details-container .modal-buttons button{
+.hostel-details-container .modal-content button{
   background-color: var(--btn-bg);
   color: white;
-    padding: 6px 12px;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
+  padding: 0.5rem;
   border: none;
-  transition: background-color 0.2s ease;
+  border-radius: 0.7rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
 }
 .hostel-details-container .image-modal{
   height: auto;

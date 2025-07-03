@@ -354,30 +354,89 @@ const HostelDetails = () => {
         setEditHostel(false);
       }
     }} className="modal-overlay">
-          <div onClick={(e)=>e.stopPropagation()} className="modal-content">
+          <div onClick={(e)=>e.stopPropagation()} className="modal-content ">
             <h3>Edit Hostel</h3>
             <form onSubmit={handleSubmit}>
-              <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Name" required/>
-              <input type="number" name="rent" value={form.rent} onChange={handleChange} placeholder="Rent" required />
-              <textarea name="description" rows={5} value={form.description} onChange={handleChange} placeholder="Description" required />
-              <select name="roomType" value={form.roomType} onChange={handleChange}>
-                <option>Single</option><option>Double</option><option>Triple</option><option>Dormitory</option>
-              </select>
-              <select name="allowedFor" value={form.allowedFor} onChange={handleChange}>
-                <option>Boys</option><option>Girls</option><option>Both</option><option>Family</option>
-              </select>
-              <input type="text" name="address.street" value={form.address.street} onChange={handleChange} placeholder="Street"/>
-              <input type="text" name="address.city" value={form.address.city} onChange={handleChange} placeholder="City"/>
-              <input type="text" name="address.state" value={form.address.state} onChange={handleChange} placeholder="State"/>
-              <input type="text" name="address.pincode" value={form.address.pincode} onChange={handleChange} placeholder="Pincode"/>
-              <input type="text" name="address.landmark" value={form.address.landmark} onChange={handleChange} placeholder="Landmark"/>
-              <input type="text" name="nearbyColleges" value={form.nearbyColleges.join(', ')} onChange={handleChange} placeholder="Nearby Colleges (comma separated)" />
-              <input type="text" name="facilities" value={form.facilities.join(', ')} onChange={handleChange} placeholder="Facilities (comma separated)" />
-              <div className='modal-buttons'>
-                <button style={{ marginRight: '5px' }} type="submit">Save Changes</button>
-                <button onClick={() => setEditHostel(null)}>Close</button>
-              </div>
-            </form>
+        <div className="form-group">
+          <input name="name" placeholder=" " value={form.name} onChange={handleChange} required />
+          <label>Hostel Name <span className="required">*</span></label>
+        </div>
+
+        <div className="form-group">
+          <input type="number" name="rent" placeholder=" " value={form.rent} onChange={handleChange} required />
+          <label>Rent <span className="required">*</span></label>
+        </div>
+
+        <div className="form-group full-width">
+          <textarea name="description" placeholder=" " value={form.description} onChange={handleChange}></textarea>
+          <label>Description</label>
+        </div>
+
+        <div className="form-group">
+          <input name="address.landmark" placeholder=" " value={form.address.landmark} onChange={handleChange} />
+          <label>Landmark</label>
+        </div>
+
+        <div className="form-group">
+          <input name="address.street" placeholder=" " value={form.address.street} onChange={handleChange} />
+          <label>Street</label>
+        </div>
+
+        <div className="form-group">
+          <input name="address.city" placeholder=" " value={form.address.city} onChange={handleChange} required />
+          <label>City <span className="required">*</span></label>
+        </div>
+
+        <div className="form-group">
+          <input name="address.state" placeholder=" " value={form.address.state} onChange={handleChange} required />
+          <label>State <span className="required">*</span></label>
+        </div>
+
+        <div className="form-group">
+          <input name="address.pincode" placeholder=" " value={form.address.pincode} onChange={handleChange} required />
+          <label>Pincode <span className="required">*</span></label>
+        </div>
+
+        <div className="form-group">
+          <input type="text" name="locationLink" placeholder=" " value={form.locationLink} onChange={handleChange} />
+          <label>Google Maps Location Link</label>
+        </div>
+
+        <div className="form-group">
+          <input name="nearbyColleges" placeholder=" " value={form.nearbyColleges} onChange={handleChange} />
+          <label>Nearby Colleges (comma separated)</label>
+        </div>
+
+        <div className="form-group">
+          <input name="facilities" placeholder=" " value={form.facilities} onChange={handleChange} />
+          <label>Facilities (comma separated)</label>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="roomType">Room Type</label>
+          <select name="roomType" id="roomType" value={form.roomType} onChange={handleChange} required>
+            <option>Single</option>
+            <option>Double</option>
+            <option>Triple</option>
+            <option>Dormitory</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="allowedFor">Allowed For</label>
+          <select name="allowedFor" id="allowedFor" value={form.allowedFor} onChange={handleChange} required>
+            <option>Boys</option>
+            <option>Girls</option>
+            <option>Both</option>
+            <option>Family</option>
+          </select>
+        </div>
+        <div class="modal-buttons">
+
+        <button type="submit">Save Changes</button>
+        <button onClick={()=>setEditHostel(false)}>Close</button>
+        </div>
+      </form>
           </div>
         </div>
       )}
