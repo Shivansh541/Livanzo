@@ -1,6 +1,6 @@
 /* VARIABLES */
 :root {
-  --hero-bg: linear-gradient(to right, #ddfffc, #ffffff);
+  --hero-bg: linear-gradient(to right, #bffff9, #ffffff);
   --bg-color: #eff6ff;
   --bg-gradient-start: #f8f9fa;
   --bg-gradient-end: #e9ecef;
@@ -61,7 +61,7 @@
   --bg-gradient-start: #08101a;
   --bg-gradient-end: #08101a;
 
-  --form-bg: #001113;
+  --form-bg: #000a13;
   --text-color: #f1f1f1;
   --text-muted: #aaa;
   --link-color: #66b2ff;

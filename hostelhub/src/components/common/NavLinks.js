@@ -33,10 +33,10 @@ const UserNavLinks = ({ handleCloseMenu, role }) => {
       {navLinks[role]?.map(({ to, label, icon }) => (
         <Link
           key={to}
-          onClick={() => handleCloseMenu()}
+          onClick={() => handleCloseMenu?.()}
           to={to}
           style={{
-            color: isActive(to) ? 'var(--link-active)' : 'var(--nav-link-color)'
+            color: isActive(to) ? 'var(--link-active)' : ''
           }}
         >
           <FontAwesomeIcon icon={icon} />

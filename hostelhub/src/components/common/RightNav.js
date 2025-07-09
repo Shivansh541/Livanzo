@@ -51,17 +51,49 @@ const RightNav = ({ searchTerm, setSearchTerm }) => {
   if (role === "guest") {
     return (
       <div className="right-nav">
-        <div class="search-bar">
-          <FontAwesomeIcon className='search-button' icon={faMagnifyingGlass} />
-          <input
+      <AnimatePresence>
+
+        {showSearch && <motion.div
+          key="searchInputWrapper"
+          layout
+          initial={{ width: 0, opacity: 0 }}
+          animate={{ width: "auto", opacity: 1 }}
+          exit={{ width: 0, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          onBlur={() => setShowSearch(false)} class={`search-bar`}>
+          <FontAwesomeIcon onClick={() => setShowSearch(true)} icon={faMagnifyingGlass} />
+          <motion.input
             type="text"
             placeholder="Search"
             value={searchTerm}
             onChange={handleSearchChange}
+            autoFocus
           />
-        </div>
+        </motion.div>}
+      </AnimatePresence>
+      {!showSearch && <FontAwesomeIcon onClick={() => setShowSearch(true)} className='search-button' icon={faMagnifyingGlass} />}
         <ToggleButton />
-        {/* <button onClick={() => navigate("/login")}>Login</button> */}
+        <button onClick={() => navigate("/login")}>Login</button>
+                <AnimatePresence>
+
+        {showSearch && <motion.div
+          key="searchInputWrapper"
+          layout
+          initial={{ transform:"translateY(-100%)", opacity: 0 }}
+          animate={{ transform:"translateY(0)", opacity: 1 }}
+          exit={{ transform:"translateY(-100%)", opacity: 0 }}
+          transition={{ duration: 0.5 }} 
+          onBlur={() => setShowSearch(false)} class={`search-bar phone`}>
+          <FontAwesomeIcon onClick={() => setShowSearch(true)} icon={faMagnifyingGlass} />
+          <motion.input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            autoFocus
+          />
+        </motion.div>}
+      </AnimatePresence>
       </div>
     );
   }

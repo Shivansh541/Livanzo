@@ -85,7 +85,7 @@ const Home = ({ hostels }) => {
   </div>
 
   <div className="hero-right">
-    <img src={`/assets/images/illustration ${theme==='dark'?'dark.png':'light.avif'}`} alt="Hostel illustration" />
+    <img src={`/assets/images/illustration ${theme}.png`} alt="Hostel illustration" />
   </div>
 </section>
 
