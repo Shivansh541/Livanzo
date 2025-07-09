@@ -9,7 +9,7 @@ import {
   faBuilding,
 } from '@fortawesome/free-solid-svg-icons';
 
-const UserNavLinks = ({ setShowMenu, role }) => {
+const UserNavLinks = ({ handleCloseMenu, role }) => {
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path;
@@ -33,7 +33,7 @@ const UserNavLinks = ({ setShowMenu, role }) => {
       {navLinks[role]?.map(({ to, label, icon }) => (
         <Link
           key={to}
-          onClick={() => setShowMenu?.(false)}
+          onClick={() => handleCloseMenu()}
           to={to}
           style={{
             color: isActive(to) ? 'var(--link-active)' : 'var(--nav-link-color)'

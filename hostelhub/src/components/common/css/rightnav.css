@@ -17,9 +17,9 @@
 .navbtn{
     display: none;
 }
-/* .right-nav{
-    position: relative;
-} */
+.right-nav{
+    display: none;
+}
 .right-nav .menu-button{
     display: block;
     margin: 0;
@@ -47,14 +47,37 @@
 .hamburger-menu{
     display: block;
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 0;
+    top: 0;
     width: 225px;
     background-color: var(--bg-color);
     border: 1px solid black;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     z-index: 100;
-
+    animation: hamslider 0.3s ease-out;
+}
+.hamburger-exit {
+  animation: hamrevslider 0.3s ease-in forwards;
+}
+@keyframes hamslider {
+    0%{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes hamrevslider {
+    0%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100%{
+        transform: translateX(100%);
+        opacity: 0;
+    }
 }
 .hamburger-menu a{
     display: flex;
@@ -72,12 +95,13 @@
 }
 
 .hamburger-menu .hambtn{
+    
     margin: 10px;
 }
 }
-@media screen and (max-width:400px){
+@media screen and (max-width:450px){
     #root .userNavbar{
-        padding: 0.5rem 1rem;
+        padding: 8px;
     }
     #root .userNavbar .right-nav{
         gap: 5px;

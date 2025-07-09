@@ -1,6 +1,7 @@
 /* VARIABLES */
 :root {
-  --bg-color: #f8f9fa;
+  --hero-bg: linear-gradient(to right, #ddfffc, #ffffff);
+  --bg-color: #eff6ff;
   --bg-gradient-start: #f8f9fa;
   --bg-gradient-end: #e9ecef;
 
@@ -25,6 +26,7 @@
   --btn-cancel: #5bc0de;
   --btn-cancel-hover: #31b0d5;
 
+  --input-bg: #ffffff; 
   --input-border: #979fa7;
   --input-focus: #007bff;
 
@@ -54,17 +56,18 @@
 }
 
 .dark {
-  --bg-color: #1e1e1e;
-  --bg-gradient-start: #1a1a1a;
-  --bg-gradient-end: #2a2a2a;
+  --hero-bg:#08101a;
+  --bg-color: #08101a;
+  --bg-gradient-start: #08101a;
+  --bg-gradient-end: #08101a;
 
-  --form-bg: #2c2c2c;
+  --form-bg: #001113;
   --text-color: #f1f1f1;
   --text-muted: #aaa;
   --link-color: #66b2ff;
   --link-active: #66b2ff;
 
-  --navbar-bg: #2c2c2c;
+  --navbar-bg: #1a1b22;
   --navbar-border: #444;
   --nav-link-color: #f1f1f1;
   --nav-link-hover: #66b2ff;
@@ -79,6 +82,7 @@
   --btn-cancel: #3498db;
   --btn-cancel-hover: #2980b9;
 
+  --input-bg:#000000;
   --input-border: #555;
   --input-focus: #66b2ff;
 

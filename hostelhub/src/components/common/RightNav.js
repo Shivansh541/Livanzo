@@ -4,13 +4,23 @@ import ToggleButton from "./ToggleButton";
 import NavLinks from './NavLinks';
 import '../common/css/rightnav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faM, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const RightNav = ({ searchTerm, setSearchTerm }) => {
+  const [isClosing, setIsClosing] = useState(null)
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const navigate = useNavigate();
   const role = localStorage.getItem('role') || 'guest';
+  const handleCloseMenu = () => {
+    setIsClosing(true); // Trigger exit animation
+    setTimeout(() => {
+      setShowMenu(false); // Unmount after animation
+      setIsClosing(false); // Reset
+    }, 300); // Match animation duration
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -41,32 +51,44 @@ const RightNav = ({ searchTerm, setSearchTerm }) => {
   if (role === "guest") {
     return (
       <div className="right-nav">
-      <div class="search-bar">
-        <FontAwesomeIcon className='search-button' icon = {faMagnifyingGlass}/>
-        <input
-          type="text"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
-      </div>
+        <div class="search-bar">
+          <FontAwesomeIcon className='search-button' icon={faMagnifyingGlass} />
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </div>
         <ToggleButton />
-        <button onClick={() => navigate("/login")}>Login</button>
+        {/* <button onClick={() => navigate("/login")}>Login</button> */}
       </div>
     );
   }
 
   return (
     <div className="right-nav">
-      <div class="search-bar">
-        <FontAwesomeIcon className='search-button' icon = {faMagnifyingGlass}/>
-        <input
-          type="text"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
-      </div>
+      <AnimatePresence>
+
+        {showSearch && <motion.div
+          key="searchInputWrapper"
+          layout
+          initial={{ width: 0, opacity: 0 }}
+          animate={{ width: "auto", opacity: 1 }}
+          exit={{ width: 0, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          onBlur={() => setShowSearch(false)} class={`search-bar`}>
+          <FontAwesomeIcon onClick={() => setShowSearch(true)} icon={faMagnifyingGlass} />
+          <motion.input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            autoFocus
+          />
+        </motion.div>}
+      </AnimatePresence>
+      {!showSearch && <FontAwesomeIcon onClick={() => setShowSearch(true)} className='search-button' icon={faMagnifyingGlass} />}
       <ToggleButton />
       <FontAwesomeIcon
         icon={faBars}
@@ -77,13 +99,13 @@ const RightNav = ({ searchTerm, setSearchTerm }) => {
         <div className="hamMenu" onClick={(e) => {
           if (e.target.classList.contains('hamMenu')) setShowMenu(false);
         }}>
-          <div className="hamburger-menu" onClick={(e) => e.stopPropagation()}>
+          <div className={`hamburger-menu ${isClosing ? 'hamburger-exit' : ''}`} onClick={(e) => e.stopPropagation()}>
             <FontAwesomeIcon
               icon={faXmark}
               className='close-menu'
-              onClick={() => setShowMenu(false)}
+              onClick={() => handleCloseMenu()}
             />
-            <NavLinks role={role} setShowMenu={setShowMenu} />
+            <NavLinks role={role} handleCloseMenu={handleCloseMenu} />
             <button className='hambtn' onClick={() => setShowLogoutModal(true)}>Logout</button>
           </div>
         </div>
@@ -92,6 +114,26 @@ const RightNav = ({ searchTerm, setSearchTerm }) => {
       <button className='navbtn' onClick={() => setShowLogoutModal(true)}>Logout</button>
 
       {showLogoutModal && renderLogoutModal()}
+        <AnimatePresence>
+
+        {showSearch && <motion.div
+          key="searchInputWrapper"
+          layout
+          initial={{ transform:"translateY(-100%)", opacity: 0 }}
+          animate={{ transform:"translateY(0)", opacity: 1 }}
+          exit={{ transform:"translateY(-100%)", opacity: 0 }}
+          transition={{ duration: 0.5 }} 
+          onBlur={() => setShowSearch(false)} class={`search-bar phone`}>
+          <FontAwesomeIcon onClick={() => setShowSearch(true)} icon={faMagnifyingGlass} />
+          <motion.input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            autoFocus
+          />
+        </motion.div>}
+      </AnimatePresence>
     </div>
   );
 };

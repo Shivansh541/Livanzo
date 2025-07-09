@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css/home.css";
-
+import { useTheme } from "../../content/ThemeContext";
+import {ReactTyped }from 'react-typed'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 const Home = ({ hostels }) => {
+  const {theme} = useTheme()
   const navigate = useNavigate();
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const [sliderHostels, setSliderHostels] = useState([]);
@@ -50,43 +54,41 @@ const Home = ({ hostels }) => {
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section className="hero-section">
-        {/* <p className="tagline">
-          India’s trusted platform for student & professional accommodation
-        </p> */}
+<section className="hero-section">
+  <div className="hero-left">
+    <h1><ReactTyped 
+    strings = {[`Find Your Perfect Stay with <span class = 'brand'>Livanzo</span>`]}
+    typeSpeed={50}
+    backSpeed={0}
+    smartBackspace = {false}
+    loop
+    showCursor = {false}
+    backDelay={1000} 
+    />
+     </h1>
+    
+    <p className="hero-description">Discover verified hostels and PGs tailored for students and professionals. Search easily, view real photos, and read trusted reviews.</p>
+    <div className="hero-buttons">
+      <button style={{display: 'flex',gap:'10px'}} onClick={handleViewMore}><FontAwesomeIcon icon={faSearch} />Browse Hostels</button>
+      {!role && (
+        <button className="secondary-btn" onClick={() => navigate("/signup")}>
+          List Your Property
+        </button>
+      )}
+    </div>
+  <div className="hero-search-bar">
+    <input type="search" placeholder="Search by city, college, or area..." />
+      <button>
+    🔍
+  </button>
+  </div>
+  </div>
 
-        <h1>
-          Find Your Perfect Stay with <span>Livanzo</span>
-        </h1>
+  <div className="hero-right">
+    <img src={`/assets/images/illustration ${theme==='dark'?'dark.png':'light.avif'}`} alt="Hostel illustration" />
+  </div>
+</section>
 
-        <p className="hero-description">
-          Discover verified hostels, PGs, and flats across top cities in India — tailored for students, working professionals, and solo travelers. Safe, affordable, and convenient.
-        </p>
-
-        <div className="hero-buttons">
-          <button onClick={handleViewMore}>Browse All Hostels</button>
-          {!role && (
-            <button
-              className="secondary-btn"
-              onClick={() => navigate("/signup")}
-            >
-              List Your Property
-            </button>
-          )}
-        </div>
-
-        {/* <div className="hero-stats">
-          <div>
-            <strong>5,000+</strong> Verified Listings
-          </div>
-          <div>
-            <strong>50+</strong> Cities Covered
-          </div>
-          <div>
-            <strong>4.9★</strong> Average Rating
-          </div>
-        </div> */}
-      </section>
 
       {/* Hostel Slider */}
       {sliderHostels?.length > 0 && (

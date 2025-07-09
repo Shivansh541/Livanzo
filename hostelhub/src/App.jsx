@@ -12,6 +12,7 @@ import Home from "./components/common/Home";
 import Dashboard from "./components/common/Dashboard";
 import './components/common/css/phone.css'
 import 'react-tooltip/dist/react-tooltip.css'
+import { ThemeProvider } from "./content/ThemeContext";
 
 
 function App() {
@@ -79,6 +80,8 @@ function App() {
   if (loading) return <div>Loading...</div>;
 
   return (
+    <ThemeProvider>
+
     <BrowserRouter basename="/">
       <Routes>
 
@@ -94,7 +97,7 @@ function App() {
               <Navigate to="/" />
             )
           }
-        >
+          >
           <Route index element = {<Home hostels = {hostels}/>}/>
           <Route path="allhostels" element={<AllHostel hostels={filteredHostels} user={user} />} />
           <Route path="hostel/:id" element={<HostelDetails user={user} />} />
@@ -115,7 +118,7 @@ function App() {
               <Navigate to="/" />
             )
           }
-        >
+          >
           <Route index element = {<Home hostels={hostels}/>}/>
 
           <Route path = "allhostels" element={<AllHostel hostels={filteredHostels} user={user} />} />
@@ -138,7 +141,7 @@ function App() {
               <Dashboard searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             )
           }
-        >
+          >
           <Route index element = {<Home hostels={hostels}/>}/>
 
           <Route path = "allhostels" element={<AllHostel hostels={filteredHostels} />} />
@@ -150,6 +153,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
+          </ThemeProvider>
   );
 }
 

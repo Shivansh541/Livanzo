@@ -16,6 +16,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.9.0",
     "concurrently": "^9.1.2",
+    "framer-motion": "^12.23.0",
     "leaflet": "^1.9.4",
     "leaflet-geosearch": "^4.2.0",
     "react": "^19.1.0",
@@ -24,6 +25,7 @@
     "react-router-dom": "^7.5.0",
     "react-scripts": "5.0.1",
     "react-tooltip": "^5.29.1",
+    "react-typed": "^2.0.12",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
