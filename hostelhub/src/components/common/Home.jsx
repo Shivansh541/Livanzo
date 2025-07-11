@@ -4,7 +4,14 @@ import "./css/home.css";
 import { useTheme } from "../../content/ThemeContext";
 import { ReactTyped } from 'react-typed'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch,  faShieldAlt,
+  faFilter,
+  faMapMarkedAlt,
+  faStar,
+  faImages,
+  faUserCog,
+  faMobileAlt,
+  faPhoneAlt, } from "@fortawesome/free-solid-svg-icons";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -34,16 +41,17 @@ const Home = ({ hostels }) => {
   useEffect(() => {
   AOS.refresh(); // re-scan DOM when data changes
 }, [hostels]);
-  const features =[
-    ["Verified Listings","Only trusted and owner-uploaded hostels appear on our platform."],
-    ["Smart Filters","Quickly filter by rent, city, room type, and amenities."],
-    ["Map View Support","Open the exact location in Google Maps directly from listings."],
-    ["User Ratings","See real ratings from people who’ve stayed before you."],
-    ["Image Gallery","Browse multiple images to visualize your next stay before booking."],
-    ["Owner Dashboard","Owners can add, edit, and manage hostel listings easily."],
-    ["Mobile Friendly","Use Livanzo seamlessly from your mobile phone or tablet."],
-    ["Instant Contact","Quick contact options to connect with hostel owners directly."]
-    ]
+const features = [
+  [faShieldAlt, "Verified Listings", "Only trusted and owner-uploaded hostels appear on our platform."],
+  [faFilter, "Smart Filters", "Quickly filter by rent, city, room type, and amenities."],
+  [faMapMarkedAlt, "Map View Support", "Open the exact location in Google Maps directly from listings."],
+  [faStar, "User Ratings", "See real ratings from people who’ve stayed before you."],
+  [faImages, "Image Gallery", "Browse multiple images to visualize your next stay before booking."],
+  [faUserCog, "Owner Dashboard", "Owners can add, edit, and manage hostel listings easily."],
+  [faMobileAlt, "Mobile Friendly", "Use Livanzo seamlessly from your mobile phone or tablet."],
+  [faPhoneAlt, "Instant Contact", "Quick contact options to connect with hostel owners directly."]
+];
+
   const sliderRef = useRef();
 
   const scrollSlider = (direction) => {
@@ -222,9 +230,10 @@ const Home = ({ hostels }) => {
         <h2>Why Choose Livanzo?</h2>
         <div className="features-grid">
           {features.map((feature,index)=>(
-            <div key={index} className="feature-box">
-              <h4>{feature[0]}</h4>
-              <p>{feature[1]}</p>
+            <div key={index} data-aos = "fade-up" data-aos-delay ={(index%3)*100} className="feature-box">
+              <FontAwesomeIcon icon = {feature[0]} className="feature-icon"/>
+              <h4>{feature[1]}</h4>
+              <p>{feature[2]}</p>
             </div>
           ))}
         </div>

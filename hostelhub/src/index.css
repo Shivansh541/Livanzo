@@ -1,6 +1,6 @@
 :root {
-  --hero-bg: linear-gradient(to right, #e0f7fa, #ffffff); /* Slightly softer */
-  --bg-color: #f8f9fa;
+  --hero-bg: linear-gradient(to right, #ceeef2, #ffffff); /* Slightly softer */
+  --bg-color: #e1e9ff;
   --bg-gradient-start: #ffffff;
   --bg-gradient-end: #f0f4f8;
 
@@ -26,7 +26,7 @@
   --btn-cancel-hover: #5a6268;
 
   --input-bg: #ffffff; 
-  --input-border: #ced4da;
+  --input-border: #c3c8cd;
   --input-focus: #007bff;
 
   --placeholder-color: #6c757d;
@@ -57,7 +57,7 @@
 
 .dark {
   --hero-bg:#08101a;
-  --bg-color: #08101a;
+  --bg-color: #0f161e;
   --bg-gradient-start: #08101a;
   --bg-gradient-end: #08101a;
 
@@ -67,7 +67,7 @@
   --link-color: #66b2ff;
   --link-active: #66b2ff;
 
-  --navbar-bg: #1a1b22;
+  --navbar-bg: #0f0f13;
   --navbar-border: #444;
   --nav-link-color: #f1f1f1;
   --nav-link-hover: #66b2ff;

@@ -3,6 +3,7 @@
 /* HOME PAGE STYLING */
 .home-page {
   color: var(--text-color);
+  background-color: var(--bg-color);
 }
 
 .hero-section {
@@ -287,7 +288,6 @@
 
 .about-section {
   padding: 60px 20px;
-  background-color: var(--bg-gradient-start);
   color: var(--text-color);
   font-family: 'Segoe UI', sans-serif;
   text-align: center;
@@ -295,7 +295,7 @@
 
 .home-page h2 {
   font-size: 2.5rem;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   color: var(--primary);
   text-align: center;
 }
@@ -312,7 +312,6 @@
   max-width: 320px;
   height: auto;
   border-radius: 20px;
-  box-shadow: 0 8px 20px var(--shadow-color);
 }
 
 .about-intro {
@@ -337,13 +336,15 @@
   padding: 25px;
   border-radius: 16px;
   box-shadow: 0 6px 20px var(--shadow-color);
-  transition: 0.3s ease;
+  border: 1px solid var(--light-border);
   text-align: left;
+  
 }
 
 .about-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px var(--card-hover-shadow);
+  border-color: var(--secondary);
 }
 
 .card-icon {
@@ -374,28 +375,27 @@
 }
 .features-section{
   padding: 60px 20px;
+  text-align: center;
 }
 .features-grid {
   max-width: 1000px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
   margin: 0 auto;
 }
 
 .feature-box {
   background-color: var(--form-bg);
-  padding: 1rem 1.5rem;
   border-radius: 12px;
-  border: 1px solid var(--light-border);
-  transition: transform 0.3s ease, border-color 0.3s ease;
-  box-shadow: 0 2px 8px var(--shadow-color);
-  text-align: left;
+  padding: 25px 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-box:hover {
   transform: translateY(-6px);
-  border-color: var(--secondary);
+  border: 1px solid var(--secondary);
 }
 
 .feature-box h4 {
@@ -409,6 +409,11 @@
   font-size: 1rem;
   color: var(--text-color);
   line-height: 1.6;
+}
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #007bff;
 }
 
 .footer {
@@ -579,7 +584,7 @@
       font-size: 11px;
     }
     .about-card{
-      padding: 0 25px;
+      padding: 15px 25px;
     }
     .card-icon{
       height: 60px;
@@ -604,6 +609,9 @@
   }
   .feature-box p{
     font-size: 10px;
+  }
+  .feature-icon{
+    font-size: 1.5rem;
   }
   .footer{
     padding: 0.5rem;
