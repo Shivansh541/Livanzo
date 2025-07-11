@@ -14,7 +14,7 @@
   background-color: var(--navbar-bg);
   position: fixed;
     z-index: 99;
-    width: 100%;
+    width: 100vw;
     box-sizing: border-box;
   padding: 1rem 2.5rem;
   display: flex;
@@ -73,6 +73,7 @@
   border: 1px solid var(--input-border);
   border-radius: 50%;
   padding: 10px;
+  cursor: pointer;
 }
 .userNavbar input[type="text"]:focus .search-bar {
   border-color: var(--input-focus);

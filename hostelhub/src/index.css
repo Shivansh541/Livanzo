@@ -1,59 +1,59 @@
-/* VARIABLES */
 :root {
-  --hero-bg: linear-gradient(to right, #bffff9, #ffffff);
-  --bg-color: #eff6ff;
-  --bg-gradient-start: #f8f9fa;
-  --bg-gradient-end: #e9ecef;
+  --hero-bg: linear-gradient(to right, #e0f7fa, #ffffff); /* Slightly softer */
+  --bg-color: #f8f9fa;
+  --bg-gradient-start: #ffffff;
+  --bg-gradient-end: #f0f4f8;
 
-  --form-bg: #f1f1f1;
-  --text-color: #343a40;
-  --text-muted: #555;
+  --form-bg: #ffffff;
+  --text-color: #212529;
+  --text-muted: #666;
   --link-color: #007bff;
   --link-active: #0056b3;
 
-  --navbar-bg: #f8f9fa;
-  --navbar-border: #ddd;
+  --navbar-bg: #ffffff;
+  --navbar-border: #e0e0e0;
   --nav-link-color: #333;
   --nav-link-hover: #007bff;
 
-  --primary: #1d3557;
-  --secondary: #00bfff;
+  --primary: #1a237e;           /* deep indigo */
+  --secondary: #00bcd4;         /* cyan */
 
-  --btn-bg: #00bfff;
+  --btn-bg: #007bff;
   --btn-hover: #0056b3;
   --btn-danger: #dc3545;
   --btn-danger-hover: #c82333;
-  --btn-cancel: #5bc0de;
-  --btn-cancel-hover: #31b0d5;
+  --btn-cancel: #6c757d;
+  --btn-cancel-hover: #5a6268;
 
   --input-bg: #ffffff; 
-  --input-border: #979fa7;
+  --input-border: #ced4da;
   --input-focus: #007bff;
 
-  --placeholder-color: #475059;
+  --placeholder-color: #6c757d;
   --span-color: #495057;
-  --label-color: #2c3e50;
+  --label-color: #343a40;
 
   --modal-bg: #ffffff;
-  --close-btn-bg: #ccc;
+  --close-btn-bg: #cccccc;
 
-  --review-btn: green;
-  --review-btn-hover: darkgreen;
-  --favorite-btn: #ffcc00;
-  --favorite-hover: #ff9900;
+  --review-btn: #28a745;
+  --review-btn-hover: #218838;
+  --favorite-btn: #ffc107;
+  --favorite-hover: #e0a800;
 
-  --highlight-bg: #fdfdfd;
+  --highlight-bg: #ffffff;
   --review-card-bg: #ffffff;
 
-  --light-border: #d1d1d1;
+  --light-border: #dee2e6;
   --card-hover-shadow: rgba(0, 0, 0, 0.15);
-  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.08);
 
   --hero-shadow: rgba(0, 0, 0, 0.6);
-  --overlay-dark: rgba(0, 0, 0, 0.7);
-  --quote-color: #666;
-  --quote-cite-color: #888;
+  --overlay-dark: rgba(0, 0, 0, 0.5);
+  --quote-color: #555;
+  --quote-cite-color: #999;
 }
+
 
 .dark {
   --hero-bg:#08101a;
