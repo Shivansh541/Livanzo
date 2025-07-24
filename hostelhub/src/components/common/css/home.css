@@ -291,17 +291,28 @@
   align-items: center;
   flex-direction: column;
 }
+.map-info-btns{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
 .home-map .viewDetails{
       background: none;
     border: none;
     outline: none;
     color: var(--link-color);
-    margin-right: 4px;
+    text-decoration: none;
+  cursor: pointer;
 }
 .home-map-link{
   text-decoration: none;
   color: var(--link-color);
-  
+  font-family: Arial;
+
+}
+.home-map .viewDetails:hover,.home-map-link:hover{
+  text-decoration: underline;
 }
 .about-section {
   padding: 60px 20px;

@@ -79,44 +79,63 @@ const ManageHostel = () => {
       handlePlaceSelect(place);
     });
   };
-  const handleRecenter = () => {
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const { latitude, longitude } = pos.coords;
-        const newCenter = { lat: latitude, lng: longitude };
-        setLocation(newCenter);
-        if (mapRef.current) {
-          mapRef.current.panTo(newCenter);
-        }
-      },
-      () => alert("Unable to fetch location")
-    );
-  };
+const handleRecenter = () => {
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const { latitude, longitude } = pos.coords;
+      const newCenter = { lat: latitude, lng: longitude };
+      setLocation(newCenter);
+      if (mapRef.current) {
+        mapRef.current.panTo(newCenter);
+      }
+    },
+    () => alert("Unable to fetch location"),
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+  );
+};
 
-  const handleUseCurrentLocation = () => {
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported by your browser");
-      return;
-    }
+  const [isLoading, setIsLoading] = useState(false);
 
-    navigator.geolocation.getCurrentPosition(async (position) => {
+const handleUseCurrentLocation = () => {
+  if (!navigator.geolocation) {
+    alert("Geolocation is not supported by your browser");
+    return;
+  }
+
+  setIsLoading(true); // ⏳
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
       const lat = position.coords.latitude;
       const lng = position.coords.longitude;
       setLocation({ lat, lng });
 
-      const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apikey}`
-      );
-      const data = await response.json();
-      const result = data.results[0];
-      if (result) {
-        const mapsUrl = `https://maps.google.com/?q=${lat},${lng}`
-        setForm({ ...form, address: result.formatted_address, mapsUrl });
-      } else {
-        alert("Could not fetch address for your location.");
+      try {
+        const response = await fetch(
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apikey}`
+        );
+        const data = await response.json();
+        const result = data.results[0];
+        if (result) {
+          const mapsUrl = `https://maps.google.com/?q=${lat},${lng}`;
+          setForm({ ...form, address: result.formatted_address, mapsUrl });
+        } else {
+          alert("Could not fetch address for your location.");
+        }
+      } catch (err) {
+        alert("Error fetching address.");
+      } finally {
+        setIsLoading(false); // ✅
       }
-    });
-  };
+    },
+    () => {
+      alert("Unable to fetch location");
+      setIsLoading(false); // ✅
+    },
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+  );
+};
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
@@ -215,8 +234,8 @@ const ManageHostel = () => {
           <input name="address" placeholder=" " value={form.address} onChange={handleChange} readOnly />
           <label>Address</label>
         </div>
-        <div >
-        </div>
+        {isLoading && <p>Fetching location...</p>}
+
           <div className = "inputMap full-width">
         <input
           id="autocomplete"
@@ -225,6 +244,7 @@ const ManageHostel = () => {
 
           onFocus={initAutocomplete}
         />
+
             <GoogleMap
               mapContainerStyle={mapContainerStyle}
               center={location.lat ? location : { lat: 28.6139, lng: 77.209 }}
