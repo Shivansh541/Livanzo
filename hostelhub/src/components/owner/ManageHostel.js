@@ -1,7 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './css/manageHostel.css';
+import {
+  GoogleMap,
+  Marker,
+} from "@react-google-maps/api";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons';
+import { useMap } from "../../context/MapProvider"; // adjust path
 
+const mapContainerStyle = {
+  height: "400px",
+  width: "100%",
+};
 const ManageHostel = () => {
+  const [location, setLocation] = useState({ lat: null, lng: null });
+  const mapRef = useRef(null);
   const [form, setForm] = useState({
     name: '',
     rent: '',
@@ -9,30 +22,106 @@ const ManageHostel = () => {
     roomType: 'Single',
     allowedFor: 'Both',
     images: [], // will hold FileList
-    address: {
-      street: '',
-      city: '',
-      state: '',
-      pincode: '',
-      landmark: '',
-    },
+    landmark: '',
+    address: '',
+    mapsUrl: '',
     nearbyColleges: '',
     facilities: '',
   });
+  const apikey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+  // Get current location on mount
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        setLocation({ lat: latitude, lng: longitude });
+      },
+      () => {
+        console.warn("Geolocation permission denied.");
+      }
+    );
+  }, []);
+  const handleMapClick = async (e) => {
+    const lat = e.latLng.lat();
+    const lng = e.latLng.lng();
+    setLocation({ lat, lng });
 
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apikey}`
+    );
+    const data = await response.json();
+    const formatted = data.results[0]?.formatted_address;
+    if (formatted) {
+      const mapsUrl = `https://maps.google.com/?q=${lat},${lng}`
+      setForm({ ...form, address: formatted, mapsUrl });
+    }
+  };
+
+  const handlePlaceSelect = async(place) => {
+    const lat = place.geometry.location.lat();
+    const lng = place.geometry.location.lng();
+    setLocation({ lat, lng });
+    const mapsUrl = `https://maps.google.com/?q=${lat},${lng}`
+      const response = await fetch(
+    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apikey}`
+  );
+  const data = await response.json();
+  const address = data.results[0]?.formatted_address || place.formatted_address || "";
+    setForm({ ...form, address, mapsUrl });
+  };
+  const initAutocomplete = () => {
+    const input = document.getElementById("autocomplete");
+    const autocomplete = new window.google.maps.places.Autocomplete(input);
+    console.log(input)
+    autocomplete.setFields(["formatted_address", "geometry"]);
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      handlePlaceSelect(place);
+    });
+  };
+  const handleRecenter = () => {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        const newCenter = { lat: latitude, lng: longitude };
+        setLocation(newCenter);
+        if (mapRef.current) {
+          mapRef.current.panTo(newCenter);
+        }
+      },
+      () => alert("Unable to fetch location")
+    );
+  };
+
+  const handleUseCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      setLocation({ lat, lng });
+
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apikey}`
+      );
+      const data = await response.json();
+      const result = data.results[0];
+      if (result) {
+        const mapsUrl = `https://maps.google.com/?q=${lat},${lng}`
+        setForm({ ...form, address: result.formatted_address, mapsUrl });
+      } else {
+        alert("Could not fetch address for your location.");
+      }
+    });
+  };
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
     if (name === 'images') {
-      setForm({ ...form, images: files }); // store files directly
-    } else if (name.startsWith('address.')) {
-      setForm({
-        ...form,
-        address: {
-          ...form.address,
-          [name.split('.')[1]]: value,
-        },
-      });
+      setForm({ ...form, images: files });
     } else {
       setForm({ ...form, [name]: value });
     }
@@ -49,12 +138,8 @@ const ManageHostel = () => {
     formData.append('description', form.description);
     formData.append('roomType', form.roomType);
     formData.append('allowedFor', form.allowedFor);
-    formData.append('locationLink', form.locationLink)
-
-    // Address
-    for (const key in form.address) {
-      formData.append(`address.${key}`, form.address[key]);
-    }
+    formData.append('address', form.landmark + ', ' + form.address)
+    formData.append('mapsUrl', form.mapsUrl);
 
     // Arrays (split by commas)
     form.nearbyColleges
@@ -93,6 +178,8 @@ const ManageHostel = () => {
       alert('Something went wrong!');
     }
   };
+  const {isLoaded} = useMap()
+  if (!isLoaded) return <div>Loading map...</div>;
 
   return (
     <div className="manage-hostel-container">
@@ -113,41 +200,50 @@ const ManageHostel = () => {
           <label>Description</label>
         </div>
 
-        <div className="form-group full-width">
+        <div className="form-group">
           <label htmlFor="images">Upload Images <span className="required">*</span></label>
           <input type="file" name="images" id="images" multiple accept="image/*" onChange={handleChange} required />
         </div>
 
         <div className="form-group">
-          <input name="address.landmark" placeholder=" " value={form.address.landmark} onChange={handleChange} />
+          <input name="landmark" placeholder=" " value={form.landmark} onChange={handleChange} />
           <label>Landmark</label>
         </div>
 
-        <div className="form-group">
-          <input name="address.street" placeholder=" " value={form.address.street} onChange={handleChange} />
-          <label>Street</label>
+          {/* <button onClick={handleUseCurrentLocation}>Your Location</button> */}
+        <div className="form-group full-width">
+          <input name="address" placeholder=" " value={form.address} onChange={handleChange} readOnly />
+          <label>Address</label>
         </div>
-
-        <div className="form-group">
-          <input name="address.city" placeholder=" " value={form.address.city} onChange={handleChange} required />
-          <label>City <span className="required">*</span></label>
+        <div >
         </div>
+          <div className = "inputMap full-width">
+        <input
+          id="autocomplete"
+          type="text"
+          placeholder="Search address..."
 
-        <div className="form-group">
-          <input name="address.state" placeholder=" " value={form.address.state} onChange={handleChange} required />
-          <label>State <span className="required">*</span></label>
-        </div>
-
-        <div className="form-group">
-          <input name="address.pincode" placeholder=" " value={form.address.pincode} onChange={handleChange} required />
-          <label>Pincode <span className="required">*</span></label>
-        </div>
-
-        <div className="form-group">
-          <input type="text" name="locationLink" placeholder=" " value={form.locationLink} onChange={handleChange} />
-          <label>Google Maps Location Link</label>
-        </div>
-
+          onFocus={initAutocomplete}
+        />
+            <GoogleMap
+              mapContainerStyle={mapContainerStyle}
+              center={location.lat ? location : { lat: 28.6139, lng: 77.209 }}
+              zoom={location.lat ? 15 : 5}
+              onClick={handleMapClick}
+              options={{
+                    mapTypeControl: true,
+    mapTypeControlOptions: {
+      style: window.google?.maps.MapTypeControlStyle?.DROPDOWN_MENU,
+    },
+                streetViewControl: false,
+                fullscreenControl: false,
+              }}
+              onLoad={(map) => (mapRef.current = map)}
+            >
+              {location.lat && <Marker position={location} />}
+            </GoogleMap>
+            <FontAwesomeIcon className='getCurrLoc' onClick={()=>{handleRecenter();handleUseCurrentLocation()}} icon = {faLocationCrosshairs}/>
+          </div>
         <div className="form-group">
           <input name="nearbyColleges" placeholder=" " value={form.nearbyColleges} onChange={handleChange} />
           <label>Nearby Colleges (comma separated)</label>

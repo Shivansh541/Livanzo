@@ -46,10 +46,10 @@
   color: var(--text-color);
   transition: border 0.3s ease;
 }
-.form-group input[type = "file"]{
+.form-group input[type="file"] {
   font-size: 11px;
 }
-.form-group select{
+.form-group select {
   font-size: 15px;
 }
 .form-group input:focus,
@@ -62,7 +62,8 @@
 .form-group input:focus + label,
 .form-group input:not(:placeholder-shown) + label,
 .form-group textarea:focus + label,
-.form-group textarea:not(:placeholder-shown) + label,.form-group label[for] {
+.form-group textarea:not(:placeholder-shown) + label,
+.form-group label[for] {
   top: -10px;
   left: 10px;
   font-size: 0.75rem;
@@ -86,7 +87,6 @@
   font-size: 15px;
 }
 
-
 .form-group input[type="file"]:focus,
 .form-group select:focus {
   border-color: var(--input-focus);
@@ -100,7 +100,7 @@
 }
 
 /* Submit Button */
- .manage-hostel-container button {
+.manage-hostel-container button {
   grid-column: 1 / -1;
   background-color: var(--btn-bg);
   color: white;
@@ -121,4 +121,33 @@
 .required {
   color: red;
   margin-left: 2px;
+}
+.inputMap {
+  position: relative;
+}
+.getCurrLoc {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 6px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+#autocomplete{
+  position: absolute;
+  top: 10px;
+  z-index: 10;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  width: 60%;
+  outline:none;
+  box-sizing: border-box;
 }

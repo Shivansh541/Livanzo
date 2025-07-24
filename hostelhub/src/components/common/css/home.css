@@ -285,7 +285,12 @@
   height: 100px;
   transform: rotate(180deg); /* Flip for top */
 }
-
+.home-map{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .about-section {
   padding: 60px 20px;
   color: var(--text-color);
@@ -551,6 +556,25 @@
     font-size: 10px;
     margin: 3px 0;
   }
+  .home-map h2{
+        font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+  .home-map>div{
+    width: 90% !important;
+  }
+.gmnoprint.gm-style-mtc{
+  transform: scale(0.7); /* shrink */
+  transform-origin: top left;
+}
+#autocomplete{
+  font-size: 11px;
+  padding: 8px 10px;
+  width: 50%;
+}
+.getCurrLoc{
+  font-size: 14px;
+}
   .about-section,.features-section,.footer{
     padding: 1.5rem 1rem;
   }

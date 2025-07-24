@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css/home.css";
-import { useTheme } from "../../content/ThemeContext";
+import { useTheme } from "../../context/ThemeContext";
 import { ReactTyped } from 'react-typed'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { GoogleMap, Marker, InfoWindow, Circle } from "@react-google-maps/api";
+import { useMap } from "../../context/MapProvider"; // adjust path
 import { faSearch,  faShieldAlt,
   faFilter,
   faMapMarkedAlt,
@@ -11,16 +13,62 @@ import { faSearch,  faShieldAlt,
   faImages,
   faUserCog,
   faMobileAlt,
-  faPhoneAlt, } from "@fortawesome/free-solid-svg-icons";
+  faPhoneAlt,
+  faLocationCrosshairs, } from "@fortawesome/free-solid-svg-icons";
 import AOS from "aos";
 import "aos/dist/aos.css";
+const containerStyle = {
+  width: "80%",
+  height: "80vh",
+};
 
 const Home = ({ hostels }) => {
+    const [userLocation, setUserLocation] = useState(null);
+  const [map, setMap] = useState(null);
+  const [selectedHostel, setSelectedHostel] = useState(null);
   const { theme } = useTheme()
   const navigate = useNavigate();
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const [sliderHostels, setSliderHostels] = useState([]);
   const [role, setRole] = useState(null);
+
+  const calculateDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371; // Radius of the earth in km
+  const dLat = (lat2 - lat1) * (Math.PI / 180);
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * (Math.PI / 180)) *
+      Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; // in km
+};
+  const handleRecenter = () => {
+    if (userLocation && map) {
+      map.panTo(userLocation);
+      map.setZoom(14);
+    }
+  };
+    useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const coords = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+          acc: position.coords.accuracy
+        };
+        setUserLocation(coords);
+      },
+      () => {
+        // fallback to Lucknow if permission denied
+        setUserLocation({ lat: 26.8467, lng: 80.9462 });
+      }
+    );
+
+  }, []);
+
   useEffect(() => {
     const role = localStorage.getItem("role");
     setRole(role);
@@ -84,6 +132,9 @@ const features = [
       navigate("/login");
     }
   };
+const { isLoaded } = useMap();
+
+  if (!isLoaded || !userLocation) return <div>Loading map...</div>;
   return (
     <div className="home-page">
       {/* Hero Section */}
@@ -175,6 +226,108 @@ const features = [
           </button>
         </section>
       )}
+      <section className="home-map">
+        <h2>Where we are</h2>
+              <GoogleMap
+
+        mapContainerStyle={containerStyle}
+        center={userLocation}
+        zoom={15}
+        onLoad={(mapInstance) => setMap(mapInstance)}
+          options={{
+    streetViewControl: false,
+    fullscreenControl: false,
+        mapTypeControlOptions: {
+      style: window.google?.maps.MapTypeControlStyle?.DROPDOWN_MENU,
+    },
+  }}
+      >
+      <Marker
+      position={userLocation}
+      icon={{
+        path: window.google?.maps.SymbolPath?.CIRCLE,
+        scale: 8,
+        fillColor: "#4285F4",
+        fillOpacity: 1,
+        strokeWeight: 1,
+        strokeColor: "white",
+      }}
+    />
+    
+    {/* Accuracy Circle */}
+    <Circle
+      center={userLocation}
+      radius={userLocation.acc} // Approximate accuracy in meters (adjustable)
+      options={{
+        strokeColor: "#4285F4",
+        strokeOpacity: 0.5,
+        strokeWeight: 1,
+        fillColor: "#4285F4",
+        fillOpacity: 0.1,
+      }}
+    />
+{hostels.map((hostel, index) => (
+  <Marker
+    key={index}
+    position={hostel.latLng}
+    icon={
+      window.google?.maps
+        ? {
+            url: "/assets/images/location.png",
+            scaledSize: new window.google.maps.Size(50, 50),
+          }
+        : undefined
+    }
+    onClick={() => setSelectedHostel(hostel)}
+  />
+))}
+
+
+        {selectedHostel && (
+          <InfoWindow
+            position={{
+              lat: selectedHostel.latLng.lat,
+              lng: selectedHostel.latLng.lng,
+            }}
+            onCloseClick={() => setSelectedHostel(null)}
+          >
+            <div>
+              <strong>{selectedHostel.name}</strong>
+              <br />
+                {userLocation && (
+    <span>
+      Distance:{" "}
+      {calculateDistance(
+        userLocation.lat,
+        userLocation.lng,
+        selectedHostel.latLng.lat,
+        selectedHostel.latLng.lng
+      ).toFixed(2)}{" "}
+      km
+    </span>
+  )}
+  <br />
+              <button
+                onClick={()=>handleClick(selectedHostel._id)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Details
+              </button>
+              <a
+  href={selectedHostel.mapsUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  View on Google Maps
+</a>
+
+            </div>
+          </InfoWindow>
+        )}
+<FontAwesomeIcon className='getCurrLoc' onClick={handleRecenter} icon = {faLocationCrosshairs}/>
+      </GoogleMap>
+      </section>
       {/* About Section */}
 
     <section className="about-section">
@@ -194,24 +347,24 @@ const features = [
       </div>
 
 <div className="about-grid">
-  <div data-aos="fade-right" className="about-card">
+  <div data-aos="fade-up" className="about-card">
     <img src="/assets/images/what-we-do.png" alt="What We Do" className="card-icon" />
     <h3>What We Do</h3>
     <p>We connect property owners with renters through a reliable platform featuring verified listings, reviews, and modern tools.</p>
   </div>
 
-  <div data-aos="fade-left" className="about-card">
+  <div data-aos="fade-up" className="about-card">
     <img src="/assets/images/mission.png" alt="Our Mission" className="card-icon" />
     <h3>Our Mission</h3>
     <p>To simplify accommodation discovery by making it fast, transparent, and accessible across every city and town.</p>
   </div>
 
-  <div data-aos="fade-right" className="about-card">
+  <div data-aos="fade-up" className="about-card">
     <img src="/assets/images/vision.png" alt="Our Vision" className="card-icon" />
     <h3>Our Vision</h3>
     <p>To become India’s most trusted rental and hostel discovery platform — focused on quality and user empowerment.</p>
   </div>
-    <div data-aos="fade-left" className="about-card">
+    <div data-aos="fade-up" className="about-card">
       <img src="/assets/images/values.png" alt="Core values" className="card-icon" />
       <h3>Core Values</h3>
       <p>Our approach is rooted in trust, accessibility, innovation, and transparency — to ensure every user feels at home.</p>

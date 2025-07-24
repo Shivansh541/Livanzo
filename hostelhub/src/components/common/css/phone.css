@@ -491,4 +491,15 @@ font-size: 12px;
   .hostel-images img {
     cursor: default;
   }
+  #autocomplete{
+  font-size: 11px;
+  padding: 8px 10px;
+  width: 50%;
+}
+.getCurrLoc{
+  font-size: 14px;
+}
+.inputMap>div{
+  height: 250px !important;
+}
 }

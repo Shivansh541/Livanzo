@@ -53,28 +53,23 @@ const HostelSchema = new Schema({
     },
   ],
   address: {
-    landmark: {
-      type: String,
+    type: String,
+    required: true
+  },
+  city:{
+    type: String,
+    required: true
+  },
+  latLng:{
+    lat: {
+      type: Number,
     },
-    street: {
-      type: String,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    state:{
-      type: String,
-      required: true,
-    },
-    pincode:{
-      type: String,
-      required: true,
+    lng:{
+      type:Number,
     }
   },
-  locationLink:{
+  mapsUrl:{
     type: String,
-
   },
   roomType: {
     type: String,

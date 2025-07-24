@@ -277,12 +277,12 @@ const HostelDetails = () => {
   )}
 
   <div className="location-line">
-    📍 {hostel.address?.landmark && `Near ${hostel.address.landmark}, `}
-    {hostel.address.street}, {hostel.address.city}, {hostel.address.state} - {hostel.address.pincode}
-  {hostel.locationLink && (
+    📍 {hostel.landmark && `Near ${hostel.landmark}, `}
+    {hostel.address}
+  {hostel.mapsUrl && (
     <button
     className='maps-button'
-    onClick={() => window.open(hostel.locationLink, "_blank")}
+    onClick={() => window.open(hostel.mapsUrl, "_blank")}
     >
       Open in maps
     </button>

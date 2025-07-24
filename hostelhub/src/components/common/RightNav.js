@@ -4,7 +4,7 @@ import ToggleButton from "./ToggleButton";
 import NavLinks from './NavLinks';
 import '../common/css/rightnav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faM, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const RightNav = ({ searchTerm, setSearchTerm }) => {

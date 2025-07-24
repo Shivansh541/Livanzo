@@ -96,37 +96,6 @@ router.get("/all", async (req, res) => {
   }
 });
 
-// 🔍 Search hostels
-// GET /api/hostel/search?query=delhi&min=3000&max=7000
-router.get("/search", async (req, res) => {
-  try {
-    const { query, min, max } = req.query;
-
-    const filter = {
-      ...(query && {
-        $or: [
-          { name: { $regex: query, $options: "i" } },
-          { "address.city": { $regex: query, $options: "i" } },
-          { description: { $regex: query, $options: "i" } },
-        ],
-      }),
-      ...(min && { rent: { $gte: Number(min) } }),
-      ...(max && {
-        rent: {
-          ...((min && { $gte: Number(min) }) || {}),
-          $lte: Number(max),
-        },
-      }),
-    };
-
-    const hostels = await Hostel.find(filter);
-    res.json(hostels);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
 // 📄 Get hostel by ID
 router.get("/:id", async (req, res) => {
   try {

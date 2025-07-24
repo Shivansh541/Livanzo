@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useTheme } from '../../content/ThemeContext'
+import React from 'react'
+import { useTheme } from '../../context/ThemeContext'
 
 const Logo = () => {
 const { theme } = useTheme()

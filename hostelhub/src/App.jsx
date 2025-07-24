@@ -12,8 +12,8 @@ import Home from "./components/common/Home";
 import Dashboard from "./components/common/Dashboard";
 import './components/common/css/phone.css'
 import 'react-tooltip/dist/react-tooltip.css'
-import { ThemeProvider } from "./content/ThemeContext";
-
+import { ThemeProvider } from "./context/ThemeContext";
+import { MapProvider } from "./context/MapProvider";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -22,6 +22,7 @@ function App() {
   const [hostels, setHostels] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.body.classList.add(savedTheme);
@@ -81,7 +82,8 @@ function App() {
 
   return (
     <ThemeProvider>
-
+<MapProvider>
+        
     <BrowserRouter basename="/">
       <Routes>
 
@@ -153,6 +155,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
+            </MapProvider>
           </ThemeProvider>
   );
 }
