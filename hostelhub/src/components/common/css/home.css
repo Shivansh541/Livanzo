@@ -291,6 +291,18 @@
   align-items: center;
   flex-direction: column;
 }
+.home-map .viewDetails{
+      background: none;
+    border: none;
+    outline: none;
+    color: var(--link-color);
+    margin-right: 4px;
+}
+.home-map-link{
+  text-decoration: none;
+  color: var(--link-color);
+  
+}
 .about-section {
   padding: 60px 20px;
   color: var(--text-color);
@@ -567,14 +579,7 @@
   transform: scale(0.7); /* shrink */
   transform-origin: top left;
 }
-#autocomplete{
-  font-size: 11px;
-  padding: 8px 10px;
-  width: 50%;
-}
-.getCurrLoc{
-  font-size: 14px;
-}
+
   .about-section,.features-section,.footer{
     padding: 1.5rem 1rem;
   }

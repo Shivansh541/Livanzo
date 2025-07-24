@@ -308,6 +308,7 @@ const { isLoaded } = useMap();
   )}
   <br />
               <button
+              className="viewDetails"
                 onClick={()=>handleClick(selectedHostel._id)}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -315,11 +316,12 @@ const { isLoaded } = useMap();
                 View Details
               </button>
               <a
+              className="home-map-link"
   href={selectedHostel.mapsUrl}
   target="_blank"
   rel="noopener noreferrer"
 >
-  View on Google Maps
+  Open in Maps
 </a>
 
             </div>
