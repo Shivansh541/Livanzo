@@ -33,6 +33,7 @@ const Home = ({ hostels }) => {
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const [sliderHostels, setSliderHostels] = useState([]);
   const [role, setRole] = useState(null);
+  const [query, setQuery] = useState(null);
 
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
     const R = 6371; // Radius of the earth in km
@@ -134,6 +135,24 @@ const Home = ({ hostels }) => {
       navigate("/login");
     }
   };
+  const handleSearch = () => {
+    const role = localStorage.getItem("role");
+    if (query.trim() !== "") {
+      if (role === "owner") {
+        navigate(`/owner/allhostels?search=${encodeURIComponent(query)}`);
+      } else if (role === "renter") {
+        navigate(`/user/allhostels?search=${encodeURIComponent(query)}`);
+      } else {
+        navigate("/login");
+      }
+    }
+  }
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSearch()
+    }
+  }
+
   const { isLoaded } = useMap();
 
   if (!isLoaded || !userLocation) return <div>Loading map...</div>;
@@ -163,8 +182,8 @@ const Home = ({ hostels }) => {
             )}
           </div>
           <div className="hero-search-bar">
-            <input type="search" placeholder="Search by city, college, or area..." />
-            <button>
+            <input type="search" placeholder="Search by city, college, or area..." value={query} onChange={(e) => setQuery(e.target.value)} onKeyPress={handleKeyPress} />
+            <button onClick={handleSearch}>
               🔍
             </button>
           </div>
@@ -286,7 +305,7 @@ const Home = ({ hostels }) => {
 
 
           {selectedHostel && (
-            <InfoWindow style = {{position: 'relative'}}
+            <InfoWindow style={{ position: 'relative' }}
               position={{
                 lat: selectedHostel.latLng.lat,
                 lng: selectedHostel.latLng.lng,

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./css/allHostel.css";
 
 const AllHostels = ({ hostels }) => {
   const [showModal, setShowModal] = useState(false);
   const [userLocation, setUserLocation] = useState(null);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const searchTerm = queryParams.get("search")?.toLowerCase() || "";
 
   const navigate = useNavigate();
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -57,6 +60,13 @@ const AllHostels = ({ hostels }) => {
 
   useEffect(() => {
     let result = hostels?.filter((h) => {
+      const matchesSearch =
+        !searchTerm ||
+        h.name?.toLowerCase().includes(searchTerm) ||
+        h.address?.toLowerCase().includes(searchTerm) ||
+        h.nearbyColleges?.some((c) => c.toLowerCase().includes(searchTerm));
+
+      if (!matchesSearch) return false;
       const facilitiesArray = filters.facilities
         ? filters.facilities
             .toLowerCase()
@@ -103,7 +113,8 @@ const AllHostels = ({ hostels }) => {
           h.rating >= parseFloat(filters.minRating)) &&
         facilitiesMatch &&
         collegeMatch &&
-        distanceMatch
+        distanceMatch &&
+        matchesSearch
       );
     });
 
@@ -163,7 +174,7 @@ const AllHostels = ({ hostels }) => {
     }
 
     setFilteredHostels(result);
-  }, [filters, hostels, sortOption]);
+  }, [filters, hostels, sortOption, searchTerm, userLocation]);
 
   const handleClick = (id) => {
     const role = localStorage.getItem("role");

@@ -201,7 +201,7 @@
 }
 .filter-section .filter-button {
   padding: 10px 20px;
-background-color: transparent;
+background-color: var(--form-bg);
     color: var(--placeholder-color);
     border: 1px solid var(--input-border);
     border-radius: 25px;
